@@ -1,11 +1,30 @@
-import React, { useState } from "react"
-import PropTypes from "prop-types"
-import { useStaticQuery, graphql } from "gatsby"
+import green from "@material-ui/core/colors/green";
+import purple from "@material-ui/core/colors/purple";
+import CssBaseline from "@material-ui/core/CssBaseline";
+import { createTheme, ThemeProvider } from "@material-ui/core/styles";
+import { graphql, useStaticQuery } from "gatsby";
+import React from "react";
+import Footer from "~/components/footer";
+import NavBar from "./navbar";
 
-import SearchResults from "~/components/search-results"
-import Footer from "~/components/footer"
+// #9c1314 red
+// #353333 black
+//
+const theme = createTheme({
+  palette: {
+    primary: {
+      main: "#9c1314",
+    },
+    secondary: {
+      main: "#353333",
+    },
+    text: {
+      secondary: "#fff"
+    }
+  },
+});
 
-import Header from "~/components/header"
+console.log(theme.palette)
 
 const Layout = ({ children }) => {
   const data = useStaticQuery(graphql`
@@ -14,31 +33,16 @@ const Layout = ({ children }) => {
         siteName
       }
     }
-  `)
-
-  const [openModal, setOpenModal] = useState(false)
+  `);
 
   return (
-    <div className="bg-gray-50 relative">
-      <Header
-        setOpenModal={setOpenModal}
-        siteName={data.strapiGlobal.siteName || `Strapi`}
-      />
-      <div className="flex flex-col max-w-screen-lg m-auto min-h-screen p-6 md:p-10">
-        <main className="flex-1">{children}</main>
-        <Footer />
-      </div>
-      {openModal && (
-        <div className="h-screen max-w-screen-lg m-auto fixed bottom-0 top-0 right-0 left-0 px-6 pb-10 pt-20 md:p-10 md:pt-40">
-          <SearchResults setOpenModal={setOpenModal} openModal={openModal} />
-        </div>
-      )}
-    </div>
-  )
-}
+    <ThemeProvider theme={theme}>
+      <CssBaseline />
+      <NavBar />
+      {children}
+      <Footer></Footer>
+    </ThemeProvider>
+  );
+};
 
-Layout.propTypes = {
-  children: PropTypes.node.isRequired,
-}
-
-export default Layout
+export default Layout;

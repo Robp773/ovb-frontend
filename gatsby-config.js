@@ -19,6 +19,7 @@ module.exports = {
     `gatsby-plugin-image`,
     `gatsby-transformer-sharp`,
     `gatsby-plugin-sharp`,
+    `gatsby-plugin-material-ui`,
     {
       resolve: `gatsby-plugin-manifest`,
       options: {
@@ -34,10 +35,10 @@ module.exports = {
     {
       resolve: `gatsby-source-strapi`,
       options: {
-        apiURL: process.env.API_URL || `http://localhost:1337`,
+        apiURL:  `http://localhost:1337`,
         queryLimit: 1000, // Default to 100
-        collectionTypes: [`note`],
-        singleTypes: [`global`],
+        collectionTypes: [`note`, `drill`, `drill-category`, `ropes-course-activity`],
+        singleTypes: [`global`, `home-page`, `about-page`],
       },
     },
     // You can have multiple instances of this plugin to create indexes with
