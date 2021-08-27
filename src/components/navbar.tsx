@@ -1,21 +1,16 @@
 import {
-  Box,
   Button,
   Container,
-  IconButton,
   InputBase,
-  Typography,
 } from "@material-ui/core";
 import AppBar from "@material-ui/core/AppBar";
-import { alpha, makeStyles } from "@material-ui/core/styles";
+import { alpha, makeStyles, useTheme } from "@material-ui/core/styles";
 import Toolbar from "@material-ui/core/Toolbar";
-import MenuIcon from "@material-ui/icons/Menu";
 import SearchIcon from "@material-ui/icons/Search";
 import React from "react";
-import { graphql, Link } from "gatsby";
+import { Link } from "gatsby";
 import { useLocation } from "@reach/router";
 import HomeRoundedIcon from "@material-ui/icons/HomeRounded";
-import SvgIcon from "@material-ui/core/SvgIcon";
 import Menu from "@material-ui/core/Menu";
 import MenuItem from "@material-ui/core/MenuItem";
 
@@ -94,6 +89,7 @@ const useStyles = makeStyles((theme) => ({
   dropDownMenuLink: {
     color: "#353333",
     textDecoration: "none",
+
   },
 }));
 const infoPages = ["/info/about", "/info/coaches", "/info/calendar", ,];
@@ -102,12 +98,12 @@ const skillsPages = [
   "/skills/teamwork",
   "/skills/technical",
 ];
-const NavBar = ({ props }) => {
+const NavBar = () => {
   const classes = useStyles();
   const location = useLocation().pathname;
   const getNavBtnAttributes = (curPath: string, btnPath: string) => {
     return curPath === btnPath
-      ? { variant: "contained", color: "#353333" }
+      ? { variant: "contained", color: "default" }
       : { variant: "contained", color: "secondary" };
   };
   const [infoAnchorEl, setInfoAnchorEl] = React.useState(null);
@@ -117,7 +113,6 @@ const NavBar = ({ props }) => {
   };
 
   const handleInfoClose = () => {
-    console.log("closing");
     setInfoAnchorEl(null);
   };
 
@@ -126,7 +121,6 @@ const NavBar = ({ props }) => {
   };
 
   const handleSkillsClose = () => {
-    console.log("closing");
     setSkillsAnchorEl(null);
   };
 
@@ -155,7 +149,7 @@ const NavBar = ({ props }) => {
                 onClick={handleInfoClick}
                 className={classes.navBtn}
                 {...(infoPages.includes(location)
-                  ? { variant: "contained", color: "#353333" }
+                  ? { variant: "contained", color: "default" }
                   : { variant: "contained", color: "secondary" })}
               >
                 Info
@@ -178,33 +172,27 @@ const NavBar = ({ props }) => {
                   horizontal: "center",
                 }}
               >
-                <MenuItem>
-                  <Link
-                    className={classes.dropDownMenuLink}
-                    onClick={handleInfoClose}
-                    to="/info/about"
-                  >
-                    About
-                  </Link>
-                </MenuItem>
-                <MenuItem onClick={handleInfoClose}>
-                  <Link
-                    className={classes.dropDownMenuLink}
-                    onClick={handleInfoClose}
-                    to="/info/coaches"
-                  >
-                    Coaches
-                  </Link>
-                </MenuItem>
-                <MenuItem onClick={handleInfoClose}>
-                  <Link
-                    className={classes.dropDownMenuLink}
-                    onClick={handleInfoClose}
-                    to="/info/calendar"
-                  >
-                    Calendar
-                  </Link>
-                </MenuItem>
+                <Link
+                  className={classes.dropDownMenuLink}
+                  onClick={handleInfoClose}
+                  to="/info/about"
+                >
+                  <MenuItem>About</MenuItem>
+                </Link>
+                <Link
+                  className={classes.dropDownMenuLink}
+                  onClick={handleInfoClose}
+                  to="/info/coaches"
+                >
+                  <MenuItem onClick={handleInfoClose}>Coaches</MenuItem>
+                </Link>
+                <Link
+                  className={classes.dropDownMenuLink}
+                  onClick={handleInfoClose}
+                  to="/info/calendar"
+                >
+                  <MenuItem onClick={handleInfoClose}>Calendar</MenuItem>
+                </Link>
               </Menu>
             </div>
 
@@ -221,7 +209,7 @@ const NavBar = ({ props }) => {
                 onClick={handleSkillsClick}
                 className={classes.navBtn}
                 {...(skillsPages.includes(location)
-                  ? { variant: "contained", color: "#353333" }
+                  ? { variant: "contained", color: "default" }
                   : { variant: "contained", color: "secondary" })}
               >
                 Skills
@@ -244,33 +232,31 @@ const NavBar = ({ props }) => {
                   horizontal: "center",
                 }}
               >
-                <MenuItem>
-                  <Link
-                    className={classes.dropDownMenuLink}
-                    onClick={handleSkillsClose}
-                    to="/skills/teamwork"
-                  >
-                    Teamwork
-                  </Link>
-                </MenuItem>
-                <MenuItem onClick={handleSkillsClose}>
-                  <Link
-                    className={classes.dropDownMenuLink}
-                    onClick={handleSkillsClose}
-                    to="/skills/technical"
-                  >
-                    Technical
-                  </Link>
-                </MenuItem>
-                <MenuItem onClick={handleSkillsClose}>
-                  <Link
-                    className={classes.dropDownMenuLink}
-                    onClick={handleSkillsClose}
-                    to="/skills/leadership"
-                  >
+                
+                <Link
+                  className={classes.dropDownMenuLink}
+                  onClick={handleSkillsClose}
+                  to="/skills/teamwork"
+                >
+                  <MenuItem>Teamwork</MenuItem>
+                </Link>
+                <Link
+                  className={classes.dropDownMenuLink}
+                  onClick={handleSkillsClose}
+                  to="/skills/technical"
+                >
+                  <MenuItem onClick={handleSkillsClose}>Technical</MenuItem>
+                </Link>
+                <Link
+                  className={classes.dropDownMenuLink}
+                  onClick={handleSkillsClose}
+                  to="/skills/leadership"
+                >
+                  
+                  <MenuItem onClick={handleSkillsClose}>
                     Leadership
-                  </Link>
-                </MenuItem>
+                  </MenuItem>
+                </Link>
               </Menu>
             </div>
 
@@ -299,7 +285,6 @@ const NavBar = ({ props }) => {
               </Button>
             </Link>
 
-      
             <Link className={classes.navLink} to="/store">
               <Button
                 className={classes.navBtn}

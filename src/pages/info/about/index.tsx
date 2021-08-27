@@ -4,6 +4,7 @@ import { graphql } from "gatsby";
 import Layout from "~/components/layout";
 import SEO from "~/components/seo";
 import { Typography } from "@material-ui/core";
+import PageWrapper from "../../../components/page-wrapper";
 
 const AboutPage = ({ data }) => {
   console.log(data);
@@ -12,10 +13,12 @@ const AboutPage = ({ data }) => {
   return (
     <Layout>
       <SEO seo={seo} />
-      <Typography variant="h3">{data.strapiAboutPage.title}</Typography>
-      <Typography
-        dangerouslySetInnerHTML={{ __html: data.strapiAboutPage.content }}
-      />
+      <PageWrapper>
+        <Typography variant="h3">{data.strapiAboutPage.title}</Typography>
+        <Typography
+          dangerouslySetInnerHTML={{ __html: data.strapiAboutPage.content }}
+        />
+      </PageWrapper>
     </Layout>
   );
 };

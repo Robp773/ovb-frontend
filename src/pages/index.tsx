@@ -1,7 +1,10 @@
 import { Box, Container } from "@material-ui/core";
 import Button from "@material-ui/core/Button";
+import Card from "@material-ui/core/Card";
+import CardActionArea from "@material-ui/core/CardActionArea";
+import CardActions from "@material-ui/core/CardActions";
+import CardContent from "@material-ui/core/CardContent";
 import { styled, useTheme } from "@material-ui/core/styles";
-import zIndex from "@material-ui/core/styles/zIndex";
 import Typography from "@material-ui/core/Typography";
 import { graphql, Link } from "gatsby";
 import Img from "gatsby-image";
@@ -9,11 +12,7 @@ import React from "react";
 import SEO from "~/components/seo";
 import Layout from "../components/layout";
 import bgImage from "../images/ovb-main-bg.jpg";
-import Card from "@material-ui/core/Card";
-import CardActionArea from "@material-ui/core/CardActionArea";
-import CardActions from "@material-ui/core/CardActions";
-import CardContent from "@material-ui/core/CardContent";
-import CardMedia from "@material-ui/core/CardMedia";
+
 
 const ImageContainer = styled(Container)({
   display: "flex",
@@ -55,18 +54,33 @@ const AboutLink = styled(Link)({
   textDecoration: "none",
 });
 
-const FeedWrapper = styled(Container)({
+const ActivityListWrapper = styled(Container)({
   display: "flex",
+  padding: "40px",
 });
 
-const StyledCardMedia = styled(CardMedia)({
-  height: "150px",
+const ActivityContainer = styled(Container)({
+  padding: "55px",
+});
+
+const StyledCard = styled(Card)({
+  margin: "0 5px",
+  flexGrow: 1,
+  flexBasis: 0,
+  display: "flex",
+  flexDirection: "column",
+  justifyContent: "space-between"
+});
+
+const CardActionButton = styled(Link)({
+  textDecoration: "none",
+
 });
 
 const IndexPage = ({ data }) => {
   const { strapiHomePage: page, allStrapiNote: notes } = data;
 
-  console.log(notes);
+  const theme = useTheme();
 
   const seo = { title: "Home Page" };
 
@@ -92,39 +106,57 @@ const IndexPage = ({ data }) => {
             {page.intro_text}
           </WhoWeAreText>
         </TextWrapper>
-        <AboutLink to="/about">
+        <AboutLink to="/info/about">
           <LearnMoreButton color="secondary" variant="contained" size="small">
             Learn More
           </LearnMoreButton>
         </AboutLink>
       </WhoWeAreCard>
+      <ActivityContainer>
+        <Typography
+          color="textPrimary"
+          align="center"
+          variant="h3"
+          component="h3"
+        >
+          Recent Activity
+        </Typography>
+        <ActivityListWrapper>
+          {notes.edges.map((item, index) => {
+            const note = item.node;
+            console.log(note);
+            return (
+              <StyledCard raised key={index}>
+                <CardActionArea>
+                  <Img
+                    fixed={note.main_media.localFile.childImageSharp.fixed}
+                  />
+                  <CardContent>
+                    <Typography  variant="h6">{note.title}</Typography>
+                    <Typography variant="subtitle2" component="p">
+                      {note.category} skills
+                    </Typography>
+                    <Typography gutterBottom variant="subtitle2" component="p" >
+                      {note.published_at}
+                    </Typography>
 
-      <FeedWrapper>
-        {notes.edges.map((item, index) => {
-          const note = item.node;
-          console.log(note);
-          return (
-            <Card key={index}>
-              <CardActionArea>
-                <Img fixed={note.main_media.localFile.childImageSharp.fixed} />
-                <CardContent>
-                  <Typography gutterBottom variant="h5" component="h2">
-                    {note.title}
-                  </Typography>
-                  <Typography variant="body2" component="p">
-                    {note.description}
-                  </Typography>
-                </CardContent>
-              </CardActionArea>
-              <CardActions>
-                <Link to="/about">
-                  Read More
-                </Link>
-              </CardActions>
-            </Card>
-          );
-        })}
-      </FeedWrapper>
+                    <Typography variant="body2" component="p">
+                      {note.description}
+                    </Typography>
+                  </CardContent>
+                </CardActionArea>
+                <CardActions>
+                  <CardActionButton to={`/${note.category}/${note.id}`}>
+                    <Button variant="outlined">
+                      Read more
+                    </Button>
+                  </CardActionButton>
+                </CardActions>
+              </StyledCard>
+            );
+          })}
+        </ActivityListWrapper>
+      </ActivityContainer>
     </Layout>
   );
 };
@@ -153,7 +185,7 @@ export const notePageQuery = graphql`
             created_at
             title
           }
-          published_at
+          published_at(formatString: "MMMM Do YYYY")
           content
           category
           created_at

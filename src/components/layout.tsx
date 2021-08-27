@@ -19,12 +19,13 @@ const theme = createTheme({
       main: "#353333",
     },
     text: {
-      secondary: "#fff"
-    }
+      secondary: "#fff",
+      hint: "yellow",
+    },
   },
 });
 
-console.log(theme.palette)
+console.log(theme.palette);
 
 const Layout = ({ children }) => {
   const data = useStaticQuery(graphql`

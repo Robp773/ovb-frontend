@@ -58,12 +58,10 @@ exports.createPages = async function ({ actions, graphql }) {
     }
   `)
   data.allStrapiNote.edges.forEach(note => {
-    // const slug = edge.node.fields.slug
-    console.log(`/${note.node.category}/${note.node.id}`)
+    console.log(`/${note.node.category}/${note.node.title}`)
     actions.createPage({
       path: `/${note.node.category}/${note.node.id}`,
       component: require.resolve(`./src/templates/note.tsx`),
-      // context: { slug: slug },
     })
   })
 }
