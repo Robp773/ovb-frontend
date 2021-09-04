@@ -38,7 +38,7 @@ module.exports = {
         apiURL:  process.env.API_URL || `http://localhost:1337`,
         queryLimit: 1000, // Default to 100
         collectionTypes: [`note`, `drill`, `drill-category`, `ropes-course-activity`],
-        singleTypes: [`global`, `home-page`, `about-page`],
+        singleTypes: [`global`, `home-page`, `about-page`, `coaches-page`],
       },
     },
     // You can have multiple instances of this plugin to create indexes with

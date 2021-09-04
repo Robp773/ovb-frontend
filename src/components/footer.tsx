@@ -18,7 +18,6 @@ const LinksContainer = styled(Container)({
 
 const ContactUsContainer = styled(Container)({
   display: "flex",
-  // justifyContent: "center",
   flexDirection: "column",
   alignItems: "center",
 });
@@ -30,8 +29,8 @@ const ContentContainer = styled(Container)({
 const StyledFooter = styled(withTheme(Container))((props) => ({
   background: props.theme.palette.secondary.main,
   width: "100%",
-  paddingTop: "55px",
-  paddingBottom: "27px",
+  paddingTop: "50px",
+  paddingBottom: "30px",
   color: props.theme.palette.text.secondary,
   display: "flex",
   flexDirection: "column",

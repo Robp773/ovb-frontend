@@ -1,8 +1,4 @@
-import {
-  Button,
-  Container,
-  InputBase,
-} from "@material-ui/core";
+import { Button, Container, InputBase } from "@material-ui/core";
 import AppBar from "@material-ui/core/AppBar";
 import { alpha, makeStyles, useTheme } from "@material-ui/core/styles";
 import Toolbar from "@material-ui/core/Toolbar";
@@ -87,11 +83,11 @@ const useStyles = makeStyles((theme) => ({
     position: "absolute",
   },
   dropDownMenuLink: {
-    color: "#353333",
+    color: theme.palette.secondary.main,
     textDecoration: "none",
-
   },
 }));
+
 const infoPages = ["/info/about", "/info/coaches", "/info/calendar", ,];
 const skillsPages = [
   "/skills/leadership",
@@ -232,7 +228,6 @@ const NavBar = () => {
                   horizontal: "center",
                 }}
               >
-                
                 <Link
                   className={classes.dropDownMenuLink}
                   onClick={handleSkillsClose}
@@ -252,10 +247,7 @@ const NavBar = () => {
                   onClick={handleSkillsClose}
                   to="/skills/leadership"
                 >
-                  
-                  <MenuItem onClick={handleSkillsClose}>
-                    Leadership
-                  </MenuItem>
+                  <MenuItem onClick={handleSkillsClose}>Leadership</MenuItem>
                 </Link>
               </Menu>
             </div>

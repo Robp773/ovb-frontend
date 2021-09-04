@@ -20,8 +20,6 @@ const ImageContainer = styled(Container)({
   padding: "55px",
 });
 
-// #9c1314 red
-// #353333 black
 const WhoWeAreCard = styled(Box)({
   display: "flex",
   flexDirection: "column",
@@ -33,11 +31,13 @@ const WhoWeAreCard = styled(Box)({
   backgroundAttachment: "fixed",
   alignItems: "space-between",
   padding: "55px",
-  clipPath: "polygon(0 7%, 100% 0%, 100% 93%, 0 100%)",
+  clipPath: "polygon(0 10%, 100% 0%, 100% 90%, 0 100%)",
 });
 
 const WhoWeAreText = styled(Typography)({
   fontStyle: "italic",
+  maxWidth: "75ch",
+  margin: "auto"
 });
 
 const TextWrapper = styled(Container)({
@@ -60,11 +60,11 @@ const ActivityListWrapper = styled(Container)({
 });
 
 const ActivityContainer = styled(Container)({
-  padding: "55px",
+  padding: "50px",
 });
 
 const StyledCard = styled(Card)({
-  margin: "0 5px",
+  margin: "0 10px",
   flexGrow: 1,
   flexBasis: 0,
   display: "flex",
@@ -79,8 +79,6 @@ const CardActionButton = styled(Link)({
 
 const IndexPage = ({ data }) => {
   const { strapiHomePage: page, allStrapiNote: notes } = data;
-
-  const theme = useTheme();
 
   const seo = { title: "Home Page" };
 
