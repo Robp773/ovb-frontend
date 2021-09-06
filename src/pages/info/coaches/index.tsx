@@ -5,8 +5,8 @@ import Img from "gatsby-image";
 import Layout from "~/components/layout";
 import SEO from "~/components/seo";
 import { Container, styled, Typography, withTheme } from "@material-ui/core";
-import PageWrapper from "../../../components/Page/page-wrapper";
-import PageHeading from "../../../components/Page/page-heading";
+import PageWrapper from "../../../components/page/page-wrapper";
+import PageHeading from "../../../components/page/page-heading";
 
 const CoachContainer = styled(Container)({});
 
@@ -56,7 +56,7 @@ const CalendarPage = ({ data }) => {
   );
 };
 
-export const notePageQuery = graphql`
+export const calendarPageQuery = graphql`
   query MyQuery {
     strapiCoachesPage {
       coaches {

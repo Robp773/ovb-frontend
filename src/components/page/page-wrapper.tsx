@@ -7,7 +7,6 @@ const PageContainer = styled(withTheme(Container))((props) => ({
 
 const ContentContainer = styled(withTheme(Paper))((props) => ({
   minHeight: "50vh",
-
   maxWidth: "85ch",
   display: "flex",
   flexDirection: "column",
@@ -16,14 +15,22 @@ const ContentContainer = styled(withTheme(Paper))((props) => ({
   background: "white",
   padding: "30px",
   margin: "auto",
+
   "& >* p": {
     margin: "0",
+    width: "100%",
+    padding: 0,
+  },
+
+  "& >* img": {
+    margin: "0",
+    width: "100%",
   },
 }));
 
 const PageWrapper = ({ children }) => {
   return (
-    <PageContainer >
+    <PageContainer>
       <ContentContainer elevation={1}>{children}</ContentContainer>
     </PageContainer>
   );

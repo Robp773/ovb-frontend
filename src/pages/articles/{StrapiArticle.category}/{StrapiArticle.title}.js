@@ -3,7 +3,7 @@ import Layout from "~/components/layout";
 import SEO from "~/components/seo";
 
 
-const CustomNote = ({ data }) => {
+const CustomArticle = ({ data }) => {
   console.log(data);
   const seo = { title: "Store" };
 
@@ -25,4 +25,4 @@ const CustomNote = ({ data }) => {
 //   }
 // `;
 
-export default CustomNote;
+export default CustomArticle;

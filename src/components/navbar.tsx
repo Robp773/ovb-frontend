@@ -89,10 +89,10 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 const infoPages = ["/info/about", "/info/coaches", "/info/calendar", ,];
-const skillsPages = [
-  "/skills/leadership",
-  "/skills/teamwork",
-  "/skills/technical",
+const processPages = [
+  "/process/leadership",
+  "/process/teamwork",
+  "/process/technical",
 ];
 const NavBar = () => {
   const classes = useStyles();
@@ -112,15 +112,15 @@ const NavBar = () => {
     setInfoAnchorEl(null);
   };
 
-  const handleSkillsClick = (event) => {
-    setSkillsAnchorEl(event.currentTarget);
+  const handleProcessesClick = (event) => {
+    setprocessAnchorEl(event.currentTarget);
   };
 
-  const handleSkillsClose = () => {
-    setSkillsAnchorEl(null);
+  const handleProcessesClose = () => {
+    setprocessAnchorEl(null);
   };
 
-  const [skillsAnchorEl, setSkillsAnchorEl] = React.useState(null);
+  const [processAnchorEl, setprocessAnchorEl] = React.useState(null);
 
   return (
     <div className={classes.root}>
@@ -191,7 +191,7 @@ const NavBar = () => {
                 </Link>
               </Menu>
             </div>
-{/* 
+
             <Link className={classes.navLink} to="/drills">
               <Button
                 className={classes.navBtn}
@@ -199,25 +199,25 @@ const NavBar = () => {
               >
                 Drills
               </Button>
-            </Link> */}
+            </Link>
             <div className={classes.navDropDownParent}>
               <Button
-                onClick={handleSkillsClick}
+                onClick={handleProcessesClick}
                 className={classes.navBtn}
-                {...(skillsPages.includes(location)
+                {...(processPages.includes(location)
                   ? { variant: "contained", color: "default" }
                   : { variant: "contained", color: "secondary" })}
               >
-                Skills
+                Our Process
               </Button>
 
               <Menu
                 className={classes.dropDownMenu}
                 id="simple-menu"
-                anchorEl={skillsAnchorEl}
+                anchorEl={processAnchorEl}
                 keepMounted
-                open={Boolean(skillsAnchorEl)}
-                onClose={handleSkillsClose}
+                open={Boolean(processAnchorEl)}
+                onClose={handleProcessesClose}
                 getContentAnchorEl={null}
                 anchorOrigin={{
                   vertical: "bottom",
@@ -230,24 +230,24 @@ const NavBar = () => {
               >
                 <Link
                   className={classes.dropDownMenuLink}
-                  onClick={handleSkillsClose}
-                  to="/skills/teamwork"
+                  onClick={handleProcessesClose}
+                  to="/process/teamwork"
                 >
                   <MenuItem>Teamwork</MenuItem>
                 </Link>
                 <Link
                   className={classes.dropDownMenuLink}
-                  onClick={handleSkillsClose}
-                  to="/skills/technical"
+                  onClick={handleProcessesClose}
+                  to="/process/technical"
                 >
-                  <MenuItem onClick={handleSkillsClose}>Technical</MenuItem>
+                  <MenuItem onClick={handleProcessesClose}>Technical</MenuItem>
                 </Link>
                 <Link
                   className={classes.dropDownMenuLink}
-                  onClick={handleSkillsClose}
-                  to="/skills/leadership"
+                  onClick={handleProcessesClose}
+                  to="/process/leadership"
                 >
-                  <MenuItem onClick={handleSkillsClose}>Leadership</MenuItem>
+                  <MenuItem onClick={handleProcessesClose}>Leadership</MenuItem>
                 </Link>
               </Menu>
             </div>

@@ -4,7 +4,7 @@ import CssBaseline from "@material-ui/core/CssBaseline";
 import { createTheme, ThemeProvider } from "@material-ui/core/styles";
 import { graphql, useStaticQuery } from "gatsby";
 import React from "react";
-import Footer from "~/components/footer";
+import Footer from "./footer";
 import NavBar from "./navbar";
 
 // #9c1314 red

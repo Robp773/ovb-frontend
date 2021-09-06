@@ -14,12 +14,14 @@ import Typography from "@material-ui/core/Typography";
 import EmojiPeopleIcon from "@material-ui/icons/EmojiPeople";
 import GroupIcon from "@material-ui/icons/Group";
 import SportsBasketballIcon from "@material-ui/icons/SportsBasketball";
+import EmojiObjectsRoundedIcon from '@material-ui/icons/EmojiObjectsRounded';
 import { graphql, Link } from "gatsby";
 import Img from "gatsby-image";
 import React from "react";
-import SEO from "~/components/seo";
+import SEO from "../components/seo";
 import Layout from "../components/layout";
 import bgImage from "../images/ovb-main-bg.jpg";
+import BuildRoundedIcon from '@material-ui/icons/BuildRounded';
 
 const ImageContainer = styled(Container)({
   display: "flex",
@@ -73,8 +75,9 @@ const CardActionButton = styled(Link)({
   textDecoration: "none",
 });
 
+
 const IndexPage = ({ data }) => {
-  const { strapiHomePage: page, allStrapiNote: notes } = data;
+  const { strapiHomePage: page, allStrapiArticle: articles } = data;
 
   const seo = { title: "Home Page" };
 
@@ -110,27 +113,34 @@ const IndexPage = ({ data }) => {
         <Typography
           color="textPrimary"
           align="center"
-          variant="h3"
-          component="h3"
+          variant="h3"        
         >
-          Recent Activity
+          Recent Articles
         </Typography>
         <ActivityListWrapper direction="row" container spacing={2}>
-          {notes.edges.map((item, index) => {
-            const note = item.node;
-            // console.log(note.category);
+          {articles.edges.map((item, index) => {
+            const article = item.node;
+            // console.log(article.category);
             let activeIcon;
-            switch (note.category) {
-              case "Technical": {
+            switch (article.category) {
+              case "Mindset": {
                 activeIcon = <SportsBasketballIcon />;
                 break;
               }
-              case "Teamwork": {
+              case "Team": {
                 activeIcon = <GroupIcon />;
                 break;
               }
               case "Leadership": {
                 activeIcon = <EmojiPeopleIcon />;
+                break;
+              }
+              case "Real_Life_Applications": {
+                activeIcon = <EmojiObjectsRoundedIcon />;
+                break;
+              }
+              case "Process": {
+                activeIcon = <BuildRoundedIcon />;
                 break;
               }
             }
@@ -154,32 +164,27 @@ const IndexPage = ({ data }) => {
                   >
                     <Img
                       style={{ width: "100%", height: "200px" }}
-                      fluid={note.main_media.localFile.childImageSharp.fluid}
+                      fluid={article.main_media.localFile.childImageSharp.fluid}
                     />
                     <CardContent>
-                      <Box style={{ padding: "0 0 5px 0"}}>
-                        <Typography variant="h5">{note.title}</Typography>
-                        <Typography variant="subtitle1">
-                          {note.date}
-                        </Typography>
+                      <Box style={{ padding: "0 0 5px 0" }}>
+                        <Typography variant="h5">{article.title}</Typography>
+                        <Typography variant="subtitle1">{article.date}</Typography>
                         <Box
                           style={{
                             display: "flex",
                             alignItems: "center",
-                            padding: "0 0 5px 0"
                           }}
                         >
                           <Chip
                             size="small"
+                            // variant="outlined"
                             key={`category-${index}`}
                             color="primary"
-                            label={`${note.category} Skills`}
+                            label={`${article.category.replace(/[_-]/g, " ")}`}
                             icon={activeIcon}
                           />
                         </Box>
-
-         
-
                       </Box>
 
                       <Divider
@@ -188,22 +193,18 @@ const IndexPage = ({ data }) => {
                       />
 
                       <Typography variant="body2">
-                        {note.description}
+                        {article.description}
                       </Typography>
                     </CardContent>
                   </div>
 
                   <CardActions>
-                    {/* <CardActionButton
-                      to={`/notes/${note.category.toLowerCase()}/${encodeURIComponent(
-                        note.strapiId
-                      )}`}
+                    <CardActionButton
+                      to={`/articles/${article.category.toLowerCase().replace(/[_-]/g, "-")}/${article.title.replace(/ +/g, '-').toLowerCase()}`}
                     >
                       <Button variant="outlined">Read more</Button>
-                    </CardActionButton> */}
-                    
+                    </CardActionButton>
                   </CardActions>
-                  
                 </Card>
               </Grid>
             );
@@ -214,7 +215,7 @@ const IndexPage = ({ data }) => {
   );
 };
 
-export const notePageQuery = graphql`
+export const articlePageQuery = graphql`
   {
     strapiHomePage {
       id
@@ -229,7 +230,7 @@ export const notePageQuery = graphql`
         }
       }
     }
-    allStrapiNote(sort: { fields: date, order: DESC }, limit: 4) {
+    allStrapiArticle(sort: { fields: date, order: DESC }, limit: 4) {
       edges {
         node {
           strapiId
