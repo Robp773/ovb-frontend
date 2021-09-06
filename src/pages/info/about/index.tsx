@@ -3,9 +3,9 @@ import { graphql } from "gatsby";
 import React from "react";
 import Layout from "~/components/layout";
 import SEO from "~/components/seo";
-import PageHeading from "../../../components/page/page-heading";
-import PageImage from "../../../components/page/page-main-image";
-import PageWrapper from "../../../components/page/page-wrapper";
+import PageHeading from "../../../components/Page/page-heading";
+import PageImage from "../../../components/Page/page-main-image";
+import PageWrapper from "../../../components/Page/page-wrapper";
 
 
 const AboutPage = ({ data }) => {

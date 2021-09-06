@@ -191,7 +191,7 @@ const NavBar = () => {
                 </Link>
               </Menu>
             </div>
-
+{/* 
             <Link className={classes.navLink} to="/drills">
               <Button
                 className={classes.navBtn}
@@ -199,7 +199,7 @@ const NavBar = () => {
               >
                 Drills
               </Button>
-            </Link>
+            </Link> */}
             <div className={classes.navDropDownParent}>
               <Button
                 onClick={handleSkillsClick}

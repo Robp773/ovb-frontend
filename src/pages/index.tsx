@@ -1,18 +1,25 @@
-import { Box, Container } from "@material-ui/core";
+import {
+  Box,
+  CardActions,
+  CardContent,
+  Chip,
+  Container,
+  Divider,
+  Grid,
+} from "@material-ui/core";
 import Button from "@material-ui/core/Button";
 import Card from "@material-ui/core/Card";
-import CardActionArea from "@material-ui/core/CardActionArea";
-import CardActions from "@material-ui/core/CardActions";
-import CardContent from "@material-ui/core/CardContent";
-import { styled, useTheme } from "@material-ui/core/styles";
+import { styled } from "@material-ui/core/styles";
 import Typography from "@material-ui/core/Typography";
+import EmojiPeopleIcon from "@material-ui/icons/EmojiPeople";
+import GroupIcon from "@material-ui/icons/Group";
+import SportsBasketballIcon from "@material-ui/icons/SportsBasketball";
 import { graphql, Link } from "gatsby";
 import Img from "gatsby-image";
 import React from "react";
 import SEO from "~/components/seo";
 import Layout from "../components/layout";
 import bgImage from "../images/ovb-main-bg.jpg";
-
 
 const ImageContainer = styled(Container)({
   display: "flex",
@@ -37,11 +44,11 @@ const WhoWeAreCard = styled(Box)({
 const WhoWeAreText = styled(Typography)({
   fontStyle: "italic",
   maxWidth: "75ch",
-  margin: "auto"
+  margin: "auto",
 });
 
 const TextWrapper = styled(Container)({
-  padding: "40px",
+  padding: "0",
 });
 
 const LearnMoreButton = styled(Button)({
@@ -54,27 +61,16 @@ const AboutLink = styled(Link)({
   textDecoration: "none",
 });
 
-const ActivityListWrapper = styled(Container)({
-  display: "flex",
+const ActivityListWrapper = styled(Grid)({
+  marginTop: "30px",
+});
+
+const ActivityContainer = styled("div")({
   padding: "40px",
-});
-
-const ActivityContainer = styled(Container)({
-  padding: "50px",
-});
-
-const StyledCard = styled(Card)({
-  margin: "0 10px",
-  flexGrow: 1,
-  flexBasis: 0,
-  display: "flex",
-  flexDirection: "column",
-  justifyContent: "space-between"
 });
 
 const CardActionButton = styled(Link)({
   textDecoration: "none",
-
 });
 
 const IndexPage = ({ data }) => {
@@ -119,38 +115,97 @@ const IndexPage = ({ data }) => {
         >
           Recent Activity
         </Typography>
-        <ActivityListWrapper>
+        <ActivityListWrapper direction="row" container spacing={2}>
           {notes.edges.map((item, index) => {
             const note = item.node;
-            console.log(note);
+            // console.log(note.category);
+            let activeIcon;
+            switch (note.category) {
+              case "Technical": {
+                activeIcon = <SportsBasketballIcon />;
+                break;
+              }
+              case "Teamwork": {
+                activeIcon = <GroupIcon />;
+                break;
+              }
+              case "Leadership": {
+                activeIcon = <EmojiPeopleIcon />;
+                break;
+              }
+            }
             return (
-              <StyledCard raised key={index}>
-                <CardActionArea>
-                  <Img
-                    fixed={note.main_media.localFile.childImageSharp.fixed}
-                  />
-                  <CardContent>
-                    <Typography  variant="h6">{note.title}</Typography>
-                    <Typography variant="subtitle2" component="p">
-                      {note.category} skills
-                    </Typography>
-                    <Typography gutterBottom variant="subtitle2" component="p" >
-                      {note.published_at}
-                    </Typography>
+              <Grid key={index} item xs lg={3}>
+                <Card
+                  style={{
+                    height: "100%",
+                    display: "flex",
+                    flexDirection: "column",
+                    justifyContent: "space-between",
+                  }}
+                >
+                  <div
+                    style={{
+                      height: "100%",
+                      justifyContent: "flex-start",
+                      display: "flex",
+                      flexDirection: "column",
+                    }}
+                  >
+                    <Img
+                      style={{ width: "100%", height: "200px" }}
+                      fluid={note.main_media.localFile.childImageSharp.fluid}
+                    />
+                    <CardContent>
+                      <Box style={{ padding: "0 0 5px 0"}}>
+                        <Typography variant="h5">{note.title}</Typography>
+                        <Typography variant="subtitle1">
+                          {note.date}
+                        </Typography>
+                        <Box
+                          style={{
+                            display: "flex",
+                            alignItems: "center",
+                            padding: "0 0 5px 0"
+                          }}
+                        >
+                          <Chip
+                            size="small"
+                            key={`category-${index}`}
+                            color="primary"
+                            label={`${note.category} Skills`}
+                            icon={activeIcon}
+                          />
+                        </Box>
 
-                    <Typography variant="body2" component="p">
-                      {note.description}
-                    </Typography>
-                  </CardContent>
-                </CardActionArea>
-                <CardActions>
-                  <CardActionButton to={`/${note.category}/${note.id}`}>
-                    <Button variant="outlined">
-                      Read more
-                    </Button>
-                  </CardActionButton>
-                </CardActions>
-              </StyledCard>
+         
+
+                      </Box>
+
+                      <Divider
+                        style={{ margin: "5px 0" }}
+                        variant="fullWidth"
+                      />
+
+                      <Typography variant="body2">
+                        {note.description}
+                      </Typography>
+                    </CardContent>
+                  </div>
+
+                  <CardActions>
+                    {/* <CardActionButton
+                      to={`/notes/${note.category.toLowerCase()}/${encodeURIComponent(
+                        note.strapiId
+                      )}`}
+                    >
+                      <Button variant="outlined">Read more</Button>
+                    </CardActionButton> */}
+                    
+                  </CardActions>
+                  
+                </Card>
+              </Grid>
             );
           })}
         </ActivityListWrapper>
@@ -174,28 +229,30 @@ export const notePageQuery = graphql`
         }
       }
     }
-    allStrapiNote(sort: { fields: date, order: DESC }, limit: 3) {
+    allStrapiNote(sort: { fields: date, order: DESC }, limit: 4) {
       edges {
         node {
-          id
+          strapiId
           ropes_course_activities {
             content
             created_at
             title
           }
-          published_at(formatString: "MMMM Do YYYY")
           content
           category
           created_at
-          date
+          date(formatString: "MMMM Do YYYY")
           title
           description
+          tags {
+            name
+          }
           main_media {
             alternativeText
             localFile {
               childImageSharp {
-                fixed(height: 200) {
-                  ...GatsbyImageSharpFixed
+                fluid {
+                  ...GatsbyImageSharpFluid
                 }
               }
             }

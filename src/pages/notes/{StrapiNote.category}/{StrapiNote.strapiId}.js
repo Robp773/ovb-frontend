@@ -1,25 +1,23 @@
 import React from "react";
-import { graphql } from "gatsby";
-
 import Layout from "~/components/layout";
 import SEO from "~/components/seo";
-import { Typography } from "@material-ui/core";
 
-const LeaderShipPage = ({ data }) => {
+
+const CustomNote = ({ data }) => {
   console.log(data);
   const seo = { title: "Store" };
 
   return (
     <Layout>
       <SEO seo={seo} />
-      <div>LEADERSHIP</div>
+      <div>CUSTOM</div>
     </Layout>
   );
 };
 
 // export const notePageQuery = graphql`
-//   query LeaderShipPageQuery {
-//     strapiLeaderShipPage {
+//   query CustomNoteQuery {
+//     strapiCustomNote {
 //       id
 //       content
 //       title
@@ -27,4 +25,4 @@ const LeaderShipPage = ({ data }) => {
 //   }
 // `;
 
-export default LeaderShipPage;
+export default CustomNote;
