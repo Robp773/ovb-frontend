@@ -5,9 +5,9 @@ import Img from "gatsby-image";
 import Layout from "~/components/layout";
 import SEO from "~/components/seo";
 import { Container, styled, Typography, withTheme } from "@material-ui/core";
-import PageWrapper from "../../../components/article/article-wrapper";
-import PageHeading from "../../../components/article/article-heading";
 
+import StaticPageHeading from "../../../components/static-page/static-page-heading";
+import StaticPageWrapper from "../../../components/static-page/static-page-wrapper";
 const CoachContainer = styled(Container)({});
 
 const HeadingContainer = styled(withTheme(Container))((props) => ({
@@ -31,8 +31,8 @@ const CalendarPage = ({ data }) => {
   return (
     <Layout>
       <SEO seo={seo} />
-      <PageWrapper>
-        <PageHeading title={data.strapiCoachesPage.page_title} />
+      <StaticPageWrapper>
+        <StaticPageHeading title={data.strapiCoachesPage.page_title} />
 
         {data.strapiCoachesPage.coaches.map((coach, index) => {
           return (
@@ -51,7 +51,7 @@ const CalendarPage = ({ data }) => {
             </div>
           );
         })}
-      </PageWrapper>
+      </StaticPageWrapper>
     </Layout>
   );
 };
