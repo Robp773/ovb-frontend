@@ -1,12 +1,10 @@
-import { styled, Typography } from "@material-ui/core";
+import { Typography } from "@material-ui/core";
 import { graphql } from "gatsby";
 import React from "react";
 import Layout from "~/components/layout";
 import SEO from "~/components/seo";
-import PageHeading from "../../../components/page/page-heading";
-import PageImage from "../../../components/page/page-main-image";
-import PageWrapper from "../../../components/page/page-wrapper";
-
+import StaticPageHeading from "../../../components/static-page/static-page-heading";
+import StaticPageWrapper from "../../../components/static-page/static-page-wrapper";
 
 const AboutPage = ({ data }) => {
   console.log(data);
@@ -15,19 +13,18 @@ const AboutPage = ({ data }) => {
   return (
     <Layout>
       <SEO seo={seo} />
-
-      <PageWrapper>
-        <PageHeading title={data.strapiAboutPage.title} />
-
-        <PageImage
+      <StaticPageWrapper>
+        <StaticPageHeading
           image={
-            data.strapiAboutPage.main_media.localFile.childImageSharp.fixed
+            data.strapiAboutPage.main_media.localFile.childImageSharp.fluid
           }
+          title={data.strapiAboutPage.title}
         />
-        <Typography variant="body1"
+        <Typography
+          variant="body1"
           dangerouslySetInnerHTML={{ __html: data.strapiAboutPage.content }}
         />
-      </PageWrapper>
+      </StaticPageWrapper>
     </Layout>
   );
 };
@@ -41,8 +38,8 @@ export const aboutPageQuery = graphql`
       main_media {
         localFile {
           childImageSharp {
-            fixed(width: 500, height: 250) {
-              ...GatsbyImageSharpFixed
+            fluid {
+              ...GatsbyImageSharpFluid
             }
           }
         }

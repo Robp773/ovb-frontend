@@ -4,10 +4,12 @@ import React from "react";
 
 const MainImage = styled(Img)({
   marginBottom: "30px",
+  height: "300px",
+
 });
 
-const PageImage = (props: any) => {
-  return <MainImage fixed={props.image} />;
+const StaticPageImage = (props: any) => {
+  return <MainImage fluid={props.image} />;
 };
 
-export default PageImage;
+export default StaticPageImage;

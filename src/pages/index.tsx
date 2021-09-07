@@ -11,17 +11,13 @@ import Button from "@material-ui/core/Button";
 import Card from "@material-ui/core/Card";
 import { styled } from "@material-ui/core/styles";
 import Typography from "@material-ui/core/Typography";
-import EmojiPeopleIcon from "@material-ui/icons/EmojiPeople";
-import GroupIcon from "@material-ui/icons/Group";
-import SportsBasketballIcon from "@material-ui/icons/SportsBasketball";
-import EmojiObjectsRoundedIcon from '@material-ui/icons/EmojiObjectsRounded';
 import { graphql, Link } from "gatsby";
 import Img from "gatsby-image";
 import React from "react";
-import SEO from "../components/seo";
+import ArticleCategoryChip from "../components/article/article-category-chip";
 import Layout from "../components/layout";
+import SEO from "../components/seo";
 import bgImage from "../images/ovb-main-bg.jpg";
-import BuildRoundedIcon from '@material-ui/icons/BuildRounded';
 
 const ImageContainer = styled(Container)({
   display: "flex",
@@ -75,7 +71,6 @@ const CardActionButton = styled(Link)({
   textDecoration: "none",
 });
 
-
 const IndexPage = ({ data }) => {
   const { strapiHomePage: page, allStrapiArticle: articles } = data;
 
@@ -110,40 +105,12 @@ const IndexPage = ({ data }) => {
         </AboutLink>
       </WhoWeAreCard>
       <ActivityContainer>
-        <Typography
-          color="textPrimary"
-          align="center"
-          variant="h3"        
-        >
+        <Typography color="textPrimary" align="center" variant="h3">
           Recent Articles
         </Typography>
         <ActivityListWrapper direction="row" container spacing={2}>
           {articles.edges.map((item, index) => {
             const article = item.node;
-            // console.log(article.category);
-            let activeIcon;
-            switch (article.category) {
-              case "Mindset": {
-                activeIcon = <SportsBasketballIcon />;
-                break;
-              }
-              case "Team": {
-                activeIcon = <GroupIcon />;
-                break;
-              }
-              case "Leadership": {
-                activeIcon = <EmojiPeopleIcon />;
-                break;
-              }
-              case "Real_Life_Applications": {
-                activeIcon = <EmojiObjectsRoundedIcon />;
-                break;
-              }
-              case "Process": {
-                activeIcon = <BuildRoundedIcon />;
-                break;
-              }
-            }
             return (
               <Grid key={index} item xs lg={3}>
                 <Card
@@ -169,21 +136,16 @@ const IndexPage = ({ data }) => {
                     <CardContent>
                       <Box style={{ padding: "0 0 5px 0" }}>
                         <Typography variant="h5">{article.title}</Typography>
-                        <Typography variant="subtitle1">{article.date}</Typography>
+                        <Typography variant="subtitle1">
+                          {article.date}
+                        </Typography>
                         <Box
                           style={{
                             display: "flex",
                             alignItems: "center",
                           }}
                         >
-                          <Chip
-                            size="small"
-                            // variant="outlined"
-                            key={`category-${index}`}
-                            color="primary"
-                            label={`${article.category.replace(/[_-]/g, " ")}`}
-                            icon={activeIcon}
-                          />
+                          <ArticleCategoryChip category={article.category} />
                         </Box>
                       </Box>
 
@@ -200,7 +162,11 @@ const IndexPage = ({ data }) => {
 
                   <CardActions>
                     <CardActionButton
-                      to={`/articles/${article.category.toLowerCase().replace(/[_-]/g, "-")}/${article.title.replace(/ +/g, '-').toLowerCase()}`}
+                      to={`/articles/${article.category
+                        .toLowerCase()
+                        .replace(/[_-]/g, "-")}/${article.title
+                        .replace(/ +/g, "-")
+                        .toLowerCase()}`}
                     >
                       <Button variant="outlined">Read more</Button>
                     </CardActionButton>

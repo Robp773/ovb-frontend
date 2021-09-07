@@ -5,8 +5,8 @@ import Img from "gatsby-image";
 import Layout from "~/components/layout";
 import SEO from "~/components/seo";
 import { Container, styled, Typography, withTheme } from "@material-ui/core";
-import PageWrapper from "../../../components/page/page-wrapper";
-import PageHeading from "../../../components/page/page-heading";
+import PageWrapper from "../../../components/article/article-wrapper";
+import PageHeading from "../../../components/article/article-heading";
 
 const CoachContainer = styled(Container)({});
 
