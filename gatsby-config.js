@@ -7,6 +7,7 @@ module.exports = {
     DEV_SSR: false,
   },
   plugins: [
+    `gatsby-plugin-catch-links`,
     `gatsby-plugin-sass`,
     `gatsby-plugin-react-helmet`,
     {
