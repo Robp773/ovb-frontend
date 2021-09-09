@@ -7,10 +7,6 @@ import PageHeading from "../../../components/article/article-heading";
 import PageImage from "../../../components/article/article-main-image";
 import PageWrapper from "../../../components/article/article-wrapper";
 
-const createContentLinks = (content) => {
-   return  content.replace(/Lorem/g, "<button onclick=`function(){alert('bop');}`>Test</button>");;
-};
-
 const CustomArticle = ({ data }) => {
   console.log(data);
   const seo = { title: "Store" };
@@ -28,32 +24,11 @@ const CustomArticle = ({ data }) => {
             date: data.strapiArticle.date,
           }}
         />
-        {/* <Container style={{display: "flex", justifyContent: "flex-start"}}>
-          {" "}
-          <Chip
-            size="small"
-            // variant="outlined"
-            color="primary"
-            label={`${data.strapiArticle.category.replace(/[_-]/g, " ")}`}
-            // icon={activeIcon}
-          />
-          {data.strapiArticle.tags.map((tag, index) => {
-            return (
-              <Chip
-                size="small"
-                variant="outlined"
-                color="secondary"
-                label={tag.name}
-                // icon={activeIcon}
-              />
-            );
-          })}
-        </Container> */}
 
         <Typography
           variant="body1"
           dangerouslySetInnerHTML={{
-            __html: createContentLinks(data.strapiArticle.content),
+            __html: data.strapiArticle.content,
           }}
         />
       </PageWrapper>
