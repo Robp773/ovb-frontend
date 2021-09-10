@@ -10,6 +10,7 @@ import {
   withTheme,
 } from "@material-ui/core";
 import React from "react";
+import TagChip from "../shared/TagChip";
 import ArticleCategoryChip from "./article-category-chip";
 import ArticleImage from "./article-main-image";
 
@@ -50,7 +51,7 @@ const TagListBox = styled(Box)({
 const ArticleHeading = (props, data) => {
   console.log("Article heading data", data);
   return (
-    <Heading   elevation={0}>
+    <Heading elevation={0}>
       <HeadingContentBox>
         <Typography align="center" variant="h5">
           {props.title}
@@ -61,16 +62,7 @@ const ArticleHeading = (props, data) => {
         <TagListBox>
           <ArticleCategoryChip category={props.metaData.category} />
           {props.metaData.tags.map((tag, index) => {
-            return (
-              <Chip
-                clickable
-                size="small"
-                key={`category-${index}`}
-                color="secondary"
-                label={`${tag.name}`}
-                style={{ marginBottom: "3px" }}
-              />
-            );
+            return <TagChip key={`category-${index}`} name={tag.name} />;
           })}
         </TagListBox>
       </HeadingContentBox>

@@ -43,6 +43,7 @@ const useStyles = makeStyles((theme) => ({
     alignItems: "center",
     justifyContent: "center",
   },
+  
   inputRoot: {
     color: "inherit",
   },
@@ -59,7 +60,7 @@ const useStyles = makeStyles((theme) => ({
       },
     },
   },
-  offset: theme.mixins.toolbar,
+  // offset: theme.mixins.toolbar,
   appBar: { background: theme.palette.secondary.main },
   buttonContainer: {
     display: "flex",
@@ -124,7 +125,7 @@ const NavBar = () => {
 
   return (
     <div className={classes.root}>
-      <AppBar className={classes.appBar} position="fixed">
+      <AppBar className={classes.appBar} position="static">
         <Toolbar>
           <Container className={classes.buttonContainer}>
             <Link

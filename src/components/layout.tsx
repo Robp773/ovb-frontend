@@ -23,6 +23,18 @@ const theme = createTheme({
       hint: "yellow",
     },
   },
+  overrides: {
+    MuiCssBaseline: {
+      "@global": {
+        "*": {
+          "-ms-overflow-style": "none",
+        },
+        "::-webkit-scrollbar": {
+          display: "none",
+        },
+      },
+    },
+  },
 });
 
 console.log(theme.palette);
