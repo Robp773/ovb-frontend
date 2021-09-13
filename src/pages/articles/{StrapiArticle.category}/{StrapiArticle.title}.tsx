@@ -160,7 +160,6 @@ const CustomArticle = ({ data }) => {
                             />
                           </CardContent>
                         </div>
-                        <div> test{reference.url} </div>
                         <CardActions>
                           <CardActionButton to={reference.url}>
                             <Button variant="outlined">Read more</Button>
