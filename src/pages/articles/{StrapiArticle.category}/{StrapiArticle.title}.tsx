@@ -20,9 +20,10 @@ import Img from "gatsby-image";
 import React from "react";
 import Layout from "~/components/layout";
 import SEO from "~/components/seo";
-import PageHeading from "../../../components/article/article-heading";
-import PageWrapper from "../../../components/article/article-wrapper";
-import TagChip from "../../../components/shared/TagChip";
+import ContentHeading from "../../../components/shared/content-heading";
+import PageWrapper from "../../../components/shared/content-wrapper";
+import TagChip from "../../../components/shared/content-chip";
+import { attachContentTypes } from "../../../helpers/modifiers";
 
 const ReferencesAccordion = styled(Accordion)({
   marginTop: "30px",
@@ -42,24 +43,29 @@ const CustomArticle = ({ data }) => {
     ...data.strapiArticle.ropes_course_activities,
     ...data.strapiArticle.drills,
   ];
-  console.log(references);
 
-  const seo = { title: "Store" };
+  const modifiedContent = attachContentTypes(
+    data.strapiArticle.drills,
+    data.strapiArticle.ropes_course_activities
+  );
+
+  const seo = { title: data.strapiArticle.title };
 
   return (
     <Layout>
       <SEO seo={seo} />
       <PageWrapper>
-        <PageHeading
+        <ContentHeading
           image={data.strapiArticle.main_media.localFile.childImageSharp.fluid}
           title={data.strapiArticle.title}
+          contentType="article"
           metaData={{
             tags: data.strapiArticle.tags,
             category: data.strapiArticle.category,
             date: data.strapiArticle.date,
           }}
         />
-
+        <Divider style={{ marginBottom: "10px" }} />
         <Typography
           variant="body1"
           dangerouslySetInnerHTML={{
@@ -67,7 +73,7 @@ const CustomArticle = ({ data }) => {
           }}
         />
         {references.length > 0 ? (
-          <ReferencesAccordion variant="outlined">
+          <ReferencesAccordion elevation={0}>
             <StyledSummary
               expandIcon={<ExpandMoreIcon />}
               aria-controls="panel1a-content"
@@ -78,19 +84,15 @@ const CustomArticle = ({ data }) => {
                 Referenced Content ({references.length})
               </Typography>
             </StyledSummary>
-            <AccordionDetails>
-              {/* {references.map((reference, index) => {
-              return <div>{reference.name}</div>;
-            })} */}
-
+            <AccordionDetails style={{ padding: 0 }}>
               <Grid direction="row" container spacing={2}>
-                {references.map((item, index) => {
-                  const reference = item;
+                {references.map((reference, index) => {
                   return (
-                    <Grid key={index} item xs lg={6}>
+                    <Grid key={index} item md={6}>
                       <Card
-                        elevation={1}
+                        variant="outlined"
                         style={{
+                          marginTop: "10px",
                           height: "100%",
                           display: "flex",
                           flexDirection: "column",
@@ -108,7 +110,8 @@ const CustomArticle = ({ data }) => {
                           <Img
                             style={{ width: "100%", height: "200px" }}
                             fluid={
-                              reference.main_media.localFile.childImageSharp.fluid
+                              reference.main_media.localFile.childImageSharp
+                                .fluid
                             }
                           />
                           <CardContent>
@@ -116,15 +119,14 @@ const CustomArticle = ({ data }) => {
                               <Typography variant="subtitle1">
                                 {reference.name}
                               </Typography>
-                            <TagChip name="test"/>
+                              <TagChip name="test" />
 
                               <Box
                                 style={{
                                   display: "flex",
                                   alignItems: "center",
                                 }}
-                              >
-                              </Box>
+                              ></Box>
                             </Box>
 
                             <Divider
@@ -139,13 +141,7 @@ const CustomArticle = ({ data }) => {
                         </div>
 
                         <CardActions>
-                          <CardActionButton
-                            to={`/references/${reference.name
-                              .toLowerCase()
-                              .replace(/[_-]/g, "-")}/${reference.name
-                              .replace(/ +/g, "-")
-                              .toLowerCase()}`}
-                          >
+                          <CardActionButton to={reference.url}>
                             <Button variant="outlined">Read more</Button>
                           </CardActionButton>
                         </CardActions>
@@ -202,6 +198,7 @@ export const query = graphql`
       drills {
         name
         description
+        category
         tags {
           name
         }

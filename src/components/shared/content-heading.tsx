@@ -1,7 +1,5 @@
 import {
   Box,
-  Card,
-  Chip,
   Container,
   Divider,
   Paper,
@@ -10,13 +8,12 @@ import {
   withTheme,
 } from "@material-ui/core";
 import React from "react";
-import TagChip from "../shared/TagChip";
-import ArticleCategoryChip from "./article-category-chip";
-import ArticleImage from "./article-main-image";
+import DrillCategoryChip from "../drill/drill-category-chip";
+import ContentChip from "./content-chip";
 
-const ArticleContainer = styled(withTheme(Container))((props) => ({
-  background: props.theme.palette.grey["100"],
-}));
+import ContentImage from "./content-main-image";
+import ArticleCategoryChip from "../article/article-category-chip";
+
 
 const Heading = styled(withTheme(Paper))((props) => ({
   display: "flex",
@@ -24,34 +21,45 @@ const Heading = styled(withTheme(Paper))((props) => ({
   alignItems: "center",
   // padding: "1px",
   height: "fit-content",
-  marginBottom: "10px",
   // background: props.theme.palette.secondary.main,
   // border: "1px solid gray"
+  marginBottom: "20px"
 }));
 
 const HeadingContentBox = styled(Box)({
   padding: "10px 0",
   display: "flex",
-  // alignItems: "center",
   flexDirection: "column",
   alignItems: "center",
   justifyContent: "center",
   margin: "auto",
   height: "100%",
-  width: "35%",
+  // width: "35%",
 });
 
 const TagListBox = styled(Box)({
   display: "flex",
   flexWrap: "wrap",
-  justifyContent: "space-evenly",
+  justifyContent: "center",
   padding: "10px 0",
 });
 
-const ArticleHeading = (props, data) => {
-  console.log("Article heading data", data);
+const ContentHeading = (props, data) => {
+  let CategoryChip;
+  switch (props.contentType) {
+    case "article": {
+      CategoryChip = <ArticleCategoryChip category={props.metaData.category} />;
+      break;
+    }
+    case "drill": {
+      CategoryChip = <DrillCategoryChip category={props.metaData.category} />;
+      break;
+    }
+  }
   return (
+
     <Heading elevation={0}>
+ 
       <HeadingContentBox>
         <Typography align="center" variant="h5">
           {props.title}
@@ -60,15 +68,17 @@ const ArticleHeading = (props, data) => {
           {props.metaData.date}
         </Typography>
         <TagListBox>
-          <ArticleCategoryChip category={props.metaData.category} />
+        <div style={{width: "100%", textAlign: "center"}}>  {CategoryChip} </div>
           {props.metaData.tags.map((tag, index) => {
-            return <TagChip key={`category-${index}`} name={tag.name} />;
+            return <ContentChip key={`category-${index}`} name={tag.name} />;
           })}
         </TagListBox>
       </HeadingContentBox>
-      <ArticleImage image={props.image} />
-    </Heading>
+      {props.image ? <ContentImage image={props.image} /> : null }
+
+    </Heading>     
+
   );
 };
 
-export default ArticleHeading;
+export default ContentHeading;

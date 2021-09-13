@@ -17,6 +17,7 @@ import React from "react";
 import ArticleCategoryChip from "../components/article/article-category-chip";
 import Layout from "../components/layout";
 import SEO from "../components/seo";
+import { encodeStrForUrl } from "../helpers/modifiers";
 import bgImage from "../images/ovb-main-bg.jpg";
 
 const ImageContainer = styled(Container)({
@@ -162,11 +163,9 @@ const IndexPage = ({ data }) => {
 
                   <CardActions>
                     <CardActionButton
-                      to={`/articles/${article.category
-                        .toLowerCase()
-                        .replace(/[_-]/g, "-")}/${article.title
-                        .replace(/ +/g, "-")
-                        .toLowerCase()}`}
+                      to={`/articles/${encodeStrForUrl(
+                        article.category
+                      )}/${encodeStrForUrl(article.title)}`}
                     >
                       <Button variant="outlined">Read more</Button>
                     </CardActionButton>

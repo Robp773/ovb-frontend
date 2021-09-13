@@ -1,8 +1,9 @@
 import { Container, Paper, styled, withTheme } from "@material-ui/core";
 import React from "react";
 
-const ArticleContainer = styled(withTheme(Container))((props) => ({
+const ContentBackground = styled(withTheme(Container))((props) => ({
   background: props.theme.palette.grey["100"],
+  maxWidth: "100%"
 }));
 
 const ContentContainer = styled(withTheme(Paper))((props) => ({
@@ -11,7 +12,7 @@ const ContentContainer = styled(withTheme(Paper))((props) => ({
   display: "flex",
   flexDirection: "column",
   background: "white",
-  padding: "30px",
+  padding: "20px",
   margin: "auto",
   position: "relative",
 
@@ -29,9 +30,9 @@ const ContentContainer = styled(withTheme(Paper))((props) => ({
 
 const ArticleWrapper = ({ children }) => {
   return (
-    <ArticleContainer>
+    <ContentBackground>
       <ContentContainer square={true}> {children}</ContentContainer>
-    </ArticleContainer>
+    </ContentBackground>
   );
 };
 
