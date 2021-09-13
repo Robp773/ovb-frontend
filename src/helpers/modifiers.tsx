@@ -4,9 +4,9 @@ export const attachContentTypes = (drills, activities) => {
     combinedData[dataType].map((data) => {
       data.url =
         dataType === "drills"
-          ? `/drills/${encodeStrForUrl(
-              data.category
-            )}/${encodeStrForUrl(data.name)}`
+          ? `/drills/${encodeStrForUrl(data.category)}/${encodeStrForUrl(
+              data.name
+            )}`
           : `/activities/${encodeStrForUrl(data.name)}`;
     });
   }
@@ -14,6 +14,6 @@ export const attachContentTypes = (drills, activities) => {
 };
 
 export const encodeStrForUrl = (val) => {
-  console.log(val)
-  return (val.replace(/ +/g, "-").replace(/_/g, '-').toLowerCase())
+  console.log(val);
+  return encodeURIComponent((val.replace(/ +/g, "-").replace(/_/g, "-").toLowerCase()));
 };

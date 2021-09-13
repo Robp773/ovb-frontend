@@ -31,7 +31,7 @@ const CustomArticle = ({ data }) => {
             category: drill.drill_category.name,
           }}
         />
-        <video style={{ margin: "auto"}} width="400" height="300" controls>
+        <video style={{ margin: "auto" }} width="400" height="300" controls>
           <source
             src={`http://localhost:1337${drill.example_media.url}`}
             type="video/mp4"
@@ -47,8 +47,7 @@ const CustomArticle = ({ data }) => {
             }}
           />
         </Box>
-
-        {drill.summary ? (
+        {drill.summary.length > 1 ? (
           <Box style={{ margin: "15px 0" }}>
             <Typography variant="h5">Summary</Typography>
             <Typography

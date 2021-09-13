@@ -134,9 +134,12 @@ const CustomArticle = ({ data }) => {
                               variant="fullWidth"
                             />
 
-                            <Typography variant="subtitle2">
-                              {reference.description}
-                            </Typography>
+                            <Typography
+                              variant="subtitle2"
+                              dangerouslySetInnerHTML={{
+                                __html: reference.description,
+                              }}
+                            />
                           </CardContent>
                         </div>
 
