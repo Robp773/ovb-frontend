@@ -47,7 +47,6 @@ const CustomArticle = ({ data }) => {
             }}
           />
         </Box>
-        {drill.summary.length > 1 ? (
           <Box style={{ margin: "15px 0" }}>
             <Typography variant="h5">Summary</Typography>
             <Typography
@@ -57,7 +56,6 @@ const CustomArticle = ({ data }) => {
               }}
             />
           </Box>
-        ) : null}
 
         <Box>
           <Typography variant="h5">Steps</Typography>

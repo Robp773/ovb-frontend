@@ -23,6 +23,7 @@ import SEO from "~/components/seo";
 import ContentHeading from "../../../components/shared/content-heading";
 import PageWrapper from "../../../components/shared/content-wrapper";
 import TagChip from "../../../components/shared/content-chip";
+import DrillCategoryChip from "../../../components/drill/drill-category-chip";
 import { attachContentTypes } from "../../../helpers/modifiers";
 
 const ReferencesAccordion = styled(Accordion)({
@@ -44,7 +45,7 @@ const CustomArticle = ({ data }) => {
     ...data.strapiArticle.drills,
   ];
 
-  const modifiedContent = attachContentTypes(
+  attachContentTypes(
     data.strapiArticle.drills,
     data.strapiArticle.ropes_course_activities
   );
@@ -87,6 +88,7 @@ const CustomArticle = ({ data }) => {
             <AccordionDetails style={{ padding: 0 }}>
               <Grid direction="row" container spacing={2}>
                 {references.map((reference, index) => {
+                  console.log(reference);
                   return (
                     <Grid key={index} item md={6}>
                       <Card
@@ -115,11 +117,27 @@ const CustomArticle = ({ data }) => {
                             }
                           />
                           <CardContent>
-                            <Box style={{ padding: "0 0 5px 0" }}>
+                            <Box
+                              style={{
+                                textAlign: "center",
+                                padding: "0 0 5px 0",
+                              }}
+                            >
                               <Typography variant="subtitle1">
                                 {reference.name}
                               </Typography>
-                              <TagChip name="test" />
+
+                              {reference.category ? (
+                                <div>
+                                  <DrillCategoryChip
+                                    category={reference.category}
+                                  />
+                                </div>
+                              ) : null}
+
+                              {reference.tags.map((tag, key) => {
+                                return <TagChip key={key} name={tag.name} />;
+                              })}
 
                               <Box
                                 style={{
@@ -130,7 +148,7 @@ const CustomArticle = ({ data }) => {
                             </Box>
 
                             <Divider
-                              style={{ margin: "5px 0" }}
+                              style={{ margin: "16px 0" }}
                               variant="fullWidth"
                             />
 
@@ -142,7 +160,7 @@ const CustomArticle = ({ data }) => {
                             />
                           </CardContent>
                         </div>
-
+                        <div> test{reference.url} </div>
                         <CardActions>
                           <CardActionButton to={reference.url}>
                             <Button variant="outlined">Read more</Button>
