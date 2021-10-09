@@ -9,6 +9,7 @@ import {
 } from "@material-ui/core";
 import Button from "@material-ui/core/Button";
 import Card from "@material-ui/core/Card";
+import { red } from "@material-ui/core/colors";
 import { styled } from "@material-ui/core/styles";
 import Typography from "@material-ui/core/Typography";
 import { graphql, Link } from "gatsby";
@@ -17,6 +18,7 @@ import React from "react";
 import ArticleCategoryChip from "../components/article/article-category-chip";
 import Layout from "../components/layout";
 import SEO from "../components/seo";
+import { RelatedContentWrapper } from "../components/shared/related-content-list";
 import { encodeStrForUrl } from "../helpers/modifiers";
 import bgImage from "../images/ovb-main-bg.jpg";
 
@@ -72,9 +74,20 @@ const CardActionButton = styled(Link)({
   textDecoration: "none",
 });
 
+const CardMainContent = styled("div")({
+  height: "100%",
+  justifyContent: "flex-start",
+  display: "flex",
+  flexDirection: "column",
+
+  "& >* img": {
+    objectFit: "fill !important",
+  },
+});
 const IndexPage = ({ data }) => {
   const { strapiHomePage: page, allStrapiArticle: articles } = data;
 
+  console.log(articles)
   const seo = { title: "Home Page" };
 
   return (
@@ -109,72 +122,7 @@ const IndexPage = ({ data }) => {
         <Typography color="textPrimary" align="center" variant="h3">
           Recent Articles
         </Typography>
-        <ActivityListWrapper direction="row" container spacing={2}>
-          {articles.edges.map((item, index) => {
-            const article = item.node;
-            return (
-              <Grid key={index} item xs lg={3}>
-                <Card
-                  style={{
-                    height: "100%",
-                    display: "flex",
-                    flexDirection: "column",
-                    justifyContent: "space-between",
-                  }}
-                >
-                  <div
-                    style={{
-                      height: "100%",
-                      justifyContent: "flex-start",
-                      display: "flex",
-                      flexDirection: "column",
-                    }}
-                  >
-                    <Img
-                      style={{ width: "100%", height: "200px" }}
-                      fluid={article.main_media.localFile.childImageSharp.fluid}
-                    />
-                    <CardContent>
-                      <Box style={{ padding: "0 0 5px 0" }}>
-                        <Typography variant="h5">{article.title}</Typography>
-                        <Typography variant="subtitle1">
-                          {article.date}
-                        </Typography>
-                        <Box
-                          style={{
-                            display: "flex",
-                            alignItems: "center",
-                          }}
-                        >
-                          <ArticleCategoryChip category={article.category} />
-                        </Box>
-                      </Box>
-
-                      <Divider
-                        style={{ margin: "5px 0" }}
-                        variant="fullWidth"
-                      />
-
-                      <Typography variant="body2">
-                        {article.description}
-                      </Typography>
-                    </CardContent>
-                  </div>
-
-                  <CardActions>
-                    <CardActionButton
-                      to={`/articles/${encodeStrForUrl(
-                        article.category
-                      )}/${encodeStrForUrl(article.title)}`}
-                    >
-                      <Button variant="outlined">Read more</Button>
-                    </CardActionButton>
-                  </CardActions>
-                </Card>
-              </Grid>
-            );
-          })}
-        </ActivityListWrapper>
+        <RelatedContentWrapper xs={3} items={articles}/>
       </ActivityContainer>
     </Layout>
   );
@@ -188,7 +136,7 @@ export const articlePageQuery = graphql`
       banner_image {
         localFile {
           childImageSharp {
-            fixed(width: 500) {
+            fixed(width: 300) {
               ...GatsbyImageSharpFixed
             }
           }
@@ -205,7 +153,9 @@ export const articlePageQuery = graphql`
             title
           }
           content
-          category
+          category { 
+            name
+          }
           created_at
           date(formatString: "MMMM Do YYYY")
           title

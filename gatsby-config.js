@@ -38,7 +38,7 @@ module.exports = {
       options: {
         apiURL:  process.env.API_URL || `http://localhost:1337`,
         queryLimit: 1000, // Default to 100
-        collectionTypes: [`article`, `drill`, `drill-category`, `ropes-course-activity`],
+        collectionTypes: [`article`, `article-category`, `drill`, `drill-category`, `ropes-course-activity`],
         singleTypes: [`global`, `home-page`, `about-page`, `coaches-page`],
       },
     },

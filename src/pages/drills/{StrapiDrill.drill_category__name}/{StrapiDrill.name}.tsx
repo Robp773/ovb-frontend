@@ -26,16 +26,14 @@ const CustomArticle = ({ data }) => {
           contentType="drill"
           image={null}
           metaData={{
+            pathname: location.pathname,
             date: null,
             tags: drill.tags,
             category: drill.drill_category.name,
           }}
         />
         <video style={{ margin: "auto" }} width="400" height="300" controls>
-          <source
-            src={`http://localhost:1337${drill.example_media.url}`}
-            type="video/mp4"
-          />
+          <source src={`/${drill.example_media.url}`} type="video/mp4" />
           Your browser does not support the video tag.
         </video>
         <Box style={{ margin: "15px 0" }}>
@@ -47,15 +45,15 @@ const CustomArticle = ({ data }) => {
             }}
           />
         </Box>
-          <Box style={{ margin: "15px 0" }}>
-            <Typography variant="h5">Summary</Typography>
-            <Typography
-              variant="body1"
-              dangerouslySetInnerHTML={{
-                __html: drill.summary,
-              }}
-            />
-          </Box>
+        <Box style={{ margin: "15px 0" }}>
+          <Typography variant="h5">Summary</Typography>
+          <Typography
+            variant="body1"
+            dangerouslySetInnerHTML={{
+              __html: drill.summary,
+            }}
+          />
+        </Box>
 
         <Box>
           <Typography variant="h5">Steps</Typography>
@@ -68,7 +66,7 @@ const CustomArticle = ({ data }) => {
                 <StepContent>
                   {step.media ? (
                     <Img
-                      style={{ width: "100%", height: "200px" }}
+                      style={{ maxHeight: "300px" }}
                       fluid={step.media.localFile.childImageSharp.fluid}
                     />
                   ) : null}

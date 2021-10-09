@@ -9,7 +9,7 @@ import {
   Grid,
   styled,
   Typography,
-  withTheme,
+  withTheme
 } from "@material-ui/core";
 import Accordion from "@material-ui/core/Accordion";
 import AccordionSummary from "@material-ui/core/AccordionSummary";
@@ -18,16 +18,17 @@ import ExpandMoreIcon from "@material-ui/icons/ExpandMore";
 import { graphql, Link } from "gatsby";
 import Img from "gatsby-image";
 import React from "react";
-import Layout from "~/components/layout";
-import SEO from "~/components/seo";
+import Layout from "../../../components/layout";
+import SEO from "../../../components/seo";
+import DrillCategoryChip from "../../../components/drill/drill-category-chip";
+import TagChip from "../../../components/shared/content-chip";
 import ContentHeading from "../../../components/shared/content-heading";
 import PageWrapper from "../../../components/shared/content-wrapper";
-import TagChip from "../../../components/shared/content-chip";
-import DrillCategoryChip from "../../../components/drill/drill-category-chip";
 import { attachContentTypes } from "../../../helpers/modifiers";
 
 const ReferencesAccordion = styled(Accordion)({
   marginTop: "30px",
+  border: 0
 });
 
 const StyledSummary = styled(withTheme(AccordionSummary))((props) => ({
@@ -39,7 +40,7 @@ const CardActionButton = styled(Link)({
   textDecoration: "none",
 });
 
-const CustomArticle = ({ data }) => {
+const CustomArticle = ({ data, location }) => {
   const references = [
     ...data.strapiArticle.ropes_course_activities,
     ...data.strapiArticle.drills,
@@ -52,6 +53,7 @@ const CustomArticle = ({ data }) => {
 
   const seo = { title: data.strapiArticle.title };
 
+  console.log(data)
   return (
     <Layout>
       <SEO seo={seo} />
@@ -60,9 +62,11 @@ const CustomArticle = ({ data }) => {
           image={data.strapiArticle.main_media.localFile.childImageSharp.fluid}
           title={data.strapiArticle.title}
           contentType="article"
+          iconWithText={true}
           metaData={{
+            pathname: location.pathname,
             tags: data.strapiArticle.tags,
-            category: data.strapiArticle.category,
+            category: data.strapiArticle.category.name,
             date: data.strapiArticle.date,
           }}
         />
@@ -88,7 +92,6 @@ const CustomArticle = ({ data }) => {
             <AccordionDetails style={{ padding: 0 }}>
               <Grid direction="row" container spacing={2}>
                 {references.map((reference, index) => {
-                  console.log(reference);
                   return (
                     <Grid key={index} item md={6}>
                       <Card
@@ -130,7 +133,7 @@ const CustomArticle = ({ data }) => {
                               {reference.category ? (
                                 <div>
                                   <DrillCategoryChip
-                                    category={reference.category}
+                                    category={reference.category.name ? reference.category.name : reference.category}
                                   />
                                 </div>
                               ) : null}
@@ -182,7 +185,9 @@ export const query = graphql`
   query($id: String!) {
     strapiArticle(id: { eq: $id }) {
       title
-      category
+      category {
+        name
+      }
       content
       date(formatString: "MMMM Do, YYYY")
       description
