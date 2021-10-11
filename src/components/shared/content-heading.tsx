@@ -15,19 +15,16 @@ import ContentChip from "./content-chip";
 import ContentImage from "./content-main-image";
 import NavigateNextIcon from "@mui/icons-material/NavigateNext";
 
-const Heading = styled(withTheme(Paper))((props) => ({
+const Heading = styled(withTheme(Box))((props) => ({
   display: "flex",
   justifyContent: "space-between",
   alignItems: "center",
-  // padding: "1px",
   height: "fit-content",
-  // background: props.theme.palette.secondary.main,
-  // border: "1px solid gray"
   marginBottom: "20px",
 }));
 
 const HeadingContentBox = styled(Box)({
-  padding: "10px 0",
+  padding: "30px 0 0px 0",
   display: "flex",
   flexDirection: "column",
   alignItems: "center",
@@ -102,34 +99,38 @@ const ContentHeading = (props, data) => {
   }
   return (
     <Heading elevation={0}>
-      <BreadCrumbsWrapper>
-        {pathList.map((link, index) => {
-          return (
-            <>
-              {index === 0 ? null : <StyledNavIcon />}
-              <StyledLink
-                to={`${process.env.GATSBY_BASE_URL}/${pathList
-                  .slice(0, index + 1)
-                  .join("/")}`}
-              >
-                <Typography
-                  style={{
-                    display: "inline-block",
-                    fontWeight: `${
-                      index + 1 === pathList.length ? "normal" : "bold"
-                    }`,
-                  }}
-                  variant="subtitle2"
+      {/* TODO - add ropes course main page if needed */}
+      {props.contentType === "activity" ? null : (
+        <BreadCrumbsWrapper>
+          {pathList.map((link, index) => {
+            return (
+              <>
+                {index === 0 ? null : <StyledNavIcon />}
+                <StyledLink
+                  to={`${process.env.GATSBY_BASE_URL}/${pathList
+                    .slice(0, index + 1)
+                    .join("/")}`}
                 >
-                  {link.charAt(0).toUpperCase() + link.slice(1)}
-                </Typography>
-              </StyledLink>
-            </>
-          );
-        })}
-      </BreadCrumbsWrapper>
+                  <Typography
+                    style={{
+                      display: "inline-block",
+                      fontWeight: `${
+                        index + 1 === pathList.length ? "normal" : "bold"
+                      }`,
+                    }}
+                    variant="subtitle2"
+                  >
+                    {link.charAt(0).toUpperCase() + link.slice(1)}
+                  </Typography>
+                </StyledLink>
+              </>
+            );
+          })}
+        </BreadCrumbsWrapper>
+      )}
+
       <HeadingContentBox>
-        <Typography align="center" variant="h3">
+        <Typography align="center" variant="h4">
           {props.title}
         </Typography>
         <Typography align="center" gutterBottom={true} variant="subtitle1">

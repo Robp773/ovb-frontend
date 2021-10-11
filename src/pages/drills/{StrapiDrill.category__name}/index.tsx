@@ -7,19 +7,20 @@ import CategoryHeading from "../../../components/shared/category-heading";
 import ContentHeading from "../../../components/shared/content-heading";
 import { RelatedContentWrapper } from "../../../components/shared/related-content-list";
 
-const CustomArticle = ({ data }) => {
-  const categoryData = data.strapiArticleCategory;
+const DrillCategoryPage = ({ data }) => {
   console.log(data);
-  const { allStrapiArticle: articles } = data;
+  const categoryData = data.strapiDrillCategory;
+
+  const { allStrapiDrill: drills } = data;
 
   return (
     <Layout>
       <PageWrapper>
         <ContentHeading
-          image={categoryData.main_media.localFile.childImageSharp.fixed}
+          image={categoryData.image.localFile.childImageSharp.fixed}
           title={categoryData.name}
           iconWithText={false}
-          contentType="article"
+          contentType="drills"
           metaData={{
             pathname: location.pathname,
             category: categoryData.name,
@@ -34,8 +35,10 @@ const CustomArticle = ({ data }) => {
             __html: categoryData.description,
           }}
         />
-        <Typography style={{textAlign: "center"}} variant="h4">Articles</Typography>
-        <RelatedContentWrapper contentType="article" xs={6} items={articles} />
+        <Typography style={{ textAlign: "center" }} variant="h4">
+          Drills
+        </Typography>
+        <RelatedContentWrapper xs={6} contentType="drill" items={drills} />
       </PageWrapper>
     </Layout>
   );
@@ -43,10 +46,10 @@ const CustomArticle = ({ data }) => {
 
 export const query = graphql`
   query($category__name: String!) {
-    strapiArticleCategory(name: { eq: $category__name }) {
-      name
+    strapiDrillCategory(name: { eq: $category__name }) {
       description
-      main_media {
+      name
+      image {
         localFile {
           childImageSharp {
             fixed(width: 300, height: 250) {
@@ -56,28 +59,21 @@ export const query = graphql`
         }
       }
     }
-    allStrapiArticle(filter: { category: { name: { eq: $category__name } } }) {
+    allStrapiDrill {
       edges {
         node {
-          strapiId
-          ropes_course_activities {
-            content
-            created_at
-            title
-          }
-          content
           category {
             name
           }
-          created_at
-          date(formatString: "MMMM Do YYYY")
-          title
+          name
           description
+          category {
+            name
+          }
           tags {
             name
           }
           main_media {
-            alternativeText
             localFile {
               childImageSharp {
                 fluid {
@@ -92,4 +88,4 @@ export const query = graphql`
   }
 `;
 
-export default CustomArticle;
+export default DrillCategoryPage;

@@ -1,25 +1,15 @@
 import {
-  Box,
-  CardActions,
-  CardContent,
-  Chip,
-  Container,
-  Divider,
-  Grid,
+  Box, Container
 } from "@material-ui/core";
 import Button from "@material-ui/core/Button";
-import Card from "@material-ui/core/Card";
-import { red } from "@material-ui/core/colors";
 import { styled } from "@material-ui/core/styles";
 import Typography from "@material-ui/core/Typography";
 import { graphql, Link } from "gatsby";
 import Img from "gatsby-image";
 import React from "react";
-import ArticleCategoryChip from "../components/article/article-category-chip";
 import Layout from "../components/layout";
 import SEO from "../components/seo";
 import { RelatedContentWrapper } from "../components/shared/related-content-list";
-import { encodeStrForUrl } from "../helpers/modifiers";
 import bgImage from "../images/ovb-main-bg.jpg";
 
 const ImageContainer = styled(Container)({
@@ -62,28 +52,10 @@ const AboutLink = styled(Link)({
   textDecoration: "none",
 });
 
-const ActivityListWrapper = styled(Grid)({
-  marginTop: "30px",
-});
-
 const ActivityContainer = styled("div")({
   padding: "40px",
 });
 
-const CardActionButton = styled(Link)({
-  textDecoration: "none",
-});
-
-const CardMainContent = styled("div")({
-  height: "100%",
-  justifyContent: "flex-start",
-  display: "flex",
-  flexDirection: "column",
-
-  "& >* img": {
-    objectFit: "fill !important",
-  },
-});
 const IndexPage = ({ data }) => {
   const { strapiHomePage: page, allStrapiArticle: articles } = data;
 
@@ -122,7 +94,7 @@ const IndexPage = ({ data }) => {
         <Typography color="textPrimary" align="center" variant="h3">
           Recent Articles
         </Typography>
-        <RelatedContentWrapper xs={3} items={articles}/>
+        <RelatedContentWrapper contentType="article" withCategory xs={3} items={articles}/>
       </ActivityContainer>
     </Layout>
   );
@@ -136,7 +108,7 @@ export const articlePageQuery = graphql`
       banner_image {
         localFile {
           childImageSharp {
-            fixed(width: 300) {
+            fixed(width: 500) {
               ...GatsbyImageSharpFixed
             }
           }

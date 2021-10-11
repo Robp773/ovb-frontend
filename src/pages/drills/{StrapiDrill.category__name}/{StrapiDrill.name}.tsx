@@ -29,7 +29,7 @@ const CustomArticle = ({ data }) => {
             pathname: location.pathname,
             date: null,
             tags: drill.tags,
-            category: drill.drill_category.name,
+            category: drill.category.name,
           }}
         />
         <video style={{ margin: "auto" }} width="400" height="300" controls>
@@ -87,17 +87,10 @@ const CustomArticle = ({ data }) => {
   );
 };
 
-// Have the team circle up with at least a space of two arm’s length between
-// each player in the circle. Two players, each with a ball stand outside the circle.
-// One player is “it” and chases the other.  Each time the chased player goes between two group
-//  members the space between them is closed (they hold hands to show it is closed). If all the
-//   spaces are sealed before the player is tagged the chased player wins.  To assure the safety
-//    the players in the circle the players are not permitted to go through any closed spaces.
-
 export const query = graphql`
   {
     strapiDrill {
-      drill_category {
+      category {
         name
         description
       }

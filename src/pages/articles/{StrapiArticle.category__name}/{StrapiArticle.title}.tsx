@@ -9,7 +9,7 @@ import {
   Grid,
   styled,
   Typography,
-  withTheme
+  withTheme,
 } from "@material-ui/core";
 import Accordion from "@material-ui/core/Accordion";
 import AccordionSummary from "@material-ui/core/AccordionSummary";
@@ -28,7 +28,7 @@ import { attachContentTypes } from "../../../helpers/modifiers";
 
 const ReferencesAccordion = styled(Accordion)({
   marginTop: "30px",
-  border: 0
+  border: 0,
 });
 
 const StyledSummary = styled(withTheme(AccordionSummary))((props) => ({
@@ -53,13 +53,13 @@ const CustomArticle = ({ data, location }) => {
 
   const seo = { title: data.strapiArticle.title };
 
-  console.log(data)
+  console.log(data);
   return (
     <Layout>
       <SEO seo={seo} />
       <PageWrapper>
         <ContentHeading
-          image={data.strapiArticle.main_media.localFile.childImageSharp.fluid}
+          image={data.strapiArticle.main_media.localFile.childImageSharp.fixed}
           title={data.strapiArticle.title}
           contentType="article"
           iconWithText={true}
@@ -127,13 +127,17 @@ const CustomArticle = ({ data, location }) => {
                               }}
                             >
                               <Typography variant="subtitle1">
-                                {reference.name}
+                                {reference.name || reference.title}
                               </Typography>
 
                               {reference.category ? (
                                 <div>
                                   <DrillCategoryChip
-                                    category={reference.category.name ? reference.category.name : reference.category}
+                                    category={
+                                      reference.category.name
+                                        ? reference.category.name
+                                        : reference.category
+                                    }
                                   />
                                 </div>
                               ) : null}
@@ -164,7 +168,7 @@ const CustomArticle = ({ data, location }) => {
                           </CardContent>
                         </div>
                         <CardActions>
-                          <CardActionButton to={reference.url}>
+                          <CardActionButton to={reference.url} target="_blank">
                             <Button variant="outlined">Read more</Button>
                           </CardActionButton>
                         </CardActions>
@@ -194,8 +198,8 @@ export const query = graphql`
       main_media {
         localFile {
           childImageSharp {
-            fluid {
-              ...GatsbyImageSharpFluid
+            fixed(width: 300, height: 250) {
+              ...GatsbyImageSharpFixed
             }
           }
         }
@@ -205,7 +209,7 @@ export const query = graphql`
           name
         }
         description
-        name
+        title
         main_media {
           localFile {
             childImageSharp {

@@ -62,8 +62,8 @@ const Footer = () => {
               aria-label="main mailbox folders"
               subheader={
                 <LinkTitle
-                style={{ fontWeight: "bold", color: "#f6dc3a"}}
-                color="primary"
+                  style={{ fontWeight: "bold", color: "#f6dc3a" }}
+                  color="primary"
                   variant="subtitle1"
                 >
                   Info
@@ -94,7 +94,7 @@ const Footer = () => {
               aria-label="main mailbox folders"
               subheader={
                 <LinkTitle
-                  style={{ fontWeight: "bold", color: "#f6dc3a"}}
+                  style={{ fontWeight: "bold", color: "#f6dc3a" }}
                   variant="subtitle1"
                 >
                   Skills
@@ -125,14 +125,19 @@ const Footer = () => {
               aria-label="main mailbox folders"
               subheader={
                 <LinkTitle
-                style={{ fontWeight: "bold", color: "#f6dc3a"}}
-                color="primary"
+                  style={{ fontWeight: "bold", color: "#f6dc3a" }}
+                  color="primary"
                   variant="subtitle1"
                 >
                   General
                 </LinkTitle>
               }
             >
+              <ListItem>
+                <StyledLink to="/articles">
+                  <LinkTitle variant="subtitle2">Articles</LinkTitle>
+                </StyledLink>
+              </ListItem>
               <ListItem>
                 <StyledLink to="/drills">
                   <LinkTitle variant="subtitle2">Drills</LinkTitle>
@@ -162,14 +167,26 @@ const Footer = () => {
           </LinkTypeWrapper>
         </LinksContainer>
         <ContactUsContainer>
-          <Typography                   style={{ fontWeight: "bold", color: "#f6dc3a"}}
- variant="h5">Contact Us</Typography>
+          <Typography
+            style={{ fontWeight: "bold", color: "#f6dc3a" }}
+            variant="h5"
+          >
+            Contact Us
+          </Typography>
           <Typography variant="body1">You can reach us at</Typography>
-          <Typography                   style={{ fontWeight: "bold", color: "#f6dc3a"}}
- variant="subtitle1">bpeterman@customalloy.us</Typography>
+          <Typography
+            style={{ fontWeight: "bold", color: "#f6dc3a" }}
+            variant="subtitle1"
+          >
+            bpeterman@customalloy.us
+          </Typography>
           <Typography variant="body1">Or call us at</Typography>
-          <Typography                   style={{ fontWeight: "bold", color: "#f6dc3a"}}
-variant="subtitle1">908-581-1536</Typography>
+          <Typography
+            style={{ fontWeight: "bold", color: "#f6dc3a" }}
+            variant="subtitle1"
+          >
+            908-581-1536
+          </Typography>
         </ContactUsContainer>
       </ContentContainer>
       <CopyrightEl>

@@ -193,6 +193,15 @@ const NavBar = () => {
               </Menu>
             </div>
 
+            <Link className={classes.navLink} to="/articles">
+              <Button
+                className={classes.navBtn}
+                {...getNavBtnAttributes(location, "/articles")}
+              >
+                Articles
+              </Button>
+            </Link>
+
             <Link className={classes.navLink} to="/drills">
               <Button
                 className={classes.navBtn}

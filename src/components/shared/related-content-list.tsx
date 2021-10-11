@@ -13,14 +13,10 @@ import { Link } from "gatsby";
 import Img from "gatsby-image";
 import React from "react";
 import { encodeStrForUrl } from "../../helpers/modifiers";
-import ArticleCategoryChip from "../article/article-category-chip"
+import ArticleCategoryChip from "../article/article-category-chip";
 
 const ActivityListWrapper = styled(Grid)({
   marginTop: "30px",
-});
-
-const ActivityContainer = styled("div")({
-  padding: "40px",
 });
 
 const CardActionButton = styled(Link)({
@@ -42,7 +38,7 @@ export const RelatedContentWrapper = (props) => {
   return (
     <ActivityListWrapper direction="row" container spacing={2}>
       {props.items.edges.map((item, index) => {
-        const article = item.node;
+        const node = item.node;
         return (
           <Grid key={index} item xs={props.xs}>
             <Card
@@ -56,40 +52,40 @@ export const RelatedContentWrapper = (props) => {
               <CardMainContent>
                 <Img
                   style={{
-                    width: "100%",
                     height: "200px",
-                    objectFit: "contain !important",
                   }}
-                  fluid={article.main_media.localFile.childImageSharp.fluid}
+                  fluid={node.main_media.localFile.childImageSharp.fluid}
                 />
                 <CardContent>
                   <Box style={{ padding: "0 0 5px 0" }}>
-                    <Typography variant="h5">{article.title}</Typography>
-                    <Typography variant="subtitle1">{article.date}</Typography>
+                    <Typography variant="h5">{node.title}</Typography>
+                    <Typography variant="subtitle1">{node.date}</Typography>
                     <Box
                       style={{
                         display: "flex",
                         alignItems: "center",
                       }}
                     >
-                      <ArticleCategoryChip
-                        category={article.category.name}
-                        iconWithText={true}
-                      />
+                      {props.withCategory ? (
+                        <ArticleCategoryChip
+                          category={node.category.name}
+                          iconWithText={true}
+                        />
+                      ) : null}
                     </Box>
                   </Box>
 
                   <Divider style={{ margin: "5px 0" }} variant="fullWidth" />
 
-                  <Typography variant="body2">{article.description}</Typography>
+                  <Typography variant="body2">{node.description}</Typography>
                 </CardContent>
               </CardMainContent>
 
               <CardActions>
                 <CardActionButton
-                  to={`/articles/${encodeStrForUrl(
-                    article.category.name
-                  )}/${encodeStrForUrl(article.title)}`}
+                  to={`/${props.contentType}s/${encodeStrForUrl(
+                    node.category.name
+                  )}/${encodeStrForUrl(node.title || node.name)}`}
                 >
                   <Button variant="outlined">Read more</Button>
                 </CardActionButton>

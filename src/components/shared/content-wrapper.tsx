@@ -8,7 +8,7 @@ const ContentBackground = styled(withTheme(Container))((props) => ({
 
 const ContentContainer = styled(withTheme(Paper))((props) => ({
   minHeight: "50vh",
-  maxWidth: "85ch",
+  maxWidth: `${props.width}`,
   display: "flex",
   flexDirection: "column",
   background: "white",
@@ -28,10 +28,10 @@ const ContentContainer = styled(withTheme(Paper))((props) => ({
   },
 }));
 
-const ArticleWrapper = ({ children }) => {
+const ArticleWrapper = ( { width="85ch", children }) => {
   return (
     <ContentBackground>
-      <ContentContainer square={true}> {children}</ContentContainer>
+      <ContentContainer width={width} square={true}> {children}</ContentContainer>
     </ContentBackground>
   );
 };

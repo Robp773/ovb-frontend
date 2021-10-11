@@ -20,7 +20,6 @@ const StyledChip = styled(Chip)({
 });
 
 const ArticleCategoryChip = (props) => {
-  console.log(props)
   let activeIcon;
   switch (props.category) {
     case "Mindset": {

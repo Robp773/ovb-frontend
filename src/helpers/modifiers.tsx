@@ -7,13 +7,12 @@ export const attachContentTypes = (drills, activities) => {
           ? `/drills/${encodeStrForUrl(data.category)}/${encodeStrForUrl(
               data.name
             )}`
-          : `/activities/${encodeStrForUrl(data.name)}`;
+          : `/activities/${encodeStrForUrl(data.title)}`;
     });
   }
   return combinedData;
 };
  
 export const encodeStrForUrl = (val) => {
-  console.log(val);
   return encodeURIComponent((val.replace(/ +/g, "-").replace(/_/g, "-").toLowerCase()));
 };
