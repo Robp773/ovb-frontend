@@ -6,12 +6,16 @@ import { encodeStrForUrl } from "../../helpers/modifiers";
 
 const StyledChip = styled(Chip)({
   marginBottom: "3px",
+  textDecoration: "none"
 });
 
 const DrillCategoryChip = (props) => {
   return (
     <GatsbyLink
-      to={`${process.env.GATSBY_BASE_URL}/drills/${encodeStrForUrl(
+      style={{
+        textDecoration: "none"
+      }}
+      to={`/drills/${encodeStrForUrl(
         props.category.toLowerCase()
       )}`}
     >

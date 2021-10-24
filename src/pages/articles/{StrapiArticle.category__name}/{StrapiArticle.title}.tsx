@@ -32,7 +32,7 @@ const ReferencesAccordion = styled(Accordion)({
 });
 
 const StyledSummary = styled(withTheme(AccordionSummary))((props) => ({
-  background: props.theme.palette.grey[100],
+  background: props.theme.palette.grey[200],
   // color: props.theme.palette.common.white,
 }));
 

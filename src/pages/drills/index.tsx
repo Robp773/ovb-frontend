@@ -24,10 +24,11 @@ import { Link } from "gatsby";
 import { encodeStrForUrl } from "../../helpers/modifiers";
 import { countTags } from "../../helpers/countTags";
 import ReactWordcloud from "react-wordcloud";
+import ContentWrapper from "../../components/shared/content-wrapper";
 
 const MainImage = styled(Img)({
   width: "100%",
-  height: "200px",
+  height: "175px",
 });
 const CategoryChipWrapper = styled("div")({
   "& > svg": {
@@ -67,7 +68,7 @@ const DrillsPage = (data) => {
   const tags = countTags(allStrapiDrill);
   return (
     <Layout>
-      <PageWrapper width="75%">
+      <ContentWrapper width="85ch">
         <Container
           style={{
             marginBottom: "20px",
@@ -155,7 +156,7 @@ const DrillsPage = (data) => {
             );
           })}
         </Grid>
-      </PageWrapper>
+      </ContentWrapper>
     </Layout>
   );
 };

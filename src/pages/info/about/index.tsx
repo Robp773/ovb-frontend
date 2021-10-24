@@ -3,6 +3,7 @@ import { graphql } from "gatsby";
 import React from "react";
 import Layout from "~/components/layout";
 import SEO from "~/components/seo";
+import ContentWrapper from "../../../components/shared/content-wrapper";
 import StaticPageHeading from "../../../components/static-page/static-page-heading";
 import StaticPageWrapper from "../../../components/static-page/static-page-wrapper";
 
@@ -13,7 +14,7 @@ const AboutPage = ({ data }) => {
   return (
     <Layout>
       <SEO seo={seo} />
-      <StaticPageWrapper>
+      <ContentWrapper width="85ch">
         <StaticPageHeading
           image={
             data.strapiAboutPage.main_media.localFile.childImageSharp.fluid
@@ -24,7 +25,7 @@ const AboutPage = ({ data }) => {
           variant="body1"
           dangerouslySetInnerHTML={{ __html: data.strapiAboutPage.content }}
         />
-      </StaticPageWrapper>
+      </ContentWrapper>
     </Layout>
   );
 };

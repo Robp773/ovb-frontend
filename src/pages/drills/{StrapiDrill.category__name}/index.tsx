@@ -1,4 +1,4 @@
-import { Typography } from "@material-ui/core";
+import { Divider, Typography } from "@material-ui/core";
 import { graphql } from "gatsby";
 import React from "react";
 import Layout from "../../../components/layout";
@@ -35,12 +35,17 @@ const DrillCategoryPage = ({ data }) => {
             __html: categoryData.description,
           }}
         />
-        <Typography style={{ textAlign: "center" }} variant="h4">
-          Drills
-        </Typography>
-        <RelatedContentWrapper xs={6} contentType="drill" items={drills} />
-      </PageWrapper>
-    </Layout>
+
+
+        <Divider style={{ margin: "20px 0" }} />
+
+
+        <Typography style={{ textAlign: "center", margin: "10px 0" }} variant="h4">
+        Drills
+      </Typography>
+      <RelatedContentWrapper xs={6} contentType="drill" items={drills} />
+    </PageWrapper>
+    </Layout >
   );
 };
 

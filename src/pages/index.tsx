@@ -12,10 +12,10 @@ import SEO from "../components/seo";
 import { RelatedContentWrapper } from "../components/shared/related-content-list";
 import bgImage from "../images/ovb-main-bg.jpg";
 
-const ImageContainer = styled(Container)({
+const ImageContainer = styled(Box)({
   display: "flex",
   justifyContent: "center",
-  padding: "55px",
+  padding: "25px",
 });
 
 const WhoWeAreCard = styled(Box)({
@@ -44,7 +44,7 @@ const TextWrapper = styled(Container)({
 
 const LearnMoreButton = styled(Button)({
   padding: "20px",
-  margin: "auto",
+  margin: "20px auto",
 });
 
 const AboutLink = styled(Link)({
@@ -65,7 +65,7 @@ const IndexPage = ({ data }) => {
   return (
     <Layout>
       <ImageContainer>
-        <Img fixed={page.banner_image.localFile.childImageSharp.fixed} />
+        <Img style={{ width: "30%" }} fluid={page.banner_image.localFile.childImageSharp.fluid} />
       </ImageContainer>
       <SEO seo={seo} />
 
@@ -74,7 +74,9 @@ const IndexPage = ({ data }) => {
           color="textSecondary"
           align="center"
           variant="h3"
-          component="h3"
+          style={{
+            margin: "20px auto"
+          }}
         >
           Who We Are
         </Typography>
@@ -85,16 +87,18 @@ const IndexPage = ({ data }) => {
           </WhoWeAreText>
         </TextWrapper>
         <AboutLink to="/info/about">
-          <LearnMoreButton color="secondary" variant="contained" size="small">
+          <LearnMoreButton color="secondary" variant="contained" size="large">
             Learn More
           </LearnMoreButton>
         </AboutLink>
       </WhoWeAreCard>
       <ActivityContainer>
-        <Typography color="textPrimary" align="center" variant="h3">
+        <Typography style={{
+          marginBottom: "20px"
+        }} color="textPrimary" align="center" variant="h3">
           Recent Articles
         </Typography>
-        <RelatedContentWrapper contentType="article" withCategory xs={3} items={articles}/>
+        <RelatedContentWrapper contentType="article" withCategory xs={3} items={articles} />
       </ActivityContainer>
     </Layout>
   );
@@ -108,8 +112,8 @@ export const articlePageQuery = graphql`
       banner_image {
         localFile {
           childImageSharp {
-            fixed(width: 500) {
-              ...GatsbyImageSharpFixed
+            fluid {
+              ...GatsbyImageSharpFluid
             }
           }
         }

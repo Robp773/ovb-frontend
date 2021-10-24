@@ -1,19 +1,15 @@
 import {
-  Box,
-  Breadcrumbs,
-  Button,
-  Paper,
-  styled,
+  Box, styled,
   Typography,
-  withTheme,
+  withTheme
 } from "@material-ui/core";
+import NavigateNextIcon from "@mui/icons-material/NavigateNext";
 import { Link as GatsbyLink } from "gatsby";
 import React from "react";
 import ArticleCategoryChip from "../article/article-category-chip";
 import DrillCategoryChip from "../drill/drill-category-chip";
 import ContentChip from "./content-chip";
 import ContentImage from "./content-main-image";
-import NavigateNextIcon from "@mui/icons-material/NavigateNext";
 
 const Heading = styled(withTheme(Box))((props) => ({
   display: "flex",
@@ -98,32 +94,31 @@ const ContentHeading = (props, data) => {
     }
   }
   return (
-    <Heading elevation={0}>
-      {/* TODO - add ropes course main page if needed */}
+    <Heading >
+
       {props.contentType === "activity" ? null : (
         <BreadCrumbsWrapper>
           {pathList.map((link, index) => {
             return (
-              <>
+              <div style={{ display: "flex", alignItems: "center" }} key={index}>
                 {index === 0 ? null : <StyledNavIcon />}
                 <StyledLink
-                  to={`${process.env.GATSBY_BASE_URL}/${pathList
+                  to={`/${pathList
                     .slice(0, index + 1)
                     .join("/")}`}
                 >
                   <Typography
                     style={{
                       display: "inline-block",
-                      fontWeight: `${
-                        index + 1 === pathList.length ? "normal" : "bold"
-                      }`,
+                      fontWeight: `${index + 1 === pathList.length ? "normal" : "bold"
+                        }`,
                     }}
                     variant="subtitle2"
                   >
                     {link.charAt(0).toUpperCase() + link.slice(1)}
                   </Typography>
                 </StyledLink>
-              </>
+              </div>
             );
           })}
         </BreadCrumbsWrapper>

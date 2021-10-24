@@ -2,6 +2,7 @@ import {
   Box,
   Button,
   Container,
+  Divider,
   Grid,
   Paper,
   styled,
@@ -38,12 +39,7 @@ const CategoryChipWrapper = styled("div")({
 });
 
 const CategoryAndChipWrapper = styled(Box)({
-  // color: "white",
-  // height: "100%",
-  // position: "absolute",
   bottom: 0,
-  // background: "rgba(53, 51, 51, .95)",
-  // background: "rgba(156, 19, 20, .9)",
   display: "flex",
   alignItems: "center",
   justifyContent: "center",
@@ -68,7 +64,7 @@ const ArticlesPage = (data) => {
   const tags = countTags(data.data.allStrapiArticle);
   return (
     <Layout>
-      <PageWrapper width="75%">
+      <PageWrapper width="100ch">
         <Container
           style={{
             marginBottom: "20px",
@@ -81,15 +77,12 @@ const ArticlesPage = (data) => {
             <Box
               style={{
                 height: "200px",
-                // width: "fit-content",
                 textAlign: "center",
-                // background: "rgba(0,0,0,.05)",
               }}
             >
               <ReactWordcloud
                 words={tags}
                 // size={[400, 100]}
-                
                 options={{
                   // colors: [ "#353333"],
                   colors: ["#70A1D7", "#353333", "#9c1314"],
@@ -113,8 +106,9 @@ const ArticlesPage = (data) => {
           </Box>
         </Container>
 
+
         <Typography
-          style={{ textAlign: "center", marginBottom: "20px" }}
+          style={{ textAlign: "center", margin: "20px 0" }}
           variant="h4"
         >
           Topics

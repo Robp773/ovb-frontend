@@ -1,14 +1,11 @@
-import React from "react";
+import { Container, styled, Typography, withTheme } from "@material-ui/core";
 import { graphql } from "gatsby";
 import Img from "gatsby-image";
-
+import React from "react";
 import Layout from "~/components/layout";
 import SEO from "~/components/seo";
-import { Container, styled, Typography, withTheme } from "@material-ui/core";
-
+import ContentWrapper from "../../../components/shared/content-wrapper";
 import StaticPageHeading from "../../../components/static-page/static-page-heading";
-import StaticPageWrapper from "../../../components/static-page/static-page-wrapper";
-const CoachContainer = styled(Container)({});
 
 const HeadingContainer = styled(withTheme(Container))((props) => ({
   display: "flex",
@@ -16,29 +13,28 @@ const HeadingContainer = styled(withTheme(Container))((props) => ({
   justifyContent: "space-between",
   margin: "50px 0",
   padding: 0,
-  background: props.theme.palette.primary.dark,
+  background: props.theme.palette.grey[200]
 }));
 
 const CoachName = styled(withTheme(Typography))((props) => ({
   margin: "auto",
-  color: props.theme.palette.common.white,
 }));
 
 const CalendarPage = ({ data }) => {
   console.log(data);
-  const seo = { title: "Coaches" };
+  const seo = { title: "dg" };
 
   return (
     <Layout>
       <SEO seo={seo} />
-      <StaticPageWrapper>
+      <ContentWrapper width="85ch">
         <StaticPageHeading title={data.strapiCoachesPage.page_title} />
 
         {data.strapiCoachesPage.coaches.map((coach, index) => {
           return (
-            <div>
+            <div key={index}>
               <HeadingContainer>
-                <CoachName variant="h4">{coach.coach_name}</CoachName>
+                <CoachName variant="h5">{coach.coach_name}</CoachName>
                 <Img
                   fixed={coach.coach_image.localFile.childImageSharp.fixed}
                 />
@@ -51,7 +47,7 @@ const CalendarPage = ({ data }) => {
             </div>
           );
         })}
-      </StaticPageWrapper>
+      </ContentWrapper>
     </Layout>
   );
 };

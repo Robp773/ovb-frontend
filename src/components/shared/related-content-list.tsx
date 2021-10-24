@@ -75,7 +75,6 @@ export const RelatedContentWrapper = (props) => {
                     </Box>
                   </Box>
 
-                  <Divider style={{ margin: "5px 0" }} variant="fullWidth" />
 
                   <Typography variant="body2">{node.description}</Typography>
                 </CardContent>

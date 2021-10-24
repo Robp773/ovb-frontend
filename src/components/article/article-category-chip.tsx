@@ -47,7 +47,10 @@ const ArticleCategoryChip = (props) => {
     < >
       {props.iconWithText ? (
         <GatsbyLink
-          to={`${process.env.GATSBY_BASE_URL}/articles/${encodeStrForUrl(
+          style={{
+            textDecoration: "none"
+          }}
+          to={`/articles/${encodeStrForUrl(
             props.category.toLowerCase()
           )}`}
         >

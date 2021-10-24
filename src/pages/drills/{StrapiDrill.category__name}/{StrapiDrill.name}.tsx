@@ -32,8 +32,8 @@ const CustomArticle = ({ data }) => {
             category: drill.category.name,
           }}
         />
-        <video style={{ margin: "auto" }} width="400" height="300" controls>
-          <source src={`/${drill.example_media.url}`} type="video/mp4" />
+        <video style={{ margin: "auto" }} controls>
+          <source src={`${process.env.API_URL}${drill.example_media.url}`} type="video/mp4" />
           Your browser does not support the video tag.
         </video>
         <Box style={{ margin: "15px 0" }}>
@@ -47,6 +47,7 @@ const CustomArticle = ({ data }) => {
         </Box>
         <Box style={{ margin: "15px 0" }}>
           <Typography variant="h5">Summary</Typography>
+          {`${process.env.API_URL}${drill.example_media.url}`}
           <Typography
             variant="body1"
             dangerouslySetInnerHTML={{
