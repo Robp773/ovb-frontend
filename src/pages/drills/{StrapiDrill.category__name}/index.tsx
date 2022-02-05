@@ -7,7 +7,7 @@ import CategoryHeading from "../../../components/shared/category-heading";
 import ContentHeading from "../../../components/shared/content-heading";
 import { RelatedContentWrapper } from "../../../components/shared/related-content-list";
 
-const DrillCategoryPage = ({ data }) => {
+const DrillCategoryPage = ({ data, location }) => {
   console.log(data);
   const categoryData = data.strapiDrillCategory;
 

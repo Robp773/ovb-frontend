@@ -7,7 +7,7 @@ import CategoryHeading from "../../../components/shared/category-heading";
 import ContentHeading from "../../../components/shared/content-heading";
 import { RelatedContentWrapper } from "../../../components/shared/related-content-list";
 
-const CustomArticle = ({ data }) => {
+const CustomArticle = ({ data, location }) => {
   const categoryData = data.strapiArticleCategory;
   console.log(data);
   const { allStrapiArticle: articles } = data;
