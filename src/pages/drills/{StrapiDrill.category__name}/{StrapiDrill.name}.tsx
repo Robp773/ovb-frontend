@@ -12,8 +12,7 @@ import ContentHeading from "../../../components/shared/content-heading";
 import PageWrapper from "../../../components/shared/content-wrapper";
 import Img from "gatsby-image";
 
-const CustomArticle = ({ data }) => {
-  console.log(data);
+const CustomArticle = ({ data, location }) => {
   const drill = data.strapiDrill;
   const seo = { title: drill.name };
 

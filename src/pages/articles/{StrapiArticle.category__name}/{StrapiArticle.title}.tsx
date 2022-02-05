@@ -53,7 +53,6 @@ const CustomArticle = ({ data, location }) => {
 
   const seo = { title: data.strapiArticle.title };
 
-  console.log(data);
   return (
     <Layout>
       <SEO seo={seo} />
