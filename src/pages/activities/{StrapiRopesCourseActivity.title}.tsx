@@ -31,7 +31,7 @@ const CardActionButton = styled(Link)({
   textDecoration: "none",
 });
 
-const CustomArticle = ({ data }) => {
+const CustomArticle = ({ data, location }) => {
   console.log(data);
   const activity = data.strapiRopesCourseActivity;
   // const seo = { title: activity.name };
