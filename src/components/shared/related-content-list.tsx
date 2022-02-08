@@ -19,20 +19,17 @@ const CardActionButton = styled(Link)({
 
 const GridParent = styled("div")({
   display: "grid",
-  gridAutoColumns: "1fr",
-  gridAutoRows: "1fr",
-  gridAutoFlow: "column",
+  gridAutoColumns: "1fr 1fr 1fr 1fr",
   columnGap: "5px",
   marginTop: "30px",
 })
 
 export const RelatedContentWrapper = (props) => {
   return (
-    <GridParent >
+    <GridParent style={{ gridTemplateColumns: props.isHomePage ? "repeat(4, 1fr)" : "repeat(3, 1fr)" }} >
       {props.items.edges.map((item, index) => {
         const node = item.node;
         return (
-
           <Card key={index}
             style={{
               display: "flex",
@@ -49,6 +46,7 @@ export const RelatedContentWrapper = (props) => {
               />
               <CardContent>
                 <Box style={{ padding: "0 0 5px 0" }}>
+
                   <Typography variant="h5">{node.title}</Typography>
                   <Typography variant="subtitle1">{node.date}</Typography>
                   <Box
@@ -65,7 +63,6 @@ export const RelatedContentWrapper = (props) => {
                     ) : null}
                   </Box>
                 </Box>
-
 
                 <Typography variant="body2">{node.description}</Typography>
               </CardContent>

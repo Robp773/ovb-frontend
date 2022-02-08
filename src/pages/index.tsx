@@ -59,7 +59,6 @@ const ActivityContainer = styled("div")({
 const IndexPage = ({ data }) => {
   const { strapiHomePage: page, allStrapiArticle: articles } = data;
 
-  console.log(articles)
   const seo = { title: "Home Page" };
 
   return (
@@ -98,7 +97,7 @@ const IndexPage = ({ data }) => {
         }} color="textPrimary" align="center" variant="h4">
           Recent Articles
         </Typography>
-        <RelatedContentWrapper contentType="article" withCategory xs={3} items={articles} />
+        <RelatedContentWrapper isHomePage={true} contentType="article" withCategory xs={3} items={articles} />
       </ActivityContainer>
     </Layout>
   );

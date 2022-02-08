@@ -24,7 +24,6 @@ import { CardActionArea, CardActions } from "@mui/material";
 import { Link } from "gatsby";
 import { encodeStrForUrl } from "../../helpers/modifiers";
 import { countTags } from "../../helpers/countTags";
-import ReactWordcloud from "react-wordcloud";
 
 const MainImage = styled(Img)({
   width: "100%",

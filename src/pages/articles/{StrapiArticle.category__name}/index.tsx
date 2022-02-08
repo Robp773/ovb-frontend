@@ -37,7 +37,7 @@ const CustomArticle = ({ data, location }) => {
         />
 
         <Typography style={{ textAlign: "center", margin: "10px 0" }} variant="h4">Articles</Typography>
-        <RelatedContentWrapper contentType="article" xs={6} items={articles} />
+        <RelatedContentWrapper contentType="article" items={articles} />
       </PageWrapper>
     </Layout>
   );

@@ -33,7 +33,6 @@ const ReferencesAccordion = styled(Accordion)({
 
 const StyledSummary = styled(withTheme(AccordionSummary))((props) => ({
   background: props.theme.palette.grey[200],
-  // color: props.theme.palette.common.white,
 }));
 
 const CardActionButton = styled(Link)({

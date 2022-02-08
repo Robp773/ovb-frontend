@@ -3,27 +3,20 @@ import {
   Button,
   Container,
   Grid,
-  Paper,
   styled,
   Typography,
   withTheme,
 } from "@material-ui/core";
-import { Category } from "@material-ui/icons";
 import { graphql } from "gatsby";
 import React from "react";
 import Layout from "../../components/layout";
-import CategoryHeading from "../../components/shared/category-heading";
-import PageWrapper from "../../components/shared/content-wrapper";
 import Img from "gatsby-image";
 import ArticleCategoryChip from "../../components/article/article-category-chip";
 import Card from "@mui/material/Card";
 import CardContent from "@mui/material/CardContent";
-import CardMedia from "@mui/material/CardMedia";
-import { CardActionArea, CardActions } from "@mui/material";
+import { CardActions } from "@mui/material";
 import { Link } from "gatsby";
 import { encodeStrForUrl } from "../../helpers/modifiers";
-import { countTags } from "../../helpers/countTags";
-import ReactWordcloud from "react-wordcloud";
 import ContentWrapper from "../../components/shared/content-wrapper";
 
 const MainImage = styled(Img)({
@@ -64,8 +57,6 @@ const DrillsPage = (data) => {
     allStrapiDrill,
     allStrapiDrillCategory,
   } = data.data;
-  console.log(data);
-  const tags = countTags(allStrapiDrill);
   return (
     <Layout>
       <ContentWrapper width="85ch">

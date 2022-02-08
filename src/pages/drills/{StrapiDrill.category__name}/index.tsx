@@ -8,7 +8,6 @@ import ContentHeading from "../../../components/shared/content-heading";
 import { RelatedContentWrapper } from "../../../components/shared/related-content-list";
 
 const DrillCategoryPage = ({ data, location }) => {
-  console.log(data);
   const categoryData = data.strapiDrillCategory;
 
   const { allStrapiDrill: drills } = data;
@@ -36,15 +35,13 @@ const DrillCategoryPage = ({ data, location }) => {
           }}
         />
 
-
         <Divider style={{ margin: "20px 0" }} />
 
-
         <Typography style={{ textAlign: "center", margin: "10px 0" }} variant="h4">
-        Drills
-      </Typography>
-      <RelatedContentWrapper xs={6} contentType="drill" items={drills} />
-    </PageWrapper>
+          Drills
+        </Typography>
+        <RelatedContentWrapper xs={6} contentType="drill" items={drills} />
+      </PageWrapper>
     </Layout >
   );
 };
