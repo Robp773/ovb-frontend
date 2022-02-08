@@ -82,7 +82,7 @@ const IndexPage = ({ data }) => {
         </Typography>
 
         <TextWrapper>
-          <WhoWeAreText color="textSecondary" variant="h5">
+          <WhoWeAreText color="textSecondary" variant="subtitle1">
             {page.intro_text}
           </WhoWeAreText>
         </TextWrapper>
@@ -95,7 +95,7 @@ const IndexPage = ({ data }) => {
       <ActivityContainer>
         <Typography style={{
           marginBottom: "20px"
-        }} color="textPrimary" align="center" variant="h3">
+        }} color="textPrimary" align="center" variant="h4">
           Recent Articles
         </Typography>
         <RelatedContentWrapper contentType="article" withCategory xs={3} items={articles} />

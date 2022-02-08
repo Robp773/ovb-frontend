@@ -1,7 +1,5 @@
-import { off } from "process";
 
 export const countTags = (articles) => {
-  console.log(articles);
   const count = {};
   articles.edges.map((article) => {
     article.node.tags.map((tag) => {
@@ -15,10 +13,8 @@ export const countTags = (articles) => {
 
   let tagCountList = [];
   for (let tag in count) {
-      console.log(tag)
     tagCountList.push({ text: tag, value: count[tag] });
   }
 
-  console.log(tagCountList);
   return tagCountList; 
 };

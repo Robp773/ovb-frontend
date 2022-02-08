@@ -31,10 +31,13 @@ const CustomArticle = ({ data, location }) => {
             category: drill.category.name,
           }}
         />
-        <video style={{ margin: "auto" }} controls>
-          <source src={`${process.env.API_URL}${drill.example_media.url}`} type="video/mp4" />
-          Your browser does not support the video tag.
-        </video>
+        <Box style={{ margin: "15px 0" }}>
+          <video style={{ margin: "auto", display: "flex" }} controls>
+            <source src={`${process.env.API_URL}${drill.example_media.url}`} type="video/mp4" />
+            Your browser does not support the video tag.
+          </video>
+        </Box>
+
         <Box style={{ margin: "15px 0" }}>
           <Typography variant="h5">Description</Typography>
           <Typography

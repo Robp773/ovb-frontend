@@ -52,15 +52,10 @@ const HeadingTitle = styled(withTheme(Typography))((props) => ({
   textAlign: "center",
   width: "fit-content",
   margin: "auto",
-
-  "& > h6": {
-    border: "3px solid red",
-  },
 }));
 
 const ArticlesPage = (data) => {
   const categories = data.data.allStrapiArticleCategory.edges;
-  console.log(categories);
   const tags = countTags(data.data.allStrapiArticle);
   return (
     <Layout>
@@ -73,30 +68,11 @@ const ArticlesPage = (data) => {
           }}
         >
           <Box>
-            <HeadingTitle variant="h3">Articles</HeadingTitle>{" "}
-            <Box
-              style={{
-                height: "200px",
-                textAlign: "center",
-              }}
-            >
-              <ReactWordcloud
-                words={tags}
-                // size={[400, 100]}
-                options={{
-                  // colors: [ "#353333"],
-                  colors: ["#70A1D7", "#353333", "#9c1314"],
-                  spiral: "rectangular",
-                  padding: 5,
-                  rotations: 0,
-                  fontSizes: [15, 30],
-                }}
-              />
-            </Box>
+            <HeadingTitle variant="h3">Articles</HeadingTitle>
             <Typography
               style={{
                 maxWidth: "85ch",
-                margin: "5px auto",
+                margin: "10px auto",
               }}
               variant="body1"
               dangerouslySetInnerHTML={{

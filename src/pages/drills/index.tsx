@@ -80,27 +80,10 @@ const DrillsPage = (data) => {
             <HeadingTitle variant="h3">
               {strapiDrillsPage.page_title}
             </HeadingTitle>
-            <Box
-              style={{
-                height: "200px",
-                textAlign: "center",
-              }}
-            >
-              <ReactWordcloud
-                words={tags}
-                options={{
-                  colors: ["#70A1D7", "#353333", "#9c1314"],
-                  spiral: "rectangular",
-                  padding: 5,
-                  rotations: 0,
-                  fontSizes: [15, 30],
-                }}
-              />
-            </Box>
             <Typography
               style={{
                 maxWidth: "85ch",
-                margin: "5px auto",
+                margin: "10px auto",
               }}
               variant="body1"
               dangerouslySetInnerHTML={{
