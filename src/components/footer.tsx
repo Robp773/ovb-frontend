@@ -178,7 +178,7 @@ const Footer = () => {
             style={{ fontWeight: "bold", color: "#f6dc3a" }}
             variant="subtitle1"
           >
-            bpeterman@customalloy.us
+            bpeterman24@gmail.com
           </Typography>
           <Typography variant="body1">Or call us at</Typography>
           <Typography
