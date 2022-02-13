@@ -31,12 +31,13 @@ const CustomArticle = ({ data, location }) => {
             category: drill.category.name,
           }}
         />
-        <Box style={{ margin: "15px 0" }}>
+
+        {drill.example_media && drill.example_media.url ? <Box style={{ margin: "15px 0" }}>
           <video style={{ margin: "auto", display: "flex" }} controls>
             <source src={`${process.env.API_URL}${drill.example_media.url}`} type="video/mp4" />
             Your browser does not support the video tag.
           </video>
-        </Box>
+        </Box> : null}
 
         <Box style={{ margin: "15px 0" }}>
           <Typography variant="h5">Description</Typography>
@@ -49,7 +50,6 @@ const CustomArticle = ({ data, location }) => {
         </Box>
         <Box style={{ margin: "15px 0" }}>
           <Typography variant="h5">Summary</Typography>
-          {`${process.env.API_URL}${drill.example_media.url}`}
           <Typography
             variant="body1"
             dangerouslySetInnerHTML={{
@@ -91,8 +91,8 @@ const CustomArticle = ({ data, location }) => {
 };
 
 export const query = graphql`
-  {
-    strapiDrill {
+    query($id: String!) {
+      strapiDrill(id: { eq: $id }) {
       category {
         name
         description

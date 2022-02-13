@@ -47,7 +47,7 @@ export const RelatedContentWrapper = (props) => {
               <CardContent>
                 <Box style={{ padding: "0 0 5px 0" }}>
 
-                  <Typography variant="h5">{node.title}</Typography>
+                  <Typography variant="h5">{node.title || node.name}</Typography>
                   <Typography variant="subtitle1">{node.date}</Typography>
                   <Box
                     style={{

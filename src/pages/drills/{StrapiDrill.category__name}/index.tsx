@@ -9,9 +9,8 @@ import { RelatedContentWrapper } from "../../../components/shared/related-conten
 
 const DrillCategoryPage = ({ data, location }) => {
   const categoryData = data.strapiDrillCategory;
-
   const { allStrapiDrill: drills } = data;
-
+  
   return (
     <Layout>
       <PageWrapper>
@@ -61,7 +60,8 @@ export const query = graphql`
         }
       }
     }
-    allStrapiDrill {
+
+    allStrapiDrill(filter: {category: {name: {eq: $category__name}}}) {
       edges {
         node {
           category {
