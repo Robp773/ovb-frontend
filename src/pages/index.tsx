@@ -97,7 +97,7 @@ const IndexPage = ({ data }) => {
         }} color="textPrimary" align="center" variant="h4">
           Recent Articles
         </Typography>
-        <RelatedContentWrapper isHomePage={true} contentType="article" withCategory xs={3} items={articles} />
+        <RelatedContentWrapper isHomePage={true} contentType="articles" withCategory items={articles} />
       </ActivityContainer>
     </Layout>
   );
@@ -142,9 +142,10 @@ export const articlePageQuery = graphql`
             alternativeText
             localFile {
               childImageSharp {
-                fluid {
-                  ...GatsbyImageSharpFluid
-                }
+                gatsbyImageData(
+                  height: 200,
+                  width: 300
+                )
               }
             }
           }

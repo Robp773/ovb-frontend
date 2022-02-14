@@ -102,62 +102,9 @@ const ArticlesPage = (data) => {
           Topics
         </Typography>
 
-        <GridParent style={{ gridTemplateColumns: "repeat(3, 1fr)" }} >
-          {categories.map((item, index) => {
-            const node = item.node;
-            return (
-              <Card key={index}
-                style={{
-                  display: "flex",
-                  flexDirection: "column",
-                  justifyContent: "space-between",
-                }}
-              >
-                <div>
-                  <Img
-                    style={{
-                      height: "200px",
-                    }}
-                    fluid={node.main_media.localFile.childImageSharp.fluid}
-                  />
-                  <CardContent>
-                    <Box style={{ padding: "0 0 5px 0" }}>
+        <RelatedContentWrapper isHomePage={false} contentType="articleTopics" items={data.data.allStrapiArticleCategory} />
 
-                      <Typography variant="h5">{node.name}</Typography>
-                      <Typography variant="subtitle1">{node.date}</Typography>
-                      <Box
-                        style={{
-                          display: "flex",
-                          alignItems: "center",
-                        }}
-                      >
 
-                        {/* <ArticleCategoryChip
-                          category={node.name}
-                          iconWithText={true}
-                        /> */}
-
-                      </Box>
-                    </Box>
-
-                    <Typography variant="body2" dangerouslySetInnerHTML={{
-                      __html: node.one_sentence_description,
-                    }}
-                    />
-                  </CardContent>
-                </div>
-
-                <CardActions>
-                  <CardActionButton
-                    to={`/articles/${encodeStrForUrl(node.name)}`}
-                  >
-                    <Button variant="outlined">Read more</Button>
-                  </CardActionButton>
-                </CardActions>
-              </Card>
-            );
-          })}
-        </GridParent>
 
         {/* 
         <Grid direction="row" container spacing={1}>
@@ -215,9 +162,10 @@ export const query = graphql`
           main_media {
             localFile {
               childImageSharp {
-                fluid(maxHeight: 200) {
-                  ...GatsbyImageSharpFluid
-                }
+                gatsbyImageData(
+                  height: 200,
+                  width: 300
+                )
               }
             }
           }

@@ -8,7 +8,7 @@ import Card from "@material-ui/core/Card";
 import Typography from "@material-ui/core/Typography";
 import styled from "@mui/styled-engine";
 import { Link } from "gatsby";
-import Img from "gatsby-image";
+import { GatsbyImage, getImageData } from "gatsby-plugin-image";
 import React from "react";
 import { encodeStrForUrl } from "../../helpers/modifiers";
 import ArticleCategoryChip from "../article/article-category-chip";
@@ -24,11 +24,52 @@ const GridParent = styled("div")({
   marginTop: "30px",
 })
 
+
 export const RelatedContentWrapper = (props) => {
   return (
     <GridParent style={{ gridTemplateColumns: props.isHomePage ? "repeat(4, 1fr)" : "repeat(3, 1fr)" }} >
       {props.items.edges.map((item, index) => {
+
         const node = item.node;
+
+        console.log(node)
+        let path, image
+        switch (props.contentType) {
+          case ("drillCategories"): {
+            path = `/drills/${encodeStrForUrl(
+              node.name
+            )}`
+            image = node.image.localFile.childImageSharp.gatsbyImageData
+            break;
+          }
+
+          case ("drills"): {
+            path = `/drills/${encodeStrForUrl(
+              node.category.name
+            )}/${encodeStrForUrl(node.title || node.name)}`
+            image = node.main_media.localFile.childImageSharp.gatsbyImageData
+
+            break;
+          }
+
+          case ("articleTopics"): {
+            path = `/articles/${encodeStrForUrl(
+              node.name
+            )}`
+            image = node.main_media.localFile.childImageSharp.gatsbyImageData
+
+            break;
+          }
+          case ("articles"): {
+            path = `/articles/${encodeStrForUrl(
+              node.category.name
+            )}/${encodeStrForUrl(node.title || node.name)}`
+            image = node.main_media.localFile.childImageSharp.gatsbyImageData
+
+            break;
+          }
+        }
+
         return (
           <Card key={index}
             style={{
@@ -38,15 +79,13 @@ export const RelatedContentWrapper = (props) => {
             }}
           >
             <div>
-              <Img
-                style={{
-                  height: "200px",
-                }}
-                fluid={node.main_media.localFile.childImageSharp.fluid}
+              <GatsbyImage
+                alt={node.title || node.name}
+                style={{ objectFit: "contain" }}
+                image={image}
               />
               <CardContent>
                 <Box style={{ padding: "0 0 5px 0" }}>
-
                   <Typography variant="h5">{node.title || node.name}</Typography>
                   <Typography variant="subtitle1">{node.date}</Typography>
                   <Box
@@ -70,9 +109,7 @@ export const RelatedContentWrapper = (props) => {
 
             <CardActions>
               <CardActionButton
-                to={`/${props.contentType}s/${encodeStrForUrl(
-                  node.category.name
-                )}/${encodeStrForUrl(node.title || node.name)}`}
+                to={path}
               >
                 <Button variant="outlined">Read more</Button>
               </CardActionButton>

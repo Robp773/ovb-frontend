@@ -18,6 +18,7 @@ import { CardActions } from "@mui/material";
 import { Link } from "gatsby";
 import { encodeStrForUrl } from "../../helpers/modifiers";
 import ContentWrapper from "../../components/shared/content-wrapper";
+import { RelatedContentWrapper } from "../../components/shared/related-content-list";
 
 const MainImage = styled(Img)({
   width: "100%",
@@ -90,7 +91,10 @@ const DrillsPage = (data) => {
         >
           Categories
         </Typography>
-        <Grid direction="row" container spacing={1}>
+
+        <RelatedContentWrapper isHomePage={false} contentType="drillCategories" xs={3} items={allStrapiDrillCategory} />
+
+        {/* <Grid direction="row" container spacing={1}>
           {allStrapiDrillCategory.edges.map((category, index) => {
             return (
               <Grid style={{ height: "100%" }} key={index} item xs={4}>
@@ -129,7 +133,7 @@ const DrillsPage = (data) => {
               </Grid>
             );
           })}
-        </Grid>
+        </Grid> */}
       </ContentWrapper>
     </Layout>
   );
@@ -145,9 +149,10 @@ export const query = graphql`
           image {
             localFile {
               childImageSharp {
-                fluid(maxHeight: 200) {
-                  ...GatsbyImageSharpFluid
-                }
+                gatsbyImageData(
+                  height: 200,
+                  width: 300
+                )
               }
             }
           }

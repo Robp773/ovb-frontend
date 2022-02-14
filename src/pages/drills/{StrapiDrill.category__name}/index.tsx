@@ -10,7 +10,10 @@ import { RelatedContentWrapper } from "../../../components/shared/related-conten
 const DrillCategoryPage = ({ data, location }) => {
   const categoryData = data.strapiDrillCategory;
   const { allStrapiDrill: drills } = data;
-  
+
+
+  console.log(data)
+
   return (
     <Layout>
       <PageWrapper>
@@ -35,11 +38,10 @@ const DrillCategoryPage = ({ data, location }) => {
         />
 
         <Divider style={{ margin: "20px 0" }} />
-
         <Typography style={{ textAlign: "center", margin: "10px 0" }} variant="h4">
           Drills
         </Typography>
-        <RelatedContentWrapper xs={6} contentType="drill" items={drills} />
+        <RelatedContentWrapper xs={6} contentType="drills" items={drills} />
       </PageWrapper>
     </Layout >
   );
@@ -53,9 +55,10 @@ export const query = graphql`
       image {
         localFile {
           childImageSharp {
-            fixed(width: 300, height: 250) {
-              ...GatsbyImageSharpFixed
-            }
+            gatsbyImageData(
+              height: 200,
+              width: 300
+            )
           }
         }
       }
@@ -78,9 +81,10 @@ export const query = graphql`
           main_media {
             localFile {
               childImageSharp {
-                fluid {
-                  ...GatsbyImageSharpFluid
-                }
+                gatsbyImageData(
+                  height: 200,
+                  width: 300
+                )
               }
             }
           }

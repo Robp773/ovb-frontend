@@ -16,7 +16,7 @@ const CustomArticle = ({ data, location }) => {
     <Layout>
       <PageWrapper>
         <ContentHeading
-          image={categoryData.main_media.localFile.childImageSharp.fixed}
+          image={categoryData.main_media.localFile.childImageSharp.gatsbyImageData}
           title={categoryData.name}
           iconWithText={false}
           contentType="article"
@@ -37,7 +37,7 @@ const CustomArticle = ({ data, location }) => {
         />
 
         <Typography style={{ textAlign: "center", margin: "10px 0" }} variant="h4">Articles</Typography>
-        <RelatedContentWrapper contentType="article" items={articles} />
+        <RelatedContentWrapper contentType="articles" items={articles} />
       </PageWrapper>
     </Layout>
   );
@@ -51,9 +51,10 @@ export const query = graphql`
       main_media {
         localFile {
           childImageSharp {
-            fixed(width: 300, height: 250) {
-              ...GatsbyImageSharpFixed
-            }
+            gatsbyImageData(
+              height: 200,
+              width: 300
+            )
           }
         }
       }
@@ -82,9 +83,10 @@ export const query = graphql`
             alternativeText
             localFile {
               childImageSharp {
-                fluid {
-                  ...GatsbyImageSharpFluid
-                }
+                gatsbyImageData(
+                  height: 200,
+                  width: 300
+                )
               }
             }
           }

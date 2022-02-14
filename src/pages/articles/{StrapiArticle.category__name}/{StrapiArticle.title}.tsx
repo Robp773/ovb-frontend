@@ -24,7 +24,9 @@ import DrillCategoryChip from "../../../components/drill/drill-category-chip";
 import TagChip from "../../../components/shared/content-chip";
 import ContentHeading from "../../../components/shared/content-heading";
 import PageWrapper from "../../../components/shared/content-wrapper";
-import { attachContentTypes } from "../../../helpers/modifiers";
+import { attachContentTypes, encodeStrForUrl } from "../../../helpers/modifiers";
+import {GatsbyImage} from "gatsby-plugin-image";
+import ArticleCategoryChip from "../../../components/article/article-category-chip";
 
 const ReferencesAccordion = styled(Accordion)({
   marginTop: "30px",
@@ -38,6 +40,15 @@ const StyledSummary = styled(withTheme(AccordionSummary))((props) => ({
 const CardActionButton = styled(Link)({
   textDecoration: "none",
 });
+
+
+const GridParent = styled("div")({
+  display: "grid",
+  gridAutoColumns: "1fr 1fr 1fr 1fr",
+  columnGap: "5px",
+  marginTop: "30px",
+})
+
 
 const CustomArticle = ({ data, location }) => {
   const references = [
@@ -88,7 +99,68 @@ const CustomArticle = ({ data, location }) => {
               </Typography>
             </StyledSummary>
             <AccordionDetails style={{ padding: 0 }}>
-              <Grid direction="row" container spacing={2}>
+
+
+              <GridParent style={{
+                gridTemplateColumns: "repeat(4, 1fr)"
+              }} >
+                {references.map((item, index) => {
+
+                  const node = item;
+
+                  console.log(node)
+                  let path, image
+
+                  return (
+                    <Card key={index}
+                      style={{
+                        display: "flex",
+                        flexDirection: "column",
+                        justifyContent: "space-between",
+                      }}
+                    >
+                      <div>
+                        <GatsbyImage
+                          alt={node.title || node.name}
+                          style={{ objectFit: "contain" }}
+                          image={node.main_media.localFile.childImageSharp.gatsbyImageData}
+                        />
+                        <CardContent>
+                          <Box style={{ padding: "0 0 5px 0" }}>
+                            <Typography variant="h5">{node.title || node.name}</Typography>
+                            <Typography variant="subtitle1">{node.date}</Typography>
+                            <Box
+                              style={{
+                                display: "flex",
+                                alignItems: "center",
+                              }}
+                            >
+                              {/* {props.withCategory ? (
+                                <ArticleCategoryChip
+                                  category={node.category.name}
+                                  iconWithText={true}
+                                />
+                              ) : null} */}
+                            </Box>
+                          </Box>
+
+                          <Typography variant="body2">{node.description}</Typography>
+                        </CardContent>
+                      </div>
+
+                      <CardActions>
+                        <CardActionButton
+                          to={path}
+                        >
+                          <Button variant="outlined">Read more</Button>
+                        </CardActionButton>
+                      </CardActions>
+                    </Card>
+                  );
+                })}
+              </GridParent>
+
+              {/* <Grid direction="row" container spacing={2}>
                 {references.map((reference, index) => {
                   return (
                     <Grid key={index} item md={6}>
@@ -174,7 +246,7 @@ const CustomArticle = ({ data, location }) => {
                     </Grid>
                   );
                 })}
-              </Grid>
+              </Grid> */}
             </AccordionDetails>
           </ReferencesAccordion>
         ) : null}
@@ -196,9 +268,10 @@ export const query = graphql`
       main_media {
         localFile {
           childImageSharp {
-            fixed(width: 300, height: 250) {
-              ...GatsbyImageSharpFixed
-            }
+            gatsbyImageData(
+              height: 200,
+              width: 300
+            )
           }
         }
       }
@@ -211,9 +284,10 @@ export const query = graphql`
         main_media {
           localFile {
             childImageSharp {
-              fluid {
-                ...GatsbyImageSharpFluid
-              }
+              gatsbyImageData(
+                height: 200,
+                width: 300
+              )
             }
           }
         }
@@ -232,9 +306,10 @@ export const query = graphql`
         main_media {
           localFile {
             childImageSharp {
-              fluid {
-                ...GatsbyImageSharpFluid
-              }
+              gatsbyImageData(
+                height: 200,
+                width: 300
+              )
             }
           }
         }
