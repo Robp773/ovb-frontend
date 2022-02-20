@@ -6,13 +6,6 @@ import EmojiPeopleIcon from "@material-ui/icons/EmojiPeople";
 import GroupIcon from "@material-ui/icons/Group";
 import TimelineIcon from "@material-ui/icons/Timeline";
 
-const StyledChip = styled(Chip)({
-  marginBottom: "3px",
-  display: "flex",
-  justifyContent: "center",
-  width: "fit-content",
-});
-
 export const getArticleIcon = (category) => {
   let activeIcon;
   switch (category) {

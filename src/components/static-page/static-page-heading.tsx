@@ -1,8 +1,5 @@
 import {
   Box,
-  Card,
-  Chip,
-  Container,
   styled,
   Typography,
   withTheme,

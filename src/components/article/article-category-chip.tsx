@@ -8,7 +8,6 @@ import React from "react";
 import { Link as GatsbyLink } from "gatsby";
 import { encodeStrForUrl } from "../../helpers/modifiers";
 import { getArticleIcon } from "../../helpers/getArticleChip";
-import { fontSize } from "@mui/system";
 
 const StyledChip = styled(Chip)({
   margin: "5px auto",
@@ -16,7 +15,6 @@ const StyledChip = styled(Chip)({
   justifyContent: "center",
   width: "fit-content",
   padding: "10px 5px",
-  // fontSize: "10px"
 });
 
 const ArticleCategoryChip = (props) => {
@@ -59,7 +57,7 @@ const ArticleCategoryChip = (props) => {
             size="small"
             color="primary"
             label={props.category.replace(/[_-]/g, " ")}
-            icon={getArticleIcon(props.category)}
+            // icon={getArticleIcon(props.category)}
           />
         </GatsbyLink>
       ) : getArticleIcon(props.category)}

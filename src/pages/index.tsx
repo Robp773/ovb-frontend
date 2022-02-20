@@ -43,7 +43,6 @@ const TextWrapper = styled(Container)({
 });
 
 const LearnMoreButton = styled(Button)({
-  padding: "20px",
   margin: "20px auto",
 });
 

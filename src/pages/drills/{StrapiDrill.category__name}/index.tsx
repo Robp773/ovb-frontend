@@ -3,7 +3,6 @@ import { graphql } from "gatsby";
 import React from "react";
 import Layout from "../../../components/layout";
 import PageWrapper from "../../../components/shared/content-wrapper";
-import CategoryHeading from "../../../components/shared/category-heading";
 import ContentHeading from "../../../components/shared/content-heading";
 import { RelatedContentWrapper } from "../../../components/shared/related-content-list";
 
@@ -38,7 +37,7 @@ const DrillCategoryPage = ({ data, location }) => {
         />
 
         <Divider style={{ margin: "20px 0" }} />
-        <Typography style={{ textAlign: "center", margin: "10px 0" }} variant="h4">
+        <Typography style={{ textAlign: "center" }} variant="h4">
           Drills
         </Typography>
         <RelatedContentWrapper xs={6} contentType="drills" items={drills} />
@@ -52,6 +51,7 @@ export const query = graphql`
     strapiDrillCategory(name: { eq: $category__name }) {
       description
       name
+      one_sentence_description
       image {
         localFile {
           childImageSharp {

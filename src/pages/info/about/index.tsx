@@ -1,4 +1,4 @@
-import { Typography } from "@material-ui/core";
+import { Divider, Typography } from "@material-ui/core";
 import { graphql } from "gatsby";
 import React from "react";
 import Layout from "~/components/layout";
@@ -21,6 +21,8 @@ const AboutPage = ({ data }) => {
           }
           title={data.strapiAboutPage.title}
         />
+               <Divider style={{ marginBottom: "20px" }} />
+ 
         <Typography
           variant="body1"
           dangerouslySetInnerHTML={{ __html: data.strapiAboutPage.content }}

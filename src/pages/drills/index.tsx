@@ -2,6 +2,7 @@ import {
   Box,
   Button,
   Container,
+  Divider,
   Grid,
   styled,
   Typography,
@@ -63,7 +64,6 @@ const DrillsPage = (data) => {
       <ContentWrapper width="85ch">
         <Container
           style={{
-            marginBottom: "20px",
             display: "flex",
             flexDirection: "column",
           }}
@@ -75,7 +75,7 @@ const DrillsPage = (data) => {
             <Typography
               style={{
                 maxWidth: "85ch",
-                margin: "10px auto",
+                marginTop: "10px",
               }}
               variant="body1"
               dangerouslySetInnerHTML={{
@@ -84,9 +84,10 @@ const DrillsPage = (data) => {
             />
           </Box>
         </Container>
+        <Divider style={{ margin: "20px 0" }} />
 
         <Typography
-          style={{ textAlign: "center", marginBottom: "20px" }}
+          style={{ textAlign: "center" }}
           variant="h4"
         >
           Categories
@@ -94,46 +95,6 @@ const DrillsPage = (data) => {
 
         <RelatedContentWrapper isHomePage={false} contentType="drillCategories" xs={3} items={allStrapiDrillCategory} />
 
-        {/* <Grid direction="row" container spacing={1}>
-          {allStrapiDrillCategory.edges.map((category, index) => {
-            return (
-              <Grid style={{ height: "100%" }} key={index} item xs={4}>
-                <Card>
-                  <Box style={{ position: "relative" }}>
-                    <MainImage
-                      fluid={
-                        category.node.image.localFile.childImageSharp.fluid
-                      }
-                    />
-                  </Box>
-                  <CardContent>
-                    <CategoryAndChipWrapper>
-                      <Typography variant="h6">{category.node.name}</Typography>
-                      <CategoryChipWrapper>
-                        <ArticleCategoryChip category={category.node.name} />
-                      </CategoryChipWrapper>
-                    </CategoryAndChipWrapper>
-
-                    <Typography
-                      variant="body2"
-                      dangerouslySetInnerHTML={{
-                        __html: category.node.one_sentence_description,
-                      }}
-                    />
-                  </CardContent>
-                  <CardActions>
-                    <Link
-                      style={{ textDecoration: "none" }}
-                      to={`/drills/${encodeStrForUrl(category.node.name)}`}
-                    >
-                      <Button variant="outlined">View Topic</Button>
-                    </Link>
-                  </CardActions>
-                </Card>
-              </Grid>
-            );
-          })}
-        </Grid> */}
       </ContentWrapper>
     </Layout>
   );
@@ -146,6 +107,7 @@ export const query = graphql`
         node {
           description
           name
+          one_sentence_description
           image {
             localFile {
               childImageSharp {

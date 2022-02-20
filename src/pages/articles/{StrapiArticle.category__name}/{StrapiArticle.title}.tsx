@@ -25,8 +25,9 @@ import TagChip from "../../../components/shared/content-chip";
 import ContentHeading from "../../../components/shared/content-heading";
 import PageWrapper from "../../../components/shared/content-wrapper";
 import { attachContentTypes, encodeStrForUrl } from "../../../helpers/modifiers";
-import {GatsbyImage} from "gatsby-plugin-image";
+import { GatsbyImage } from "gatsby-plugin-image";
 import ArticleCategoryChip from "../../../components/article/article-category-chip";
+import { RelatedContentWrapper } from "../../../components/shared/related-content-list";
 
 const ReferencesAccordion = styled(Accordion)({
   marginTop: "30px",
@@ -37,24 +38,14 @@ const StyledSummary = styled(withTheme(AccordionSummary))((props) => ({
   background: props.theme.palette.grey[200],
 }));
 
-const CardActionButton = styled(Link)({
-  textDecoration: "none",
-});
-
-
-const GridParent = styled("div")({
-  display: "grid",
-  gridAutoColumns: "1fr 1fr 1fr 1fr",
-  columnGap: "5px",
-  marginTop: "30px",
-})
-
 
 const CustomArticle = ({ data, location }) => {
   const references = [
     ...data.strapiArticle.ropes_course_activities,
     ...data.strapiArticle.drills,
   ];
+
+  console.log(data.strapiArticle.drills)
 
   attachContentTypes(
     data.strapiArticle.drills,
@@ -63,12 +54,14 @@ const CustomArticle = ({ data, location }) => {
 
   const seo = { title: data.strapiArticle.title };
 
+  console.log(data.strapiArticle.main_media)
+
   return (
     <Layout>
       <SEO seo={seo} />
       <PageWrapper>
         <ContentHeading
-          image={data.strapiArticle.main_media.localFile.childImageSharp.fixed}
+          image={data.strapiArticle.main_media.localFile.childImageSharp.gatsbyImageData}
           title={data.strapiArticle.title}
           contentType="article"
           iconWithText={true}
@@ -100,153 +93,8 @@ const CustomArticle = ({ data, location }) => {
             </StyledSummary>
             <AccordionDetails style={{ padding: 0 }}>
 
+              <RelatedContentWrapper xs={6} contentType="references" items={references} />
 
-              <GridParent style={{
-                gridTemplateColumns: "repeat(4, 1fr)"
-              }} >
-                {references.map((item, index) => {
-
-                  const node = item;
-
-                  console.log(node)
-                  let path, image
-
-                  return (
-                    <Card key={index}
-                      style={{
-                        display: "flex",
-                        flexDirection: "column",
-                        justifyContent: "space-between",
-                      }}
-                    >
-                      <div>
-                        <GatsbyImage
-                          alt={node.title || node.name}
-                          style={{ objectFit: "contain" }}
-                          image={node.main_media.localFile.childImageSharp.gatsbyImageData}
-                        />
-                        <CardContent>
-                          <Box style={{ padding: "0 0 5px 0" }}>
-                            <Typography variant="h5">{node.title || node.name}</Typography>
-                            <Typography variant="subtitle1">{node.date}</Typography>
-                            <Box
-                              style={{
-                                display: "flex",
-                                alignItems: "center",
-                              }}
-                            >
-                              {/* {props.withCategory ? (
-                                <ArticleCategoryChip
-                                  category={node.category.name}
-                                  iconWithText={true}
-                                />
-                              ) : null} */}
-                            </Box>
-                          </Box>
-
-                          <Typography variant="body2">{node.description}</Typography>
-                        </CardContent>
-                      </div>
-
-                      <CardActions>
-                        <CardActionButton
-                          to={path}
-                        >
-                          <Button variant="outlined">Read more</Button>
-                        </CardActionButton>
-                      </CardActions>
-                    </Card>
-                  );
-                })}
-              </GridParent>
-
-              {/* <Grid direction="row" container spacing={2}>
-                {references.map((reference, index) => {
-                  return (
-                    <Grid key={index} item md={6}>
-                      <Card
-                        variant="outlined"
-                        style={{
-                          marginTop: "10px",
-                          height: "100%",
-                          display: "flex",
-                          flexDirection: "column",
-                          justifyContent: "space-between",
-                        }}
-                      >
-                        <div
-                          style={{
-                            height: "100%",
-                            justifyContent: "flex-start",
-                            display: "flex",
-                            flexDirection: "column",
-                          }}
-                        >
-                          <Img
-                            style={{ width: "100%", height: "200px" }}
-                            fluid={
-                              reference.main_media.localFile.childImageSharp
-                                .fluid
-                            }
-                          />
-                          <CardContent>
-                            <Box
-                              style={{
-                                textAlign: "center",
-                                padding: "0 0 5px 0",
-                              }}
-                            >
-                              <Typography variant="subtitle1">
-                                {reference.name || reference.title}
-                              </Typography>
-
-                              {reference.category ? (
-                                <div>
-                                  <DrillCategoryChip
-                                    category={
-                                      reference.category.name
-                                        ? reference.category.name
-                                        : reference.category
-                                    }
-                                  />
-                                </div>
-                              ) : null}
-
-                              {reference.tags.map((tag, key) => {
-                                return <TagChip key={key} name={tag.name} />;
-                              })}
-
-                              <Box
-                                style={{
-                                  display: "flex",
-                                  alignItems: "center",
-                                }}
-                              ></Box>
-                            </Box>
-
-                            <Divider
-                              style={{ margin: "16px 0" }}
-                              variant="fullWidth"
-                            />
-
-                            <Typography
-                              variant="subtitle2"
-                              dangerouslySetInnerHTML={{
-                                __html: reference.description,
-                              }}
-                            />
-                          </CardContent>
-                        </div>
-                        <CardActions>
-                          <CardActionButton to={reference.url} target="_blank">
-                            <Button variant="outlined">Read more</Button>
-                          </CardActionButton>
-                        </CardActions>
-                      </Card>
-                    </Grid>
-                  );
-                })}
-              </Grid> */}
             </AccordionDetails>
           </ReferencesAccordion>
         ) : null}
@@ -254,6 +102,9 @@ const CustomArticle = ({ data, location }) => {
     </Layout>
   );
 };
+
+
+
 
 export const query = graphql`
   query($id: String!) {

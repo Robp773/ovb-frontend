@@ -27,7 +27,6 @@ const HeadingContentBox = styled(Box)({
   justifyContent: "space-evenly",
   margin: "auto",
   height: "100%",
-  // width: "35%",
 });
 
 const TagListBox = styled(Box)({
@@ -70,6 +69,8 @@ const CategoryChipWrapper = styled("div")({
 });
 
 const ContentHeading = (props, data) => {
+
+  console.log(props)
   let CategoryChip;
 
   const { metaData } = props;

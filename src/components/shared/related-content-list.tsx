@@ -2,6 +2,7 @@ import {
   Box,
   CardActions,
   CardContent,
+  Divider,
 } from "@material-ui/core";
 import Button from "@material-ui/core/Button";
 import Card from "@material-ui/core/Card";
@@ -21,19 +22,21 @@ const GridParent = styled("div")({
   display: "grid",
   gridAutoColumns: "1fr 1fr 1fr 1fr",
   columnGap: "5px",
+  rowGap: "5px",
   marginTop: "30px",
 })
 
-
 export const RelatedContentWrapper = (props) => {
+
+  let iterable = props.items.edges ? props.items.edges : props.items
+
   return (
     <GridParent style={{ gridTemplateColumns: props.isHomePage ? "repeat(4, 1fr)" : "repeat(3, 1fr)" }} >
-      {props.items.edges.map((item, index) => {
+      {iterable.map((item, index) => {
 
-        const node = item.node;
-
-        console.log(node)
+        const node = item.node ? item.node : item
         let path, image
+
         switch (props.contentType) {
           case ("drillCategories"): {
             path = `/drills/${encodeStrForUrl(
@@ -48,7 +51,6 @@ export const RelatedContentWrapper = (props) => {
               node.category.name
             )}/${encodeStrForUrl(node.title || node.name)}`
             image = node.main_media.localFile.childImageSharp.gatsbyImageData
-
             break;
           }
 
@@ -57,7 +59,6 @@ export const RelatedContentWrapper = (props) => {
               node.name
             )}`
             image = node.main_media.localFile.childImageSharp.gatsbyImageData
-
             break;
           }
           case ("articles"): {
@@ -65,13 +66,26 @@ export const RelatedContentWrapper = (props) => {
               node.category.name
             )}/${encodeStrForUrl(node.title || node.name)}`
             image = node.main_media.localFile.childImageSharp.gatsbyImageData
+            break;
+          }
 
+          case ("references"): {
+            if (node.category) {
+              console.log(node)
+              path = `/drills/${encodeStrForUrl(
+                node.category
+              )}/${encodeStrForUrl(node.name)}`
+            }
+            else {
+              path = `/activities/${encodeStrForUrl(node.title)}`
+            }
+
+            image = node.main_media.localFile.childImageSharp.gatsbyImageData
             break;
           }
         }
-
         return (
-          <Card key={index}
+          <Card variant="outlined" key={index}
             style={{
               display: "flex",
               flexDirection: "column",
@@ -81,13 +95,12 @@ export const RelatedContentWrapper = (props) => {
             <div>
               <GatsbyImage
                 alt={node.title || node.name}
-                style={{ objectFit: "contain" }}
                 image={image}
               />
               <CardContent>
                 <Box style={{ padding: "0 0 5px 0" }}>
-                  <Typography variant="h5">{node.title || node.name}</Typography>
-                  <Typography variant="subtitle1">{node.date}</Typography>
+                  <Typography variant="h6">{node.title || node.name}</Typography>
+                  <Typography variant="body1">{node.date}</Typography>
                   <Box
                     style={{
                       display: "flex",
@@ -96,14 +109,17 @@ export const RelatedContentWrapper = (props) => {
                   >
                     {props.withCategory ? (
                       <ArticleCategoryChip
-                        category={node.category.name}
+                        category={node.category ? node.category.name : node.name}
                         iconWithText={true}
                       />
                     ) : null}
                   </Box>
                 </Box>
 
-                <Typography variant="body2">{node.description}</Typography>
+                <Divider style={{ margin: "5px auto" }} />
+
+
+                <Typography variant="body2">{node.one_sentence_description || node.description}</Typography>
               </CardContent>
             </div>
 
@@ -111,7 +127,8 @@ export const RelatedContentWrapper = (props) => {
               <CardActionButton
                 to={path}
               >
-                <Button variant="outlined">Read more</Button>
+                <Button size="small" color="secondary"
+                  variant="contained">Read more</Button>
               </CardActionButton>
             </CardActions>
           </Card>

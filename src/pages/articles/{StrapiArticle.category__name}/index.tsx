@@ -3,13 +3,11 @@ import { graphql } from "gatsby";
 import React from "react";
 import Layout from "../../../components/layout";
 import PageWrapper from "../../../components/shared/content-wrapper";
-import CategoryHeading from "../../../components/shared/category-heading";
 import ContentHeading from "../../../components/shared/content-heading";
 import { RelatedContentWrapper } from "../../../components/shared/related-content-list";
 
 const CustomArticle = ({ data, location }) => {
   const categoryData = data.strapiArticleCategory;
-  console.log(data);
   const { allStrapiArticle: articles } = data;
 
   return (
@@ -27,7 +25,6 @@ const CustomArticle = ({ data, location }) => {
             tags: [],
           }}
         />
-        <Divider style={{ margin: "20px 0" }} />
 
         <Typography
           variant="body1"
@@ -35,6 +32,8 @@ const CustomArticle = ({ data, location }) => {
             __html: categoryData.description,
           }}
         />
+        
+        <Divider style={{ margin: "20px 0" }} />
 
         <Typography style={{ textAlign: "center", margin: "10px 0" }} variant="h4">Articles</Typography>
         <RelatedContentWrapper contentType="articles" items={articles} />

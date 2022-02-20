@@ -1,4 +1,4 @@
-import { Container, styled, Typography, withTheme } from "@material-ui/core";
+import { Container, Divider, styled, Typography, withTheme } from "@material-ui/core";
 import { graphql } from "gatsby";
 import Img from "gatsby-image";
 import React from "react";
@@ -11,7 +11,7 @@ const HeadingContainer = styled(withTheme(Container))((props) => ({
   display: "flex",
   alignItems: "center",
   justifyContent: "space-between",
-  margin: "50px 0",
+  margin: "20px 0",
   padding: 0,
   background: props.theme.palette.grey[200]
 }));
@@ -21,20 +21,18 @@ const CoachName = styled(withTheme(Typography))((props) => ({
 }));
 
 const CalendarPage = ({ data }) => {
-  console.log(data);
-  const seo = { title: "dg" };
+  const seo = { title: "Calendar" };
 
   return (
     <Layout>
       <SEO seo={seo} />
       <ContentWrapper width="85ch">
         <StaticPageHeading title={data.strapiCoachesPage.page_title} />
-
         {data.strapiCoachesPage.coaches.map((coach, index) => {
           return (
             <div key={index}>
               <HeadingContainer>
-                <CoachName variant="h5">{coach.coach_name}</CoachName>
+                <CoachName variant="h6">{coach.coach_name}</CoachName>
                 <Img
                   fixed={coach.coach_image.localFile.childImageSharp.fixed}
                 />
@@ -44,6 +42,8 @@ const CalendarPage = ({ data }) => {
                 variant="body1"
                 dangerouslySetInnerHTML={{ __html: coach.coach_bio }}
               />
+
+              <Divider style={{ margin: "20px 0" }} />
             </div>
           );
         })}
