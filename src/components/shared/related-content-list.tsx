@@ -119,7 +119,9 @@ export const RelatedContentWrapper = (props) => {
                 <Divider style={{ margin: "5px auto" }} />
 
 
-                <Typography variant="body2">{node.one_sentence_description || node.description}</Typography>
+                <Typography variant="body2" dangerouslySetInnerHTML={{
+                  __html: node.one_sentence_description || node.description,
+                }} />
               </CardContent>
             </div>
 
