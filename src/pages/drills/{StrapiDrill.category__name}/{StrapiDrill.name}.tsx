@@ -57,34 +57,35 @@ const CustomArticle = ({ data, location }) => {
           />
         </Box>
 
-        <Box>
+        {drill.steps ? <><Box>
           <Typography variant="h5">Steps</Typography>
         </Box>
-        <Stepper orientation="vertical">
-          {drill.steps.map((step, index) => {
-            return (
-              <Step key={index} active={true}>
-                <StepLabel>{step.title}</StepLabel>
-                <StepContent>
-                  {step.media ? (
-                    <GatsbyImage
-                      alt={step.title}
-                      image={step.media.localFile.childImageSharp.gatsbyImageData}
-                    />
-                  ) : null}
+          <Stepper orientation="vertical">
+            {drill.steps.map((step, index) => {
+              return (
+                <Step key={index} active={true}>
+                  <StepLabel>{step.title}</StepLabel>
+                  <StepContent>
+                    {step.media ? (
+                      <GatsbyImage
+                        alt={step.title}
+                        image={step.media.localFile.childImageSharp.gatsbyImageData}
+                      />
+                    ) : null}
 
-                  <Typography
-                    style={{ marginTop: "10px" }}
-                    variant="body1"
-                    dangerouslySetInnerHTML={{
-                      __html: step.description,
-                    }}
-                  />
-                </StepContent>
-              </Step>
-            );
-          })}
-        </Stepper>
+                    <Typography
+                      style={{ marginTop: "10px" }}
+                      variant="body1"
+                      dangerouslySetInnerHTML={{
+                        __html: step.description,
+                      }}
+                    />
+                  </StepContent>
+                </Step>
+              );
+            })}
+          </Stepper></> : null}
+
       </PageWrapper>
     </Layout>
   );
