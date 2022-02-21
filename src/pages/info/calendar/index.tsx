@@ -6,7 +6,7 @@ import SEO from "~/components/seo";
 import { Typography } from "@material-ui/core";
 
 const CalendarPage = ({ data }) => {
-  console.log(data);
+  
   const seo = { title: "Calendar" };
 
   return (

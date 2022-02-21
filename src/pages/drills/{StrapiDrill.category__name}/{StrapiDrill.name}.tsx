@@ -1,4 +1,3 @@
-import { Button } from "@material-ui/core";
 import { Box, Typography } from "@material-ui/core";
 import Step from "@material-ui/core/Step";
 import StepContent from "@material-ui/core/StepContent";
@@ -10,7 +9,7 @@ import Layout from "~/components/layout";
 import SEO from "~/components/seo";
 import ContentHeading from "../../../components/shared/content-heading";
 import PageWrapper from "../../../components/shared/content-wrapper";
-import Img from "gatsby-image";
+import { GatsbyImage } from "gatsby-plugin-image";
 
 const CustomArticle = ({ data, location }) => {
   const drill = data.strapiDrill;
@@ -23,7 +22,7 @@ const CustomArticle = ({ data, location }) => {
         <ContentHeading
           title={drill.name}
           contentType="drill"
-          image={null}
+          image={drill.main_media.localFile.childImageSharp.gatsbyImageData}
           metaData={{
             pathname: location.pathname,
             date: null,
@@ -68,13 +67,14 @@ const CustomArticle = ({ data, location }) => {
                 <StepLabel>{step.title}</StepLabel>
                 <StepContent>
                   {step.media ? (
-                    <Img
-                      style={{ maxHeight: "300px" }}
-                      fluid={step.media.localFile.childImageSharp.fluid}
+                    <GatsbyImage
+                      alt={step.title}
+                      image={step.media.localFile.childImageSharp.gatsbyImageData}
                     />
                   ) : null}
 
                   <Typography
+                    style={{ marginTop: "10px" }}
                     variant="body1"
                     dangerouslySetInnerHTML={{
                       __html: step.description,
@@ -113,9 +113,10 @@ export const query = graphql`
         media {
           localFile {
             childImageSharp {
-              fluid {
-                ...GatsbyImageSharpFluid
-              }
+              gatsbyImageData(
+                height: 300,
+                width: 500
+              )
             }
           }
         }
@@ -124,9 +125,10 @@ export const query = graphql`
       main_media {
         localFile {
           childImageSharp {
-            fluid {
-              ...GatsbyImageSharpFluid
-            }
+            gatsbyImageData(
+              height: 200,
+              width: 300
+            )
           }
         }
       }

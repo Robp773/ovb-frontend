@@ -19,7 +19,6 @@ import PageWrapper from "../../components/shared/content-wrapper";
 import { GatsbyImage } from "gatsby-plugin-image";
 
 const CustomArticle = ({ data, location }) => {
-  console.log(data);
   const activity = data.strapiRopesCourseActivity;
   const seo = { title: activity.name };
 

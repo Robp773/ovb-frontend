@@ -8,7 +8,7 @@ import StaticPageHeading from "../../../components/static-page/static-page-headi
 import StaticPageWrapper from "../../../components/static-page/static-page-wrapper";
 
 const AboutPage = ({ data }) => {
-  console.log(data);
+  
   const seo = { title: "About" };
 
   return (
