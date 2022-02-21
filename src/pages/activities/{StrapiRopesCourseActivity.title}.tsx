@@ -16,34 +16,21 @@ import Layout from "../../components/layout";
 import SEO from "../../components/seo";
 import ContentHeading from "../../components/shared/content-heading";
 import PageWrapper from "../../components/shared/content-wrapper";
-import Img from "gatsby-image";
-
-const ReferencesAccordion = styled(Accordion)({
-  marginTop: "30px",
-});
-
-const StyledSummary = styled(withTheme(AccordionSummary))((props) => ({
-  background: props.theme.palette.grey[100],
-  // color: props.theme.palette.common.white,
-}));
-
-const CardActionButton = styled(Link)({
-  textDecoration: "none",
-});
+import { GatsbyImage } from "gatsby-plugin-image";
 
 const CustomArticle = ({ data, location }) => {
   console.log(data);
   const activity = data.strapiRopesCourseActivity;
-  // const seo = { title: activity.name };
+  const seo = { title: activity.name };
 
   return (
     <Layout>
-      {/* <SEO seo={seo} /> */}
+      <SEO seo={seo} />
       <PageWrapper>
         <ContentHeading
           title={activity.title}
           contentType="activity"
-          image={activity.main_media.localFile.childImageSharp.fixed}
+          image={activity.main_media.localFile.childImageSharp.gatsbyImageData}
           metaData={{
             pathname: location.pathname,
             date: null,
@@ -75,13 +62,14 @@ const CustomArticle = ({ data, location }) => {
                 <StepLabel>{step.title}</StepLabel>
                 <StepContent>
                   {step.media ? (
-                    <Img
-                      style={{ maxHeight: "300px" }}
-                      fluid={step.media.localFile.childImageSharp.fluid}
+                    <GatsbyImage
+                      alt={step.title}
+                      image={step.media.localFile.childImageSharp.gatsbyImageData}
                     />
                   ) : null}
 
                   <Typography
+                    style={{ marginTop: "10px" }}
                     variant="body1"
                     dangerouslySetInnerHTML={{
                       __html: step.description,
@@ -112,9 +100,10 @@ export const query = graphql`
         media {
           localFile {
             childImageSharp {
-              fluid {
-                ...GatsbyImageSharpFluid
-              }
+              gatsbyImageData(
+                height: 300,
+                width: 500
+              )
             }
           }
         }
@@ -122,9 +111,10 @@ export const query = graphql`
       main_media {
         localFile {
           childImageSharp {
-            fixed (width: 300, height: 250) {
-              ...GatsbyImageSharpFixed
-            }
+            gatsbyImageData(
+              height: 200,
+              width: 300
+            )
           }
         }
       }

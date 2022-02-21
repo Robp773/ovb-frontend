@@ -1,12 +1,6 @@
 import {
   AccordionDetails,
-  Box,
-  Button,
-  Card,
-  CardActions,
-  CardContent,
   Divider,
-  Grid,
   styled,
   Typography,
   withTheme,
@@ -16,17 +10,12 @@ import AccordionSummary from "@material-ui/core/AccordionSummary";
 import BookmarkBorderIcon from "@material-ui/icons/BookmarkBorder";
 import ExpandMoreIcon from "@material-ui/icons/ExpandMore";
 import { graphql, Link } from "gatsby";
-import Img from "gatsby-image";
 import React from "react";
 import Layout from "../../../components/layout";
 import SEO from "../../../components/seo";
-import DrillCategoryChip from "../../../components/drill/drill-category-chip";
-import TagChip from "../../../components/shared/content-chip";
 import ContentHeading from "../../../components/shared/content-heading";
 import PageWrapper from "../../../components/shared/content-wrapper";
 import { attachContentTypes, encodeStrForUrl } from "../../../helpers/modifiers";
-import { GatsbyImage } from "gatsby-plugin-image";
-import ArticleCategoryChip from "../../../components/article/article-category-chip";
 import { RelatedContentWrapper } from "../../../components/shared/related-content-list";
 
 const ReferencesAccordion = styled(Accordion)({
@@ -102,9 +91,6 @@ const CustomArticle = ({ data, location }) => {
     </Layout>
   );
 };
-
-
-
 
 export const query = graphql`
   query($id: String!) {
