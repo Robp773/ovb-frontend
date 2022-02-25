@@ -21,15 +21,16 @@ module.exports = {
     `gatsby-transformer-sharp`,
     `gatsby-plugin-sharp`,
     {
-      resolve: 'gatsby-plugin-material-ui', // If you want to use styled components you should change the injection order. 
-      options: { stylesProvider: { injectFirst: true, }, },
-    },
-    {
       resolve: `gatsby-plugin-styled-components`,
       options: {
         // Add any options here
       },
-    }, {
+    },
+    {
+      resolve: 'gatsby-plugin-material-ui', // If you want to use styled components you should change the injection order. 
+      options: { stylesProvider: { injectFirst: true, }, },
+    },
+    {
       resolve: `gatsby-plugin-manifest`,
       options: {
         name: `gatsby-starter-default`,
