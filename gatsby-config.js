@@ -20,9 +20,16 @@ module.exports = {
     `gatsby-plugin-image`,
     `gatsby-transformer-sharp`,
     `gatsby-plugin-sharp`,
-    `gatsby-plugin-material-ui`,
-    `gatsby-plugin-styled-components`,
     {
+      resolve: 'gatsby-plugin-material-ui', // If you want to use styled components you should change the injection order. 
+      options: { stylesProvider: { injectFirst: true, }, },
+    },
+    {
+      resolve: `gatsby-plugin-styled-components`,
+      options: {
+        // Add any options here
+      },
+    }, {
       resolve: `gatsby-plugin-manifest`,
       options: {
         name: `gatsby-starter-default`,
@@ -37,7 +44,7 @@ module.exports = {
     {
       resolve: `gatsby-source-strapi`,
       options: {
-        apiURL:  process.env.API_URL || `http://localhost:1337`,
+        apiURL: process.env.API_URL || `http://localhost:1337`,
         queryLimit: 1000, // Default to 100
         collectionTypes: [`article`, `article-category`, `drill`, `drill-category`, `ropes-course-activity`],
         singleTypes: [`global`, `home-page`, `about-page`, `coaches-page`, `articles-page`, `drills-page`],

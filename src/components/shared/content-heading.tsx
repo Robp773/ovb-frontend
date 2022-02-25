@@ -16,7 +16,6 @@ const Heading = styled(withTheme(Box))((props) => ({
   justifyContent: "space-between",
   alignItems: "center",
   height: "fit-content",
-  marginBottom: "20px",
 }));
 
 const HeadingContentBox = styled(Box)({
