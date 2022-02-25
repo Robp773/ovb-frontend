@@ -8,17 +8,16 @@ module.exports = {
   },
   plugins: [
     {
-      resolve: `gatsby-plugin-styled-components`,
+      resolve: `gatsby-plugin-material-ui`,
       options: {
-        // Add any options here
+        stylesProvider: {
+          injectFirst: true,
+        },
       },
     },
-    {
-      resolve: 'gatsby-plugin-material-ui', // If you want to use styled components you should change the injection order. 
-      options: { stylesProvider: { injectFirst: true, }, },
-    },
+    `gatsby-plugin-styled-components`,
     `gatsby-plugin-catch-links`,
-    `gatsby-plugin-sass`,
+    // `gatsby-plugin-sass`,
     `gatsby-plugin-react-helmet`,
     {
       resolve: `gatsby-source-filesystem`,
@@ -30,7 +29,6 @@ module.exports = {
     `gatsby-plugin-image`,
     `gatsby-transformer-sharp`,
     `gatsby-plugin-sharp`,
-
     {
       resolve: `gatsby-plugin-manifest`,
       options: {
