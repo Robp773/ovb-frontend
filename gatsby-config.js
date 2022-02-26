@@ -9,11 +9,6 @@ module.exports = {
   plugins: [
     {
       resolve: `gatsby-plugin-material-ui`,
-      options: {
-        stylesProvider: {
-          injectFirst: true,
-        },
-      },
     },
     `gatsby-plugin-styled-components`,
     `gatsby-plugin-catch-links`,
@@ -47,7 +42,7 @@ module.exports = {
         apiURL: process.env.API_URL || `http://localhost:1337`,
         queryLimit: 1000, // Default to 100
         collectionTypes: [`article`, `article-category`, `drill`, `drill-category`, `ropes-course-activity`],
-        singleTypes: [`global`, `home-page`, `about-page`, `coaches-page`, `articles-page`, `drills-page`],
+        singleTypes: [`global`, `home-page`, `about-page`, `coaches-page`, `articles-page`, `drills-page`, `team-skills-page`],
       },
     },
     // You can have multiple instances of this plugin to create indexes with
