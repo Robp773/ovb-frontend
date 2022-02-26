@@ -102,17 +102,17 @@ const Footer = () => {
               }
             >
               <ListItem>
-                <StyledLink to="/skills/teamwork">
+                <StyledLink to="/process/teamwork">
                   <LinkTitle variant="subtitle2">Teamwork</LinkTitle>
                 </StyledLink>
               </ListItem>
               <ListItem>
-                <StyledLink to="/skills/technical">
+                <StyledLink to="/process/technical">
                   <LinkTitle variant="subtitle2">Technical</LinkTitle>
                 </StyledLink>
               </ListItem>
               <ListItem>
-                <StyledLink to="/skills/leadership">
+                <StyledLink to="/process/leadership">
                   <LinkTitle variant="subtitle2">Leadership</LinkTitle>
                 </StyledLink>
               </ListItem>
