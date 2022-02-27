@@ -8,7 +8,7 @@ import StaticPageHeading from "../../../components/static-page/static-page-headi
 import StaticPageWrapper from "../../../components/static-page/static-page-wrapper";
 
 const AboutPage = ({ data }) => {
-  
+
   const seo = { title: "About" };
 
   return (
@@ -21,8 +21,8 @@ const AboutPage = ({ data }) => {
           }
           title={data.strapiAboutPage.title}
         />
-               <Divider style={{ marginBottom: "20px" }} />
- 
+        <Divider style={{ marginBottom: "20px" }} />
+
         <Typography
           variant="body1"
           dangerouslySetInnerHTML={{ __html: data.strapiAboutPage.content }}

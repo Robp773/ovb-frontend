@@ -2,7 +2,7 @@ import {
   Box, Container
 } from "@material-ui/core";
 import Button from "@material-ui/core/Button";
-import { styled } from "@material-ui/core/styles";
+import { styled } from '@mui/system';
 import Typography from "@material-ui/core/Typography";
 import { graphql, Link } from "gatsby";
 import Img from "gatsby-image";
