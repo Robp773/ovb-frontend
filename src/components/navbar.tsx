@@ -174,7 +174,7 @@ const NavBar = () => {
                   onClick={handleInfoClose}
                   to="/info/about"
                 >
-                  <MenuItem>About</MenuItem>
+                  <MenuItem>About test</MenuItem>
                 </Link>
                 <Link
                   className={classes.dropDownMenuLink}
