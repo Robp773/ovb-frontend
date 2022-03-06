@@ -1,16 +1,19 @@
-import { Container, styled, Typography, withTheme } from "@material-ui/core";
-import List from "@material-ui/core/List";
-import ListItem from "@material-ui/core/ListItem";
-import ListItemText from "@material-ui/core/ListItemText";
-import ListSubheader from "@material-ui/core/ListSubheader";
-import React from "react";
+import { Typography } from "@mui/material";
+import Container from "@mui/material/Container";
+import List from "@mui/material/List";
+import ListItem from "@mui/material/ListItem";
+import { styled } from '@mui/material/styles';
 import { Link } from "gatsby";
+import React from "react";
 
-const CopyrightEl = styled(withTheme(Container))((props) => ({
-  paddingTop: "30px",
-  textAlign: "center",
-  color: props.theme.palette.grey.A700,
-}));
+
+const CopyrightEl = styled(Container)(
+  ({ theme }) => ({
+    paddingTop: "30px",
+    textAlign: "center",
+    color: `${theme.palette.grey.A700}`
+  })
+);
 
 const LinksContainer = styled(Container)({
   display: "flex",
@@ -21,20 +24,22 @@ const ContactUsContainer = styled(Container)({
   flexDirection: "column",
   alignItems: "center",
 });
+
 const ContentContainer = styled(Container)({
   display: "flex",
   justifyContent: "space-between",
 });
 
-const StyledFooter = styled(withTheme(Container))((props) => ({
-  background: props.theme.palette.secondary.main,
+const StyledFooter = styled(Container)(({ theme }) => ({
+  background: `${theme.palette.secondary.main}`,
   width: "100%",
   paddingTop: "50px",
   paddingBottom: "30px",
-  color: props.theme.palette.text.secondary,
+  color: `${theme.palette.text.secondary}`,
   display: "flex",
   flexDirection: "column",
-}));
+})
+);
 
 const LinkTypeWrapper = styled(Container)({
   display: "flex",
@@ -45,11 +50,17 @@ const LinkTitle = styled(Typography)({
   textAlign: "center",
 });
 
-const StyledLink = styled(withTheme(Link))((props) => ({
+const StyledLink = styled(Link)(({ theme }) => ({
   textDecoration: "none",
-  color: props.theme.palette.text.secondary,
-  margin: "auto",
-}));
+  color: `${theme.palette.text.secondary}`,
+  margin: "auto"
+})
+);
+
+const ContactText = styled(Typography)({
+  fontWeight: "bold",
+  color: "#f6dc3a"
+})
 
 const Footer = () => {
   return (
@@ -174,19 +185,17 @@ const Footer = () => {
             Contact Us
           </Typography>
           <Typography variant="body1">You can reach us at</Typography>
-          <Typography
-            style={{ fontWeight: "bold", color: "#f6dc3a" }}
+          <ContactText
             variant="subtitle1"
           >
             bpeterman24@gmail.com
-          </Typography>
+          </ContactText>
           <Typography variant="body1">Or call us at</Typography>
-          <Typography
-            style={{ fontWeight: "bold", color: "#f6dc3a" }}
+          <ContactText
             variant="subtitle1"
           >
             908-581-1536
-          </Typography>
+          </ContactText>
         </ContactUsContainer>
       </ContentContainer>
       <CopyrightEl>
