@@ -1,4 +1,5 @@
-import CssBaseline from "@material-ui/core/CssBaseline";
+import CssBaseline from '@mui/material/CssBaseline';
+
 import { createTheme, ThemeProvider } from '@mui/material/styles';
 import React from "react";
 import Footer from "./footer";
@@ -16,6 +17,7 @@ const theme = createTheme({
       secondary: "#fff",
       // hint: "yellow",
     },
+
   },
 });
 
@@ -27,6 +29,7 @@ const Layout = ({ children }) => {
       <NavBar />
       {children}
       <Footer />
+
     </ThemeProvider>
   );
 };

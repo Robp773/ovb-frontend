@@ -14,21 +14,18 @@ import { styled } from '@mui/material/styles';
 
 const AppBarEl = styled(AppBar)(
   ({ theme }) => ({
-    display: "flex"
   })
 )
 const ToolbarEl = styled(Toolbar)(
   ({ theme }) => ({
     backgroundColor: `${theme.palette.secondary.main}`,
-    width: "100%",
-    display: "flex"
-
+    width: "100%"
   })
 )
 
 const ButtonContainer = styled(Container)
   ({
-    display: "flex",
+    display: "flex !important",
     justifyContent: "space-evenly",
   })
 
@@ -87,9 +84,7 @@ const NavBar = () => {
           <NavLink
             to="/"
           >
-            <NavBtn
-            // color={location === "/" ? "primary" : "secondary"}
-            >
+            <NavBtn>
               <HomeRoundedIcon />
             </NavBtn>
           </NavLink>

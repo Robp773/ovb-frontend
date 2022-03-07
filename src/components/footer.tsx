@@ -16,17 +16,17 @@ const CopyrightEl = styled(Container)(
 );
 
 const LinksContainer = styled(Container)({
-  display: "flex",
+  display: "flex !important",
 });
 
 const ContactUsContainer = styled(Container)({
-  display: "flex",
+  display: "flex !important",
   flexDirection: "column",
   alignItems: "center",
 });
 
 const ContentContainer = styled(Container)({
-  display: "flex",
+  display: "flex !important",
   justifyContent: "space-between",
 });
 
@@ -36,7 +36,7 @@ const StyledFooter = styled(Container)(({ theme }) => ({
   paddingTop: "50px",
   paddingBottom: "30px",
   color: `${theme.palette.text.secondary}`,
-  display: "flex",
+  display: "flex !important",
   flexDirection: "column",
 })
 );

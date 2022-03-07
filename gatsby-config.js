@@ -31,7 +31,6 @@ module.exports = {
 
     `gatsby-plugin-material-ui`,
     `gatsby-plugin-catch-links`,
-    // `gatsby-plugin-sass`,
     `gatsby-plugin-react-helmet`,
     {
       resolve: `gatsby-source-filesystem`,
