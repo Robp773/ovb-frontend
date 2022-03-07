@@ -3,10 +3,10 @@ import {
   CardActions,
   CardContent,
   Divider,
-} from "@material-ui/core";
-import Button from "@material-ui/core/Button";
-import Card from "@material-ui/core/Card";
-import Typography from "@material-ui/core/Typography";
+} from "@mui/material";
+import Button from "@mui/material/Button";
+import Card from "@mui/material/Card";
+import Typography from "@mui/material/Typography";
 import styled from "@mui/styled-engine";
 import { Link } from "gatsby";
 import { GatsbyImage, getImageData } from "gatsby-plugin-image";

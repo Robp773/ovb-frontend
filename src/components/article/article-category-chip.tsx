@@ -1,4 +1,4 @@
-import { Chip, styled } from "@material-ui/core";
+import { Chip, styled } from "@mui/material";
 import BuildRoundedIcon from "@material-ui/icons/BuildRounded";
 import EmojiObjectsRoundedIcon from "@material-ui/icons/EmojiObjectsRounded";
 import EmojiPeopleIcon from "@material-ui/icons/EmojiPeople";

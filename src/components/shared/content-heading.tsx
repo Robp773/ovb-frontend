@@ -1,8 +1,8 @@
 import {
   Box, styled,
-  Typography,
-  withTheme
-} from "@material-ui/core";
+  Typography
+} from "@mui/material"
+import { withTheme } from "@material-ui/core";
 import NavigateNextIcon from "@mui/icons-material/NavigateNext";
 import { Link as GatsbyLink } from "gatsby";
 import React from "react";

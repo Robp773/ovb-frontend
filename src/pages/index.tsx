@@ -1,9 +1,10 @@
 import {
   Box, Container
 } from "@material-ui/core";
-import Button from "@material-ui/core/Button";
+import Button from "@mui/material/Button";
+
 import { styled } from '@mui/material/styles';
-import Typography from "@material-ui/core/Typography";
+import Typography from "@mui/material/Typography";
 import { graphql, Link } from "gatsby";
 import Img from "gatsby-image";
 import React from "react";
@@ -69,7 +70,7 @@ const IndexPage = ({ data }) => {
 
       <WhoWeAreCard>
         <Typography
-          color="secondary"
+          color="textSecondary"
           align="center"
           variant="h3"
           style={{
@@ -80,7 +81,7 @@ const IndexPage = ({ data }) => {
         </Typography>
 
         <TextWrapper>
-          <WhoWeAreText color="secondary" variant="subtitle1">
+          <WhoWeAreText color="textSecondary" variant="subtitle1">
             {page.intro_text}
           </WhoWeAreText>
         </TextWrapper>
@@ -93,7 +94,7 @@ const IndexPage = ({ data }) => {
       <ActivityContainer>
         <Typography style={{
           marginBottom: "20px"
-        }} color="primary" align="center" variant="h4">
+        }} color="textPrimary" align="center" variant="h4">
           Recent Articles
         </Typography>
         <RelatedContentWrapper isHomePage={true} contentType="articles" withCategory items={articles} />

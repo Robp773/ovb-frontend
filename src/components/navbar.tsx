@@ -1,93 +1,52 @@
-import { Button, Container, InputBase } from "@material-ui/core";
-import AppBar from "@material-ui/core/AppBar";
-import { alpha, makeStyles, useTheme } from "@material-ui/core/styles";
-import Toolbar from "@material-ui/core/Toolbar";
+import { Container, InputBase } from "@mui/material";
+import AppBar from "@mui/material/AppBar";
+import Toolbar from "@mui/material/Toolbar";
 import SearchIcon from "@material-ui/icons/Search";
 import React from "react";
 import { Link } from "gatsby";
 import { useLocation } from "@reach/router";
 import HomeRoundedIcon from "@material-ui/icons/HomeRounded";
-import Menu from "@material-ui/core/Menu";
-import MenuItem from "@material-ui/core/MenuItem";
+import Menu from "@mui/material/Menu";
+import MenuItem from "@mui/material/MenuItem";
+import Button from "@mui/material/Button";
 
-const useStyles = makeStyles((theme) => ({
-  root: {
-    flexGrow: 1,
-    backgroundColor: theme.palette.secondary.main,
-  },
-  menuButton: {
-    marginRight: theme.spacing(2),
-  },
-  title: {
-    flexGrow: 1,
-    display: "none",
-    [theme.breakpoints.up("sm")]: {
-      display: "block",
-    },
-  },
-  search: {
-    position: "relative",
-    borderRadius: theme.shape.borderRadius,
-    backgroundColor: alpha(theme.palette.common.white, 0.15),
-    "&:hover": {
-      backgroundColor: alpha(theme.palette.common.white, 0.25),
-    },
-    marginLeft: "auto",
-  },
-  searchIcon: {
-    padding: theme.spacing(0, 2),
-    height: "100%",
-    position: "absolute",
-    pointerEvents: "none",
-    display: "flex",
-    alignItems: "center",
-    justifyContent: "center",
-  },
-  
-  inputRoot: {
-    color: "inherit",
-  },
-  inputInput: {
-    padding: theme.spacing(1, 1, 1, 0),
-    // vertical padding + font size from searchIcon
-    paddingLeft: `calc(1em + ${theme.spacing(4)}px)`,
-    transition: theme.transitions.create("width"),
+import { styled } from '@mui/material/styles';
+
+const AppBarEl = styled(AppBar)(
+  ({ theme }) => ({
+    display: "flex"
+  })
+)
+const ToolbarEl = styled(Toolbar)(
+  ({ theme }) => ({
+    backgroundColor: `${theme.palette.secondary.main}`,
     width: "100%",
-    [theme.breakpoints.up("sm")]: {
-      width: "12ch",
-      "&:focus": {
-        width: "20ch",
-      },
-    },
-  },
-  // offset: theme.mixins.toolbar,
-  appBar: { background: theme.palette.secondary.main },
-  buttonContainer: {
+    display: "flex"
+
+  })
+)
+
+const ButtonContainer = styled(Container)
+  ({
     display: "flex",
     justifyContent: "space-evenly",
-  },
-  navBtn: {
-    borderRadius: "0",
-    boxShadow: "none",
-  },
-  selectedNavBtn: {
-    background: "red",
-  },
-  navLink: {
-    textDecoration: "none",
-  },
-  navHomeLink: {},
-  navDropDownParent: {
-    position: "relative",
-  },
-  dropDownMenu: {
-    position: "absolute",
-  },
-  dropDownMenuLink: {
-    color: theme.palette.secondary.main,
-    textDecoration: "none",
-  },
-}));
+  })
+
+const NavLink = styled(Link)(({ theme }) => ({ textDecoration: "none", color: theme.palette.secondary.main }))
+
+const NavDropDownParent = styled("div")({ position: "relative" })
+
+const NavBtn = styled(Button)(({ isActive, theme }) =>
+({
+  borderRadius: "0",
+  boxShadow: "none",
+  border: `${isActive ? `1px solid ${theme.palette.common.white}` : '1px solid transparent'} `,
+  color: theme.palette.common.white
+})
+)
+
+
+const DropDownMenu = styled(Menu)({ position: "absolute" })
 
 const infoPages = ["/info/about", "/info/coaches", "/info/calendar", ,];
 const processPages = [
@@ -96,14 +55,10 @@ const processPages = [
   "/process/technical",
 ];
 const NavBar = () => {
-  const classes = useStyles();
   const location = useLocation().pathname;
-  const getNavBtnAttributes = (curPath: string, btnPath: string) => {
-    return curPath === btnPath
-      ? { variant: "contained", color: "default" }
-      : { variant: "contained", color: "secondary" };
-  };
+
   const [infoAnchorEl, setInfoAnchorEl] = React.useState(null);
+  const [processAnchorEl, setprocessAnchorEl] = React.useState(null);
 
   const handleInfoClick = (event) => {
     setInfoAnchorEl(event.currentTarget);
@@ -121,199 +76,181 @@ const NavBar = () => {
     setprocessAnchorEl(null);
   };
 
-  const [processAnchorEl, setprocessAnchorEl] = React.useState(null);
 
   return (
-    <div className={classes.root}>
-      <AppBar className={classes.appBar} position="static">
-        <Toolbar>
-          <Container className={classes.buttonContainer}>
-            <Link
-              className={classes.navLink}
-              to="/"
-              style={{ visibility: location === "/" ? "hidden" : "visible" }}
+    // <NavRoot>
+    <AppBarEl
+      position="static"
+    >
+      <ToolbarEl disableGutters >
+        <ButtonContainer>
+          <NavLink
+            to="/"
+          >
+            <NavBtn
+            // color={location === "/" ? "primary" : "secondary"}
             >
-              <Button
-                className={classes.navBtn}
-                {...getNavBtnAttributes(location, "/")}
-              >
-                <HomeRoundedIcon />
-              </Button>
-            </Link>
+              <HomeRoundedIcon />
+            </NavBtn>
+          </NavLink>
 
-            <div className={classes.navDropDownParent}>
-              <Button
-                onClick={handleInfoClick}
-                className={classes.navBtn}
-                {...(infoPages.includes(location)
-                  ? { variant: "contained", color: "default" }
-                  : { variant: "contained", color: "secondary" })}
-              >
-                Info
-              </Button>
-
-              <Menu
-                className={classes.dropDownMenu}
-                id="simple-menu"
-                anchorEl={infoAnchorEl}
-                keepMounted
-                open={Boolean(infoAnchorEl)}
-                onClose={handleInfoClose}
-                getContentAnchorEl={null}
-                anchorOrigin={{
-                  vertical: "bottom",
-                  horizontal: "center",
-                }}
-                transformOrigin={{
-                  vertical: "top",
-                  horizontal: "center",
-                }}
-              >
-                <Link
-                  className={classes.dropDownMenuLink}
-                  onClick={handleInfoClose}
-                  to="/info/about"
-                >
-                  <MenuItem>About test</MenuItem>
-                </Link>
-                <Link
-                  className={classes.dropDownMenuLink}
-                  onClick={handleInfoClose}
-                  to="/info/coaches"
-                >
-                  <MenuItem onClick={handleInfoClose}>Coaches</MenuItem>
-                </Link>
-                <Link
-                  className={classes.dropDownMenuLink}
-                  onClick={handleInfoClose}
-                  to="/info/calendar"
-                >
-                  <MenuItem onClick={handleInfoClose}>Calendar</MenuItem>
-                </Link>
-              </Menu>
-            </div>
-
-            <Link className={classes.navLink} to="/articles">
-              <Button
-                className={classes.navBtn}
-                {...getNavBtnAttributes(location, "/articles")}
-              >
-                Articles
-              </Button>
-            </Link>
-
-            <Link className={classes.navLink} to="/drills">
-              <Button
-                className={classes.navBtn}
-                {...getNavBtnAttributes(location, "/drills")}
-              >
-                Drills
-              </Button>
-            </Link>
-            <div className={classes.navDropDownParent}>
-              <Button
-                onClick={handleProcessesClick}
-                className={classes.navBtn}
-                {...(processPages.includes(location)
-                  ? { variant: "contained", color: "default" }
-                  : { variant: "contained", color: "secondary" })}
-              >
-                Our Process
-              </Button>
-
-              <Menu
-                className={classes.dropDownMenu}
-                id="simple-menu"
-                anchorEl={processAnchorEl}
-                keepMounted
-                open={Boolean(processAnchorEl)}
-                onClose={handleProcessesClose}
-                getContentAnchorEl={null}
-                anchorOrigin={{
-                  vertical: "bottom",
-                  horizontal: "center",
-                }}
-                transformOrigin={{
-                  vertical: "top",
-                  horizontal: "center",
-                }}
-              >
-                <Link
-                  className={classes.dropDownMenuLink}
-                  onClick={handleProcessesClose}
-                  to="/process/teamwork"
-                >
-                  <MenuItem>Teamwork</MenuItem>
-                </Link>
-                <Link
-                  className={classes.dropDownMenuLink}
-                  onClick={handleProcessesClose}
-                  to="/process/technical"
-                >
-                  <MenuItem onClick={handleProcessesClose}>Technical</MenuItem>
-                </Link>
-                <Link
-                  className={classes.dropDownMenuLink}
-                  onClick={handleProcessesClose}
-                  to="/process/leadership"
-                >
-                  <MenuItem onClick={handleProcessesClose}>Leadership</MenuItem>
-                </Link>
-              </Menu>
-            </div>
-
-            <Link className={classes.navLink} to="/gallery">
-              <Button
-                className={classes.navBtn}
-                {...getNavBtnAttributes(location, "/gallery")}
-              >
-                Gallery
-              </Button>
-            </Link>
-            <Link className={classes.navLink} to="/forms">
-              <Button
-                className={classes.navBtn}
-                {...getNavBtnAttributes(location, "/forms")}
-              >
-                Forms
-              </Button>
-            </Link>
-            <Link className={classes.navLink} to="/scholarships">
-              <Button
-                className={classes.navBtn}
-                {...getNavBtnAttributes(location, "/scholarships")}
-              >
-                Scholarships
-              </Button>
-            </Link>
-
-            <Link className={classes.navLink} to="/store">
-              <Button
-                className={classes.navBtn}
-                {...getNavBtnAttributes(location, "/store")}
-              >
-                Store
-              </Button>
-            </Link>
-          </Container>
-
-          <div className={classes.search}>
-            <div className={classes.searchIcon}>
-              <SearchIcon />
-            </div>
-            <InputBase
-              placeholder="Search…"
-              classes={{
-                root: classes.inputRoot,
-                input: classes.inputInput,
+          <NavDropDownParent>
+            <NavBtn
+              onClick={handleInfoClick}
+              isActive={infoPages.includes(location)}
+            >
+              Info
+            </NavBtn>
+            <DropDownMenu
+              id="simple-menu"
+              anchorEl={infoAnchorEl}
+              keepMounted
+              open={Boolean(infoAnchorEl)}
+              onClose={handleInfoClose}
+              getContentAnchorEl={null}
+              anchorOrigin={{
+                vertical: "bottom",
+                horizontal: "center",
               }}
-              inputProps={{ "aria-label": "search" }}
-            />
+              transformOrigin={{
+                vertical: "top",
+                horizontal: "center",
+              }}
+            >
+
+              <NavLink
+                onClick={handleInfoClose}
+                to="/info/about"
+              >
+                <MenuItem>About</MenuItem>
+              </NavLink>
+              <NavLink
+                onClick={handleInfoClose}
+                to="/info/coaches"
+              >
+                <MenuItem onClick={handleInfoClose}>Coaches</MenuItem>
+              </NavLink>
+              <NavLink
+                onClick={handleInfoClose}
+                to="/info/calendar"
+              >
+                <MenuItem onClick={handleInfoClose}>Calendar</MenuItem>
+              </NavLink>
+
+            </DropDownMenu>
+          </NavDropDownParent>
+
+          <NavLink
+            to="/articles">
+            <NavBtn
+              isActive={location === "/articles"}
+            >
+              Articles
+            </NavBtn>
+          </NavLink>
+
+          <NavLink to="/drills">
+            <NavBtn
+              isActive={location === "/drills"}
+            >
+              Drills
+            </NavBtn>
+          </NavLink>
+
+
+          <NavDropDownParent>
+            <NavBtn
+              onClick={handleProcessesClick}
+              isActive={processPages.includes(location)}
+            >
+              Process
+            </NavBtn>
+            <DropDownMenu
+              id="simple-menu"
+              anchorEl={processAnchorEl}
+              keepMounted
+              open={Boolean(processAnchorEl)}
+              onClose={handleProcessesClose}
+              getContentAnchorEl={null}
+              anchorOrigin={{
+                vertical: "bottom",
+                horizontal: "center",
+              }}
+              transformOrigin={{
+                vertical: "top",
+                horizontal: "center",
+              }}
+            >
+
+              <NavLink
+                onClick={handleProcessesClose}
+                to="/process/teamwork"
+              >
+                <MenuItem onClick={handleProcessesClose}>Teamwork</MenuItem>
+              </NavLink>
+              <NavLink
+                onClick={handleProcessesClose}
+                to="/process/technical"
+              >
+                <MenuItem onClick={handleProcessesClose}>Technical</MenuItem>
+              </NavLink>
+              <NavLink
+                color="textPrimary"
+                onClick={handleProcessesClose}
+                to="/process/leadership"
+              >
+                <MenuItem onClick={handleProcessesClose}>Leadership</MenuItem>
+              </NavLink>
+
+            </DropDownMenu>
+          </NavDropDownParent>
+
+          <NavLink to="/gallery">
+            <NavBtn
+              isActive={location === "/gallery"}
+            >
+              Gallery
+            </NavBtn>
+          </NavLink>
+
+          <NavLink to="/forms">
+            <NavBtn isActive={location === "/forms"}
+            >
+              Forms
+            </NavBtn>
+          </NavLink>
+
+          <NavLink to="/scholarships">
+            <NavBtn isActive={location === "/scholarships"}
+            >
+              Scholarships
+            </NavBtn>
+          </NavLink>
+
+          <NavLink to="/store">
+            <NavBtn isActive={location === "/store"}
+            >
+              Store
+            </NavBtn>
+          </NavLink>
+
+        </ButtonContainer>
+      </ToolbarEl>
+    </AppBarEl>
+    /* <div className={classes.search}>
+          <div className={classes.searchIcon}>
+            <SearchIcon />
           </div>
-        </Toolbar>
-      </AppBar>
-      <div className={classes.offset} />
-    </div>
+          <InputBase
+            placeholder="Search…"
+            classes={{
+              root: classes.inputRoot,
+              input: classes.inputInput,
+            }}
+            inputProps={{ "aria-label": "search" }}
+          /> 
+  </div>*/
+    // </NavRoot >
   );
 };
 
