@@ -1,11 +1,10 @@
-import { Divider, Typography } from "@material-ui/core";
+import { Divider, Typography } from "@mui/material";
 import { graphql } from "gatsby";
 import React from "react";
 import Layout from "~/components/layout";
 import SEO from "~/components/seo";
 import ContentWrapper from "../../../components/shared/content-wrapper";
 import StaticPageHeading from "../../../components/static-page/static-page-heading";
-import StaticPageWrapper from "../../../components/static-page/static-page-wrapper";
 
 const AboutPage = ({ data }) => {
 
@@ -17,11 +16,11 @@ const AboutPage = ({ data }) => {
       <ContentWrapper width="85ch">
         <StaticPageHeading
           image={
-            data.strapiAboutPage.main_media.localFile.childImageSharp.fluid
+            data.strapiAboutPage.main_media.localFile.childImageSharp.gatsbyImageData
           }
           title={data.strapiAboutPage.title}
         />
-        <Divider style={{ marginBottom: "20px" }} />
+        <Divider  style={{ marginBottom: "20px" }} />
 
         <Typography
           variant="body1"
@@ -41,9 +40,10 @@ export const aboutPageQuery = graphql`
       main_media {
         localFile {
           childImageSharp {
-            fluid {
-              ...GatsbyImageSharpFluid
-            }
+            gatsbyImageData(
+              height: 300,
+              width: 400
+            )            
           }
         }
       }

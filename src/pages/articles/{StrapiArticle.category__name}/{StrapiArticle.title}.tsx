@@ -34,16 +34,12 @@ const CustomArticle = ({ data, location }) => {
     ...data.strapiArticle.drills,
   ];
 
-  console.log(data.strapiArticle.drills)
-
   attachContentTypes(
     data.strapiArticle.drills,
     data.strapiArticle.ropes_course_activities
   );
 
   const seo = { title: data.strapiArticle.title };
-
-  console.log(data.strapiArticle.main_media)
 
   return (
     <Layout>

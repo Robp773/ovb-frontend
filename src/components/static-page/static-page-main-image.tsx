@@ -1,15 +1,13 @@
 import { styled } from "@mui/material";
-import Img from "gatsby-image";
+import { GatsbyImage } from "gatsby-plugin-image";
 import React from "react";
 
-const MainImage = styled(Img)({
-  marginBottom: "30px",
-  height: "300px",
-
+const MainImage = styled(GatsbyImage)({
+  margin: "30px auto !important",
 });
 
 const StaticPageImage = (props: any) => {
-  return <MainImage fluid={props.image} />;
+  return <MainImage image={props.image} />;
 };
 
 export default StaticPageImage;

@@ -19,13 +19,14 @@ const Heading = styled(withTheme(Box))((props) => ({
 }));
 
 const HeadingContentBox = styled(Box)({
-  padding: "30px 0 0px 0",
+  // padding: "30px 0 0px 0",
   display: "flex",
   flexDirection: "column",
   alignItems: "center",
   justifyContent: "space-evenly",
   margin: "auto",
   height: "100%",
+  width: "50%"
 });
 
 const TagListBox = styled(Box)({
@@ -69,7 +70,6 @@ const CategoryChipWrapper = styled("div")({
 
 const ContentHeading = (props, data) => {
 
-  console.log(props)
   let CategoryChip;
 
   const { metaData } = props;

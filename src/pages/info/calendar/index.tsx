@@ -1,30 +1,20 @@
+import { Container } from "@mui/material";
 import React from "react";
-import { graphql } from "gatsby";
-
 import Layout from "~/components/layout";
 import SEO from "~/components/seo";
-import { Typography } from "@material-ui/core";
 
 const CalendarPage = ({ data }) => {
-  
-  const seo = { title: "Calendar" };
+
+  const seo = { title: "One Voice Basketball Schedule" };
 
   return (
     <Layout>
       <SEO seo={seo} />
-      <div>CALENDAR</div>
+      <Container style={{margin: "30px auto"}} align="center">      
+        <iframe src="https://calendar.google.com/calendar/embed?src=trns2k1jteig8gpdp0ha5g9ur8%40group.calendar.google.com&ctz=America%2FNew_York" width="800" height="600" frameborder="0" scrolling="no"></iframe>
+      </Container>
     </Layout>
   );
 };
-
-// export const notePageQuery = graphql`
-//   query CalendarPageQuery {
-//     strapiCalendarPage {
-//       id
-//       content
-//       title
-//     }
-//   }
-// `;
 
 export default CalendarPage;

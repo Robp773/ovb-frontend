@@ -6,7 +6,6 @@ import { styled } from '@mui/material/styles';
 import { Link } from "gatsby";
 import React from "react";
 
-
 const CopyrightEl = styled(Container)(
   ({ theme }) => ({
     paddingTop: "30px",

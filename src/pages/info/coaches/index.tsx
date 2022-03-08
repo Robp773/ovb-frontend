@@ -1,23 +1,26 @@
-import { Container, Divider, styled, Typography, withTheme } from "@material-ui/core";
+import { Container, Divider, Typography } from "@mui/material";
+import { styled } from '@mui/material/styles';
 import { graphql } from "gatsby";
-import Img from "gatsby-image";
+import { GatsbyImage } from "gatsby-plugin-image";
 import React from "react";
 import Layout from "~/components/layout";
 import SEO from "~/components/seo";
 import ContentWrapper from "../../../components/shared/content-wrapper";
 import StaticPageHeading from "../../../components/static-page/static-page-heading";
 
-const HeadingContainer = styled(withTheme(Container))((props) => ({
+const HeadingContainer = styled("div")(({ theme }) => ({
   display: "flex",
   alignItems: "center",
-  justifyContent: "space-between",
   margin: "20px 0",
-  padding: 0,
-  background: props.theme.palette.grey[200]
+  justifyContent: "center"
+  // padding: 0,
+  // background: props.theme.palette.grey[200]
 }));
 
-const CoachName = styled(withTheme(Typography))((props) => ({
+const CoachName = styled(Typography)(({ theme }) => ({
   margin: "auto",
+  width: "50%",
+   textAlign: "center"
 }));
 
 const CalendarPage = ({ data }) => {
@@ -30,11 +33,12 @@ const CalendarPage = ({ data }) => {
         <StaticPageHeading title={data.strapiCoachesPage.page_title} />
         {data.strapiCoachesPage.coaches.map((coach, index) => {
           return (
-            <div key={index}>
+            <Container key={index}>
               <HeadingContainer>
                 <CoachName variant="h6">{coach.coach_name}</CoachName>
-                <Img
-                  fixed={coach.coach_image.localFile.childImageSharp.fixed}
+                <GatsbyImage
+                  alt={coach.coach_name}
+                  image={coach.coach_image.localFile.childImageSharp.gatsbyImageData}
                 />
               </HeadingContainer>
 
@@ -44,7 +48,7 @@ const CalendarPage = ({ data }) => {
               />
 
               <Divider style={{ margin: "20px 0" }} />
-            </div>
+            </Container>
           );
         })}
       </ContentWrapper>
@@ -60,9 +64,10 @@ export const calendarPageQuery = graphql`
         coach_image {
           localFile {
             childImageSharp {
-              fixed(width: 300) {
-                ...GatsbyImageSharpFixed
-              }
+              gatsbyImageData(
+                height: 200,
+                width: 300
+              )            
             }
           }
         }

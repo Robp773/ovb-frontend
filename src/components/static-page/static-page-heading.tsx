@@ -1,26 +1,31 @@
 import {
   Box,
   styled,
-  Typography,
-  withTheme,
-} from "@material-ui/core";
+} from "@mui/material";
 import React from "react";
+import { Typography } from "@mui/material";
+
 import PageImage from "./static-page-main-image";
 
-const Heading = styled(withTheme(Box))((props) => ({}));
-
-const HeadingTitle = styled(withTheme(Typography))((props) => ({
-  borderBottom: `3px solid ${props.theme.palette.primary.main}`,
-  width: "fit-content",
-  margin: "0 auto 10px auto"
+const Heading = styled(Box)(({ theme }) => ({
+  textAlign: "center",
+  display: "flex",
 }));
 
+const HeadingTitle = styled(Typography)(({ theme }) => ({
+  margin: "auto !important",
+  width: "50%"
+}));
+
+const TitleText = styled("span")(({ theme }) => ({
+  borderBottom: `3px solid ${theme.palette.primary.main}`,
+}))
+
 const StaticPageHeading = (props, data) => {
-  console.log("Page heading data", data);
   return (
     <Heading>
-      <HeadingTitle gutterBottom={true} align="center" variant="h4">
-        {props.title}
+      <HeadingTitle gutterBottom align="center" variant="h4">
+        <TitleText>{props.title}</TitleText>
       </HeadingTitle>
       <PageImage image={props.image} />
     </Heading>

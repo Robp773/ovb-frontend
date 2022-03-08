@@ -1,55 +1,53 @@
-// import { Divider, Typography } from "@material-ui/core";
+import { Divider, Typography } from "@mui/material";
 import { graphql } from "gatsby";
 import React from "react";
 import Layout from "~/components/layout";
-// import SEO from "~/components/seo";
-// import ContentWrapper from "../../../components/shared/content-wrapper";
-// import StaticPageHeading from "../../../components/static-page/static-page-heading";
-// import StaticPageWrapper from "../../../components/static-page/static-page-wrapper";
+import SEO from "~/components/seo";
+import ContentWrapper from "../../../components/shared/content-wrapper";
+import StaticPageHeading from "../../../components/static-page/static-page-heading";
 
-const TeamworkPage = () => {
+const LeadershipSkillsPage = ({ data }) => {
 
-  const seo = { title: "test" };
+  const seo = { title: "Leadership Skills" };
 
   return (
     <Layout>
-      leadership page
-      {/* <SEO seo={seo} />
+      <SEO seo={seo} />
       <ContentWrapper width="85ch">
         <StaticPageHeading
           image={
-            data.strapiAboutPage.main_media.localFile.childImageSharp.fluid
+            data.strapiLeadershipSkillsPage.main_image.localFile.childImageSharp.gatsbyImageData
           }
-          title={data.strapiAboutPage.title}
+          title={data.strapiLeadershipSkillsPage.page_title}
         />
-               <Divider style={{ marginBottom: "20px" }} />
+        <Divider style={{ marginBottom: "20px" }} />
 
         <Typography
           variant="body1"
-          dangerouslySetInnerHTML={{ __html: data.strapiAboutPage.content }}
+          dangerouslySetInnerHTML={{ __html: data.strapiLeadershipSkillsPage.page_content }}
         />
-      </ContentWrapper> */}
+      </ContentWrapper>
     </Layout>
   );
 };
 
-// export const aboutPageQuery = graphql`
-//   query AboutPageQuery {
-//     strapiAboutPage {
-//       id
-//       content
-//       title
-//       main_media {
-//         localFile {
-//           childImageSharp {
-//             fluid {
-//               ...GatsbyImageSharpFluid
-//             }
-//           }
-//         }
-//       }
-//     }
-//   }
-// `;
+export const aboutPageQuery = graphql`
+    query LeadershipSkillsPageQuery {
+      strapiLeadershipSkillsPage {
+        page_content
+        page_title
+        main_image {
+          localFile {
+            childImageSharp {
+              gatsbyImageData(
+                height: 250,
+                width: 350
+              )            
+            }
+          }
+        }
+      }
+    }
+`;
 
-export default TeamworkPage;
+export default LeadershipSkillsPage;
