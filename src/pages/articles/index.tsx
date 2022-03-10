@@ -2,22 +2,18 @@ import {
   Box,
   Container,
   Divider,
-  styled,
   Typography,
-  withTheme,
-} from "@material-ui/core";
+} from "@mui/material";
 import { graphql } from "gatsby";
 import React from "react";
 import Layout from "../../components/layout";
 import PageWrapper from "../../components/shared/content-wrapper";
-import Img from "gatsby-image";
-
-import { Link } from "gatsby";
-import { countTags } from "../../helpers/countTags";
+import { GatsbyImage } from "gatsby-plugin-image";
+import { styled } from '@mui/material/styles';
 import { RelatedContentWrapper } from "../../components/shared/related-content-list";
 
-const HeadingTitle = styled(withTheme(Typography))((props) => ({
-  borderBottom: `3px solid ${props.theme.palette.primary.main}`,
+const HeadingTitle = styled(Typography)(({ theme }) => ({
+  borderBottom: `3px solid ${theme.palette.primary.main}`,
   textAlign: "center",
   width: "fit-content",
   margin: "auto",
@@ -57,7 +53,7 @@ const ArticlesPage = (data) => {
           Topics
         </Typography>
 
-        <RelatedContentWrapper isHomePage={false}  contentType="articleTopics" items={data.data.allStrapiArticleCategory} />
+        <RelatedContentWrapper isHomePage={false} contentType="articleTopics" items={data.data.allStrapiArticleCategory} />
 
       </PageWrapper>
     </Layout>

@@ -1,9 +1,8 @@
 import React from "react";
 import { graphql } from "gatsby";
-
 import Layout from "~/components/layout";
 import SEO from "~/components/seo";
-import { Typography } from "@material-ui/core";
+import { Typography } from "@mui/material";
 
 const CalendarPage = ({ data }) => {
   

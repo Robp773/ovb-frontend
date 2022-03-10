@@ -1,10 +1,9 @@
-import { styled, Chip } from "@material-ui/core";
-import React from "react";
 import BuildRoundedIcon from "@material-ui/icons/BuildRounded";
 import EmojiObjectsRoundedIcon from "@material-ui/icons/EmojiObjectsRounded";
 import EmojiPeopleIcon from "@material-ui/icons/EmojiPeople";
 import GroupIcon from "@material-ui/icons/Group";
 import TimelineIcon from "@material-ui/icons/Timeline";
+import React from "react";
 
 export const getArticleIcon = (category) => {
   let activeIcon;

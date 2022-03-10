@@ -1,4 +1,4 @@
-import { Chip, styled } from "@material-ui/core";
+import { Chip, styled } from "@mui/material";
 import SportsBasketballIcon from "@material-ui/icons/SportsBasketball";
 import React from "react";
 import { Link as GatsbyLink } from "gatsby";

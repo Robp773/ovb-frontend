@@ -1,16 +1,14 @@
-import { Container, InputBase } from "@mui/material";
-import AppBar from "@mui/material/AppBar";
-import Toolbar from "@mui/material/Toolbar";
-import SearchIcon from "@material-ui/icons/Search";
-import React from "react";
-import { Link } from "gatsby";
-import { useLocation } from "@reach/router";
 import HomeRoundedIcon from "@material-ui/icons/HomeRounded";
+import { Container } from "@mui/material";
+import AppBar from "@mui/material/AppBar";
+import Button from "@mui/material/Button";
 import Menu from "@mui/material/Menu";
 import MenuItem from "@mui/material/MenuItem";
-import Button from "@mui/material/Button";
-
 import { styled } from '@mui/material/styles';
+import Toolbar from "@mui/material/Toolbar";
+import { useLocation } from "@reach/router";
+import { Link } from "gatsby";
+import React from "react";
 
 const AppBarEl = styled(AppBar)(
   ({ theme }) => ({
@@ -75,7 +73,6 @@ const NavBar = () => {
 
 
   return (
-    // <NavRoot>
     <AppBarEl
       position="static"
     >
@@ -245,7 +242,6 @@ const NavBar = () => {
             inputProps={{ "aria-label": "search" }}
           /> 
   </div>*/
-    // </NavRoot >
   );
 };
 

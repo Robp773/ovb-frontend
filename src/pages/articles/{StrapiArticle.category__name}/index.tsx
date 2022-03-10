@@ -1,4 +1,4 @@
-import { Divider, Typography } from "@material-ui/core";
+import { Divider, Typography } from "@mui/material";
 import { graphql } from "gatsby";
 import React from "react";
 import Layout from "../../../components/layout";
@@ -27,12 +27,13 @@ const CustomArticle = ({ data, location }) => {
         />
 
         <Typography
+          style={{ marginTop: "20px" }} 
           variant="body1"
           dangerouslySetInnerHTML={{
             __html: categoryData.description,
           }}
         />
-        
+
         <Divider style={{ margin: "20px 0" }} />
 
         <Typography style={{ textAlign: "center", margin: "10px 0" }} variant="h4">Articles</Typography>

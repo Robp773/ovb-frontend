@@ -13,8 +13,6 @@ const HeadingContainer = styled("div")(({ theme }) => ({
   alignItems: "center",
   margin: "20px 0",
   justifyContent: "center"
-  // padding: 0,
-  // background: props.theme.palette.grey[200]
 }));
 
 const CoachName = styled(Typography)(({ theme }) => ({

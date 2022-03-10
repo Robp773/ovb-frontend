@@ -1,15 +1,11 @@
-import { Box, Typography } from "@material-ui/core";
-import Step from "@material-ui/core/Step";
-import StepContent from "@material-ui/core/StepContent";
-import StepLabel from "@material-ui/core/StepLabel";
-import Stepper from "@material-ui/core/Stepper";
+import { Box, Step, StepContent, StepLabel, Stepper, Typography } from "@mui/material";
 import { graphql } from "gatsby";
+import { GatsbyImage } from "gatsby-plugin-image";
 import { default as React } from "react";
 import Layout from "~/components/layout";
 import SEO from "~/components/seo";
 import ContentHeading from "../../../components/shared/content-heading";
 import PageWrapper from "../../../components/shared/content-wrapper";
-import { GatsbyImage } from "gatsby-plugin-image";
 
 const CustomArticle = ({ data, location }) => {
   const drill = data.strapiDrill;

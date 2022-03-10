@@ -1,12 +1,11 @@
-import { Container, Paper, styled, withTheme } from "@material-ui/core";
+import { Container, Paper } from "@mui/material";
+import { styled } from '@mui/material/styles';
 import React from "react";
-
-const ContentBackground = styled(withTheme(Container))((props) => ({
-  // background: props.theme.palette.grey["100"],
+const ContentBackground = styled(Container)({
   maxWidth: "100%"
-}));
+});
 
-const ContentContainer = styled(withTheme(Paper))((props) => ({
+const ContentContainer = styled(Paper)((props) => ({
   minHeight: "50vh",
   maxWidth: `${props.width}`,
   display: "flex",
@@ -26,9 +25,9 @@ const ContentContainer = styled(withTheme(Paper))((props) => ({
     margin: "0",
     width: "100%",
   },
-}));
+}))
 
-const ContentWrapper = ( { width="100ch", children }) => {
+const ContentWrapper = ({ width = "100ch", children }) => {
   return (
     <ContentBackground>
       <ContentContainer width={width} square={true}> {children}</ContentContainer>

@@ -1,12 +1,9 @@
 import {
-  Box, Container
-} from "@material-ui/core";
-import Button from "@mui/material/Button";
-
+  Box, Button, Container, Typography
+} from "@mui/material";
 import { styled } from '@mui/material/styles';
-import Typography from "@mui/material/Typography";
 import { graphql, Link } from "gatsby";
-import Img from "gatsby-image";
+import { GatsbyImage } from "gatsby-plugin-image";
 import React from "react";
 import Layout from "../components/layout";
 import SEO from "../components/seo";
@@ -64,7 +61,7 @@ const IndexPage = ({ data }) => {
   return (
     <Layout>
       <ImageContainer>
-        <Img style={{ width: "30%" }} fluid={page.banner_image.localFile.childImageSharp.fluid} />
+        <GatsbyImage alt="One Voice Basketball logo" style={{ width: "30%" }} image={page.banner_image.localFile.childImageSharp.gatsbyImageData} />
       </ImageContainer>
       <SEO seo={seo} />
 
@@ -109,12 +106,10 @@ export const articlePageQuery = graphql`
       id
       intro_text
       banner_image {
-        localFile {
-          childImageSharp {
-            fluid {
-              ...GatsbyImageSharpFluid
+          localFile {
+            childImageSharp {
+              gatsbyImageData
             }
-          }
         }
       }
     }

@@ -3,20 +3,15 @@ import {
   Step,
   StepContent,
   StepLabel,
-  Stepper,
-  styled,
-  Typography,
-  withTheme,
-} from "@material-ui/core";
-import Accordion from "@material-ui/core/Accordion";
-import AccordionSummary from "@material-ui/core/AccordionSummary";
-import { graphql, Link } from "gatsby";
+  Stepper, Typography
+} from "@mui/material";
+import { graphql } from "gatsby";
+import { GatsbyImage } from "gatsby-plugin-image";
 import React from "react";
 import Layout from "../../components/layout";
 import SEO from "../../components/seo";
 import ContentHeading from "../../components/shared/content-heading";
 import PageWrapper from "../../components/shared/content-wrapper";
-import { GatsbyImage } from "gatsby-plugin-image";
 
 const CustomArticle = ({ data, location }) => {
   const activity = data.strapiRopesCourseActivity;

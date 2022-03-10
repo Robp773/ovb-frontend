@@ -1,12 +1,10 @@
 import {
   AccordionDetails,
   Divider,
-  styled,
   Typography,
-  withTheme,
-} from "@material-ui/core";
-import Accordion from "@material-ui/core/Accordion";
-import AccordionSummary from "@material-ui/core/AccordionSummary";
+  Accordion,
+  AccordionSummary
+} from "@mui/material";
 import BookmarkBorderIcon from "@material-ui/icons/BookmarkBorder";
 import ExpandMoreIcon from "@material-ui/icons/ExpandMore";
 import { graphql, Link } from "gatsby";
@@ -17,14 +15,15 @@ import ContentHeading from "../../../components/shared/content-heading";
 import PageWrapper from "../../../components/shared/content-wrapper";
 import { attachContentTypes, encodeStrForUrl } from "../../../helpers/modifiers";
 import { RelatedContentWrapper } from "../../../components/shared/related-content-list";
+import { styled } from '@mui/material/styles';
 
 const ReferencesAccordion = styled(Accordion)({
   marginTop: "30px",
   border: 0,
 });
 
-const StyledSummary = styled(withTheme(AccordionSummary))((props) => ({
-  background: props.theme.palette.grey[200],
+const StyledSummary = styled(AccordionSummary)(({ theme }) => ({
+  background: theme.palette.grey[200],
 }));
 
 

@@ -7,7 +7,7 @@ const MainImage = styled(GatsbyImage)({
 });
 
 const StaticPageImage = (props: any) => {
-  return <MainImage image={props.image} />;
+  return <MainImage alt={props.alt} image={props.image} />;
 };
 
 export default StaticPageImage;

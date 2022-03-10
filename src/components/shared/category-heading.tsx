@@ -1,31 +1,25 @@
-import { Container, styled, Typography, withTheme } from "@material-ui/core";
+import { Container, styled, Typography } from "@mui/material";
+import { GatsbyImage } from "gatsby-plugin-image";
 import React from "react";
-import Img from "gatsby-image";
-import ArticleCategoryChip from "../article/article-category-chip";
 import { getArticleIcon } from "../../helpers/getArticleChip";
 
-const StyledImage = styled(Img)({
-  //   height: "250px",
-});
-
-const HeadingContentContainer = styled(withTheme(Container))((props) => ({
+const HeadingContentContainer = styled(Container)({
   display: "flex",
   flexDirection: "column",
   justifyContent: "space-evenly",
-  alignItems: "center", 
-}));
+  alignItems: "center",
+})
 
 const StyledHeadingContainer = styled("div")({
   position: "relative",
 });
 
 const CategoryHeading = ({ categoryData }) => {
-  console.log(categoryData);
 
   return (
     <StyledHeadingContainer>
-      <StyledImage
-        fluid={categoryData.main_media.localFile.childImageSharp.fluid}
+      <GatsbyImage alt="Category image"
+        image={categoryData.main_media.localFile.childImageSharp.gatsbyImageData}
       />
       <HeadingContentContainer>
         <Typography variant="h4">{categoryData.name}</Typography>

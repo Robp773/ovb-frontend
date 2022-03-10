@@ -1,49 +1,18 @@
 import {
   Box,
-  Button,
   Container,
   Divider,
-  Grid,
-  styled,
-  Typography,
-  withTheme,
-} from "@material-ui/core";
+  Typography
+} from "@mui/material";
+import { styled } from '@mui/material/styles';
 import { graphql } from "gatsby";
 import React from "react";
 import Layout from "../../components/layout";
-import Img from "gatsby-image";
-import ArticleCategoryChip from "../../components/article/article-category-chip";
-import Card from "@mui/material/Card";
-import CardContent from "@mui/material/CardContent";
-import { CardActions } from "@mui/material";
-import { Link } from "gatsby";
-import { encodeStrForUrl } from "../../helpers/modifiers";
 import ContentWrapper from "../../components/shared/content-wrapper";
 import { RelatedContentWrapper } from "../../components/shared/related-content-list";
 
-const MainImage = styled(Img)({
-  width: "100%",
-  height: "175px",
-});
-const CategoryChipWrapper = styled("div")({
-  "& > svg": {
-    width: "initial",
-    height: "30px",
-    marginLeft: "10px",
-  },
-});
-
-const CategoryAndChipWrapper = styled(Box)({
-  bottom: 0,
-  display: "flex",
-  alignItems: "center",
-  justifyContent: "center",
-  width: "100%",
-  padding: "8px 0px",
-});
-
-const HeadingTitle = styled(withTheme(Typography))((props) => ({
-  borderBottom: `3px solid ${props.theme.palette.primary.main}`,
+const HeadingTitle = styled(Typography)(({ theme }) => ({
+  borderBottom: `3px solid ${theme.palette.primary.main}`,
   textAlign: "center",
   width: "fit-content",
   margin: "auto",
@@ -56,7 +25,6 @@ const HeadingTitle = styled(withTheme(Typography))((props) => ({
 const DrillsPage = (data) => {
   const {
     strapiDrillsPage,
-    allStrapiDrill,
     allStrapiDrillCategory,
   } = data.data;
   return (

@@ -7,7 +7,7 @@ const CustomArticle = (data) => {
   
   return (
     <Layout>
-      <PageWrapper> ropes course activities page</PageWrapper>
+      <PageWrapper>ropes course activities page</PageWrapper>
     </Layout>
   );
 };

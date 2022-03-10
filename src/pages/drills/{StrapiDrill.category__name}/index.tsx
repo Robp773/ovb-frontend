@@ -1,4 +1,4 @@
-import { Divider, Typography } from "@material-ui/core";
+import { Divider, Typography } from "@mui/material";
 import { graphql } from "gatsby";
 import React from "react";
 import Layout from "../../../components/layout";
@@ -10,14 +10,11 @@ const DrillCategoryPage = ({ data, location }) => {
   const categoryData = data.strapiDrillCategory;
   const { allStrapiDrill: drills } = data;
 
-
-  console.log(data)
-
   return (
     <Layout>
       <PageWrapper>
         <ContentHeading
-          image={categoryData.image.localFile.childImageSharp.fixed}
+          image={categoryData.image.localFile.childImageSharp.gatsbyImageData}
           title={categoryData.name}
           iconWithText={false}
           contentType="drills"

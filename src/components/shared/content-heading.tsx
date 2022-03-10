@@ -1,8 +1,8 @@
 import {
-  Box, styled,
+  Box,
   Typography
 } from "@mui/material"
-import { withTheme } from "@material-ui/core";
+import { styled } from '@mui/material/styles';
 import NavigateNextIcon from "@mui/icons-material/NavigateNext";
 import { Link as GatsbyLink } from "gatsby";
 import React from "react";
@@ -11,7 +11,7 @@ import DrillCategoryChip from "../drill/drill-category-chip";
 import ContentChip from "./content-chip";
 import ContentImage from "./content-main-image";
 
-const Heading = styled(withTheme(Box))((props) => ({
+const Heading = styled(Box)(({ theme }) => ({
   display: "flex",
   justifyContent: "space-between",
   alignItems: "center",
@@ -19,7 +19,6 @@ const Heading = styled(withTheme(Box))((props) => ({
 }));
 
 const HeadingContentBox = styled(Box)({
-  // padding: "30px 0 0px 0",
   display: "flex",
   flexDirection: "column",
   alignItems: "center",
@@ -45,17 +44,17 @@ const BreadCrumbsWrapper = styled("div")({
   alignItems: "center",
 });
 
-const StyledLink = styled(withTheme(GatsbyLink))((props) => ({
+const StyledLink = styled(GatsbyLink)(({ theme }) => ({ 
   textDecoration: "none",
-  color: props.theme.palette.secondary.main,
+  color: theme.palette.secondary.main,
 
   "&:hover": {
-    color: props.theme.palette.primary.main,
+    color: theme.palette.primary.main,
   },
 }));
 
-const StyledNavIcon = styled(withTheme(NavigateNextIcon))((props) => ({
-  color: props.theme.palette.secondary.main,
+const StyledNavIcon =  styled(NavigateNextIcon)(({ theme }) => ({
+  color: theme.palette.secondary.main,
 }));
 
 const CategoryChipWrapper = styled("div")({
@@ -138,7 +137,7 @@ const ContentHeading = (props, data) => {
           })}
         </TagListBox>
       </HeadingContentBox>
-      {props.image ? <ContentImage image={props.image} /> : null}
+      {props.image ? <ContentImage alt={props.title} image={props.image} /> : null}
     </Heading>
   );
 };

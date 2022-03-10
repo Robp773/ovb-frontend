@@ -27,7 +27,7 @@ const StaticPageHeading = (props, data) => {
       <HeadingTitle gutterBottom align="center" variant="h4">
         <TitleText>{props.title}</TitleText>
       </HeadingTitle>
-      <PageImage image={props.image} />
+     {props.image ?  <PageImage alt={props.title} image={props.image} /> : null }
     </Heading>
   );
 };
