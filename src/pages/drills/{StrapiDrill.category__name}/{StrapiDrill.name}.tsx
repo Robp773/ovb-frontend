@@ -1,4 +1,4 @@
-import { Box, Step, StepContent, StepLabel, Stepper, Typography } from "@mui/material";
+import { Box, Step, StepContent, StepLabel, Stepper, Typography, Divider } from "@mui/material";
 import { graphql } from "gatsby";
 import { GatsbyImage } from "gatsby-plugin-image";
 import { default as React } from "react";
@@ -28,19 +28,20 @@ const CustomArticle = ({ data, location }) => {
 
           }}
         />
+        <Divider style={{ marginTop: "20px" }} />
 
-        {/* {drill.example_media && drill.example_media.url ? <Box style={{ margin: "15px 0" }}>
+        {/* {drill.example_media && drill.example_media.url ? <Box style={{ margin: "20px 0" }}>
           <video style={{ margin: "auto", display: "flex" }} controls>
             <source src={`${process.env.API_URL}${drill.example_media.url}`} type="video/mp4" />
             Your browser does not support the video tag.
           </video>
         </Box> : null} */}
 
-        <Box style={{ marginTop: "15px" }}>
+        <Box style={{ marginTop: "20px" }}>
           <Typography variant="h5">Details</Typography>
           <DrillDetails node={drill} />
         </Box>
-        <Box style={{ margin: "15px 0" }}>
+        <Box style={{ marginTop: "20px" }}>
 
           <Typography variant="h5">Description</Typography>
 
@@ -51,7 +52,7 @@ const CustomArticle = ({ data, location }) => {
             }}
           />
         </Box>
-        <Box style={{ margin: "15px 0" }}>
+        <Box style={{ marginTop: "20px" }}>
           <Typography variant="h5">Summary</Typography>
           <Typography
             variant="body1"
@@ -61,9 +62,9 @@ const CustomArticle = ({ data, location }) => {
           />
         </Box>
 
-        {drill.steps ? <><Box>
+        {drill.steps ? <Box  style={{ marginTop: "20px" }}>
           <Typography variant="h5">Steps</Typography>
-        </Box>
+
           <Stepper orientation="vertical">
             {drill.steps.map((step, index) => {
               return (
@@ -88,7 +89,8 @@ const CustomArticle = ({ data, location }) => {
                 </Step>
               );
             })}
-          </Stepper></> : null}
+          </Stepper>    
+          </Box> : null}
 
       </PageWrapper>
     </Layout>

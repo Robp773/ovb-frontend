@@ -56,7 +56,7 @@ const CustomArticle = ({ data, location }) => {
             date: data.strapiArticle.date,
           }}
         />
-        <Divider style={{ margin: "20px" }} />
+        <Divider style={{ margin: "20px 0" }} />
         <Typography
           variant="body1"
           dangerouslySetInnerHTML={{

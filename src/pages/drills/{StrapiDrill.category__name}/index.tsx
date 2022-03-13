@@ -27,6 +27,7 @@ const DrillCategoryPage = ({ data, location }) => {
         />
 
         <Typography
+          style={{ marginTop: "20px" }} 
           variant="body1"
           dangerouslySetInnerHTML={{
             __html: categoryData.description,
