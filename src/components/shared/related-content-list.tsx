@@ -11,8 +11,8 @@ import styled from "@mui/styled-engine";
 import { Link } from "gatsby";
 import { GatsbyImage, getImageData } from "gatsby-plugin-image";
 import React from "react";
-import { encodeStrForUrl } from "../../helpers/modifiers";
 import ArticleCategoryChip from "../article/article-category-chip";
+import slugify from '@sindresorhus/slugify';
 
 const CardActionButton = styled(Link)({
   textDecoration: "none",
@@ -39,7 +39,7 @@ export const RelatedContentWrapper = (props) => {
 
         switch (props.contentType) {
           case ("drillCategories"): {
-            path = `/drills/${encodeStrForUrl(
+            path =`/drills/${slugify(
               node.name
             )}`
             image = node.image.localFile.childImageSharp.gatsbyImageData
@@ -47,24 +47,24 @@ export const RelatedContentWrapper = (props) => {
           }
 
           case ("drills"): {
-            path = `/drills/${encodeStrForUrl(
+            path = `/drills/${slugify(
               node.category.name
-            )}/${encodeStrForUrl(node.title || node.name)}`
+            )}/${slugify(node.title || node.name)}`
             image = node.main_media.localFile.childImageSharp.gatsbyImageData
             break;
           }
 
           case ("articleTopics"): {
-            path = `/articles/${encodeStrForUrl(
+            path = `/articles/${slugify(
               node.name
             )}`
             image = node.main_media.localFile.childImageSharp.gatsbyImageData
             break;
           }
           case ("articles"): {
-            path = `/articles/${encodeStrForUrl(
+            path = `/articles/${slugify(
               node.category.name
-            )}/${encodeStrForUrl(node.title || node.name)}`
+            )}/${slugify(node.title || node.name)}`
             image = node.main_media.localFile.childImageSharp.gatsbyImageData
             break;
           }
@@ -72,14 +72,13 @@ export const RelatedContentWrapper = (props) => {
           case ("references"): {
             if (node.category) {
               console.log(node)
-              path = `/drills/${encodeStrForUrl(
+              path = `/drills/${slugify(
                 node.category
-              )}/${encodeStrForUrl(node.name)}`
+              )}/${slugify(node.name)}`
             }
             else {
-              path = `/activities/${encodeStrForUrl(node.title)}`
+              path = `/activities/${slugify(node.title)}`
             }
-
             image = node.main_media.localFile.childImageSharp.gatsbyImageData
             break;
           }

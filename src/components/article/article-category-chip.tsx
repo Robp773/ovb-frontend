@@ -1,12 +1,7 @@
 import { Chip, styled } from "@mui/material";
-// import BuildRoundedIcon from "@material-ui/icons/BuildRounded";
-// import EmojiObjectsRoundedIcon from "@material-ui/icons/EmojiObjectsRounded";
-// import EmojiPeopleIcon from "@material-ui/icons/EmojiPeople";
-// import GroupIcon from "@material-ui/icons/Group";
-// import TimelineIcon from "@material-ui/icons/Timeline";
-import React from "react";
+import slugify from "@sindresorhus/slugify";
 import { Link as GatsbyLink } from "gatsby";
-import { encodeStrForUrl } from "../../helpers/modifiers";
+import React from "react";
 import { getArticleIcon } from "../../helpers/getArticleChip";
 
 const StyledChip = styled(Chip)({
@@ -48,7 +43,7 @@ const ArticleCategoryChip = (props) => {
           style={{
             textDecoration: "none"
           }}
-          to={`/articles/${encodeStrForUrl(
+          to={`/articles/${slugify(
             props.category.toLowerCase()
           )}`}
         >

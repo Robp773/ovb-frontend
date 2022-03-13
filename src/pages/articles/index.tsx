@@ -84,15 +84,6 @@ export const query = graphql`
     strapiArticlesPage {
       description
     }
-    allStrapiArticle {
-      edges {
-        node {
-          tags {
-            name
-          }
-        }
-      }
-    }
   }
 `;
 

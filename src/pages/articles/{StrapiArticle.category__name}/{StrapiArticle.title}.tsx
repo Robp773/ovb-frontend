@@ -13,7 +13,7 @@ import Layout from "../../../components/layout";
 import SEO from "../../../components/seo";
 import ContentHeading from "../../../components/shared/content-heading";
 import PageWrapper from "../../../components/shared/content-wrapper";
-import { attachContentTypes, encodeStrForUrl } from "../../../helpers/modifiers";
+import { attachContentTypes } from "../../../helpers/modifiers";
 import { RelatedContentWrapper } from "../../../components/shared/related-content-list";
 import { styled } from '@mui/material/styles';
 
@@ -56,7 +56,7 @@ const CustomArticle = ({ data, location }) => {
             date: data.strapiArticle.date,
           }}
         />
-        <Divider style={{ marginBottom: "10px" }} />
+        <Divider style={{ margin: "20px" }} />
         <Typography
           variant="body1"
           dangerouslySetInnerHTML={{
@@ -76,9 +76,7 @@ const CustomArticle = ({ data, location }) => {
               </Typography>
             </StyledSummary>
             <AccordionDetails style={{ padding: 0 }}>
-
               <RelatedContentWrapper xs={6} contentType="references" items={references} />
-
             </AccordionDetails>
           </ReferencesAccordion>
         ) : null}

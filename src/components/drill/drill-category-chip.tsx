@@ -2,7 +2,7 @@ import { Chip, styled } from "@mui/material";
 import SportsBasketballIcon from "@material-ui/icons/SportsBasketball";
 import React from "react";
 import { Link as GatsbyLink } from "gatsby";
-import { encodeStrForUrl } from "../../helpers/modifiers";
+import slugify from "@sindresorhus/slugify";
 
 const StyledChip = styled(Chip)({
   marginBottom: "3px",
@@ -15,7 +15,7 @@ const DrillCategoryChip = (props) => {
       style={{
         textDecoration: "none"
       }}
-      to={`/drills/${encodeStrForUrl(
+      to={`/drills/${slugify(
         props.category.toLowerCase()
       )}`}
     >
