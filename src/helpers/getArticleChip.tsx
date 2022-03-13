@@ -3,9 +3,11 @@ import EmojiObjectsRoundedIcon from "@material-ui/icons/EmojiObjectsRounded";
 import EmojiPeopleIcon from "@material-ui/icons/EmojiPeople";
 import GroupIcon from "@material-ui/icons/Group";
 import TimelineIcon from "@material-ui/icons/Timeline";
+import FlagIcon from "@material-ui/icons/Flag";
+
 import React from "react";
 
-export const getArticleIcon = (category) => {
+export const  getArticleIcon = (category) => {
   let activeIcon;
   switch (category) {
     case "Mindset": {
@@ -26,6 +28,10 @@ export const getArticleIcon = (category) => {
     }
     case "Process": {
       activeIcon = <TimelineIcon />;
+      break;
+    }
+    case "Culture": {
+      activeIcon = <FlagIcon />;
       break;
     }
   }

@@ -136,6 +136,7 @@ const ContentHeading = (props, data) => {
             return <ContentChip key={`category-${index}`} name={tag.name} />;
           })}
         </TagListBox>
+
       </HeadingContentBox>
       {props.image ? <ContentImage alt={props.title} image={props.image} /> : null}
     </Heading>

@@ -23,6 +23,7 @@ const HeadingTitle = styled(Typography)(({ theme }) => ({
 }));
 
 const DrillsPage = (data) => {
+
   const {
     strapiDrillsPage,
     allStrapiDrillCategory,
@@ -92,6 +93,11 @@ export const query = graphql`
     allStrapiDrill {
       edges {
         node {
+          time_estimate
+          isTeam
+          isGroup
+          isIndividual
+          competency
           tags {
             name
           }

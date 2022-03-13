@@ -4,6 +4,7 @@ import { GatsbyImage } from "gatsby-plugin-image";
 import { default as React } from "react";
 import Layout from "~/components/layout";
 import SEO from "~/components/seo";
+import DrillDetails from "../../../components/drill/drill-details";
 import ContentHeading from "../../../components/shared/content-heading";
 import PageWrapper from "../../../components/shared/content-wrapper";
 
@@ -24,18 +25,25 @@ const CustomArticle = ({ data, location }) => {
             date: null,
             tags: drill.tags,
             category: drill.category.name,
+
           }}
         />
 
-        {drill.example_media && drill.example_media.url ? <Box style={{ margin: "15px 0" }}>
+        {/* {drill.example_media && drill.example_media.url ? <Box style={{ margin: "15px 0" }}>
           <video style={{ margin: "auto", display: "flex" }} controls>
             <source src={`${process.env.API_URL}${drill.example_media.url}`} type="video/mp4" />
             Your browser does not support the video tag.
           </video>
-        </Box> : null}
+        </Box> : null} */}
 
+        <Box style={{ marginTop: "15px" }}>
+          <Typography variant="h5">Details</Typography>
+          <DrillDetails node={drill} />
+        </Box>
         <Box style={{ margin: "15px 0" }}>
+
           <Typography variant="h5">Description</Typography>
+
           <Typography
             variant="body1"
             dangerouslySetInnerHTML={{
@@ -94,6 +102,11 @@ export const query = graphql`
         name
         description
       }
+      time_estimate
+      isTeam
+      isGroup
+      isIndividual
+      competency
       description
       summary
       name

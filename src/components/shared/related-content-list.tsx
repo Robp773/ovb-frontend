@@ -2,6 +2,7 @@ import {
   Box,
   CardActions,
   CardContent,
+  Chip,
   Divider,
 } from "@mui/material";
 import Button from "@mui/material/Button";
@@ -13,6 +14,12 @@ import { GatsbyImage, getImageData } from "gatsby-plugin-image";
 import React from "react";
 import ArticleCategoryChip from "../article/article-category-chip";
 import slugify from '@sindresorhus/slugify';
+import { node } from "prop-types";
+import ContentChip from "./content-chip";
+import { getArticleIcon } from "../../helpers/getArticleChip";
+import DrillDetails from "../drill/drill-details";
+
+
 
 const CardActionButton = styled(Link)({
   textDecoration: "none",
@@ -36,10 +43,12 @@ export const RelatedContentWrapper = (props) => {
 
         const node = item.node ? item.node : item
         let path, image
+        let hasTags = false
+        let showDrillDetails = false
 
         switch (props.contentType) {
           case ("drillCategories"): {
-            path =`/drills/${slugify(
+            path = `/drills/${slugify(
               node.name
             )}`
             image = node.image.localFile.childImageSharp.gatsbyImageData
@@ -51,6 +60,8 @@ export const RelatedContentWrapper = (props) => {
               node.category.name
             )}/${slugify(node.title || node.name)}`
             image = node.main_media.localFile.childImageSharp.gatsbyImageData
+            hasTags = true
+            showDrillDetails = true
             break;
           }
 
@@ -61,20 +72,25 @@ export const RelatedContentWrapper = (props) => {
             image = node.main_media.localFile.childImageSharp.gatsbyImageData
             break;
           }
+
           case ("articles"): {
             path = `/articles/${slugify(
               node.category.name
             )}/${slugify(node.title || node.name)}`
             image = node.main_media.localFile.childImageSharp.gatsbyImageData
+            hasTags = true
+
             break;
           }
 
           case ("references"): {
+            hasTags = true
             if (node.category) {
-              console.log(node)
               path = `/drills/${slugify(
                 node.category
               )}/${slugify(node.name)}`
+              showDrillDetails = true
+
             }
             else {
               path = `/activities/${slugify(node.title)}`
@@ -98,29 +114,34 @@ export const RelatedContentWrapper = (props) => {
               />
               <CardContent>
                 <Box style={{ padding: "0 0 5px 0" }}>
-                  <Typography variant="h6">{node.title || node.name}</Typography>
+
+                  <Typography variant="h6" style={{ display: "flex", alignItems: "center" }}>{node.title || node.name}{props.contentType === "articleTopics" ?
+                    <Box style={{ display: "flex", alignItems: "center", marginLeft: "6px" }}>
+                      <ArticleCategoryChip category={node.name} />
+                    </Box> : null}
+                  </Typography>
                   <Typography variant="body1">{node.date}</Typography>
-                  <Box
-                    style={{
-                      display: "flex",
-                      alignItems: "center",
-                    }}
-                  >
-                    {props.withCategory ? (
-                      <ArticleCategoryChip
-                        category={node.category ? node.category.name : node.name}
-                        iconWithText={true}
-                      />
-                    ) : null}
-                  </Box>
+
+                  {showDrillDetails ?
+                    <DrillDetails node={node} />
+                    : null}
+
+                  {hasTags ?
+                    <Box>{
+                      node.tags.map((tag, index) => {
+                        return <ContentChip key={`category-${index}`} name={tag.name} />
+                      })}
+                    </Box>
+                    : null}
+
                 </Box>
 
                 <Divider style={{ margin: "5px auto" }} />
 
-
                 <Typography variant="body2" dangerouslySetInnerHTML={{
                   __html: node.one_sentence_description || node.description,
                 }} />
+
               </CardContent>
             </div>
 
@@ -135,6 +156,6 @@ export const RelatedContentWrapper = (props) => {
           </Card>
         );
       })}
-    </GridParent>
+    </GridParent >
   );
 };

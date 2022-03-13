@@ -130,6 +130,11 @@ export const query = graphql`
         name
         description
         category
+        time_estimate
+        isTeam
+        isGroup
+        isIndividual
+        competency
         tags {
           name
         }

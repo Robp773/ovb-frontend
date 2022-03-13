@@ -13,29 +13,7 @@ const StyledChip = styled(Chip)({
 });
 
 const ArticleCategoryChip = (props) => {
-  // let activeIcon;
-  // switch (props.category) {
-  //   case "Mindset": {
-  //     activeIcon = <EmojiObjectsRoundedIcon />;
-  //     break;
-  //   }
-  //   case "Team": {
-  //     activeIcon = <GroupIcon />;
-  //     break;
-  //   }
-  //   case "Leadership": {
-  //     activeIcon = <EmojiPeopleIcon />;
-  //     break;
-  //   }
-  //   case "Real Life Applications": {
-  //     activeIcon = <BuildRoundedIcon />;
-  //     break;
-  //   }
-  //   case "Process": {
-  //     activeIcon = <TimelineIcon />;
-  //     break;
-  //   }
-  // }
+
   return (
     < >
       {props.iconWithText ? (
