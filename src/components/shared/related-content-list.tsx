@@ -126,13 +126,13 @@ export const RelatedContentWrapper = (props) => {
                     <DrillDetails node={node} />
                     : null}
 
-                  {hasTags ?
+                  {/* {hasTags ?
                     <Box>{
                       node.tags.map((tag, index) => {
                         return <ContentChip key={`category-${index}`} name={tag.name} />
                       })}
                     </Box>
-                    : null}
+                    : null} */}
 
                 </Box>
 
