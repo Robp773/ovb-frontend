@@ -118,7 +118,7 @@ export const query = graphql`
               gatsbyImageData(
                 height: 200,
                 width: 300,
-                transformOptions: {fit: FILL, cropFocus: CENTER}
+                transformOptions: {fit: FILL,  cropFocus: CENTER}
               )
             }
           }
@@ -146,7 +146,7 @@ export const query = graphql`
               gatsbyImageData(
                 height: 200,
                 width: 300,
-                transformOptions: {fit: FILL, cropFocus: CENTER}
+                transformOptions: {fit: FILL,  cropFocus: CENTER}
               )
             }
           }

@@ -54,7 +54,7 @@ export const query = graphql`
             gatsbyImageData(
               height: 300,
               width: 450,
-              transformOptions: {fit: FILL},
+              transformOptions: {fit: COVER,  cropFocus: CENTER},
             )
           }
         }
@@ -82,24 +82,12 @@ export const query = graphql`
           }
           main_media {
             alternativeText
-            formats {
-              thumbnail {
-                name
-                hash
-                ext
-                mime
-                width
-                height
-                size
-                url
-              }
-            }
             localFile {
               childImageSharp {
                 gatsbyImageData(
                   height: 200,
                   width: 300,
-                  transformOptions: {fit: FILL, cropFocus: CENTER}
+                  transformOptions: {fit: FILL,  cropFocus: CENTER}
                 )
               }
             }
