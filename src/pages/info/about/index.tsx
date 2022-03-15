@@ -42,8 +42,9 @@ export const aboutPageQuery = graphql`
           childImageSharp {
             gatsbyImageData(
               height: 300,
-              width: 400
-            )            
+              width: 450,
+              transformOptions: {fit: FILL},
+            )          
           }
         }
       }

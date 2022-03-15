@@ -82,24 +82,11 @@ export const query = graphql`
               childImageSharp {
                 gatsbyImageData(
                   height: 200,
-                  width: 300
+                  width: 300,
+                  transformOptions: {fit: FILL, cropFocus: CENTER}
                 )
               }
             }
-          }
-        }
-      }
-    }
-    allStrapiDrill {
-      edges {
-        node {
-          time_estimate
-          isTeam
-          isGroup
-          isIndividual
-          competency
-          tags {
-            name
           }
         }
       }

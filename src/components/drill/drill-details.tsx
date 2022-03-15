@@ -26,7 +26,7 @@ const DrillDetails = (props) => {
     }
 
     return (
-        <Box style={{ display: "flex", flexDirection: "column", alignItems: "flex-start"}}>
+        <Box style={{ display: "flex", flexDirection: "column", alignItems: "flex-start" }}>
 
             <Box style={{ display: "flex", alignItems: "center" }}>
                 <Typography style={{ marginRight: "3px" }} variant="subtitle2">Competency:</Typography>

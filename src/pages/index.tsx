@@ -108,7 +108,13 @@ export const articlePageQuery = graphql`
       banner_image {
           localFile {
             childImageSharp {
-              gatsbyImageData
+              gatsbyImageData(           
+                height: 400,
+                width: 700,              
+                transformOptions: {                 
+                  fit: FILL
+                }
+              )
             }
         }
       }
@@ -139,7 +145,8 @@ export const articlePageQuery = graphql`
               childImageSharp {
                 gatsbyImageData(
                   height: 200,
-                  width: 300
+                  width: 300,
+                  transformOptions: {fit: FILL, cropFocus: CENTER}
                 )
               }
             }

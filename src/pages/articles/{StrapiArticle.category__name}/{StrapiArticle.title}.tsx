@@ -99,8 +99,9 @@ export const query = graphql`
         localFile {
           childImageSharp {
             gatsbyImageData(
-              height: 200,
-              width: 300
+              height: 300,
+              width: 450,
+              transformOptions: {fit: FILL},
             )
           }
         }
@@ -116,7 +117,8 @@ export const query = graphql`
             childImageSharp {
               gatsbyImageData(
                 height: 200,
-                width: 300
+                width: 300,
+                transformOptions: {fit: FILL, cropFocus: CENTER}
               )
             }
           }
@@ -143,7 +145,8 @@ export const query = graphql`
             childImageSharp {
               gatsbyImageData(
                 height: 200,
-                width: 300
+                width: 300,
+                transformOptions: {fit: FILL, cropFocus: CENTER}
               )
             }
           }

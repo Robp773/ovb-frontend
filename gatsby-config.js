@@ -28,7 +28,6 @@ module.exports = {
         singleTypes: [`global`, `home-page`, `about-page`, `coaches-page`, `articles-page`, `drills-page`, `team-skills-page`, `technical-skills-page`, `leadership-skills-page`],
       },
     },
-
     `gatsby-plugin-material-ui`,
     `gatsby-plugin-catch-links`,
     `gatsby-plugin-react-helmet`,

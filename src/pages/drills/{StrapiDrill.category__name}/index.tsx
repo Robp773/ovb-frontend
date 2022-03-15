@@ -27,7 +27,7 @@ const DrillCategoryPage = ({ data, location }) => {
         />
 
         <Typography
-          style={{ marginTop: "20px" }} 
+          style={{ marginTop: "20px" }}
           variant="body1"
           dangerouslySetInnerHTML={{
             __html: categoryData.description,
@@ -54,8 +54,9 @@ export const query = graphql`
         localFile {
           childImageSharp {
             gatsbyImageData(
-              height: 200,
-              width: 300
+              height: 300,
+              width: 450,
+              transformOptions: {fit: FILL},
             )
           }
         }
@@ -86,7 +87,8 @@ export const query = graphql`
               childImageSharp {
                 gatsbyImageData(
                   height: 200,
-                  width: 300
+                  width: 300,
+                  transformOptions: {fit: FILL, cropFocus: CENTER}
                 )
               }
             }
