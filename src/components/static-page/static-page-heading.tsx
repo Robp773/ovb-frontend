@@ -24,7 +24,7 @@ const TitleText = styled("span")(({ theme }) => ({
 const StaticPageHeading = (props, data) => {
   return (
     <Heading>
-      <HeadingTitle gutterBottom align="center" variant="h4">
+      <HeadingTitle gutterBottom align="center" variant="h3">
         <TitleText>{props.title}</TitleText>
       </HeadingTitle>
      {props.image ?  <PageImage alt={props.title} image={props.image} /> : null }
