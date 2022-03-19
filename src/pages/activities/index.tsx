@@ -4,7 +4,6 @@ import Layout from "../../components/layout";
 import PageWrapper from "../../components/shared/content-wrapper";
 
 const CustomArticle = (data) => {
-  
   return (
     <Layout>
       <PageWrapper>ropes course activities page</PageWrapper>

@@ -16,7 +16,6 @@ import AddAPhoto from "@material-ui/icons/AddAPhoto";
 import SportsBasketballIcon from '@mui/icons-material/SportsBasketball';
 import Paper from '@mui/material/Paper';
 import Input from '@mui/material/Input';
-import ReactToPrint from 'react-to-print';
 
 import { StaticImage } from "gatsby-plugin-image";
 import { Box } from "@mui/system";
