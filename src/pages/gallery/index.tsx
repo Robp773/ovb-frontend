@@ -66,9 +66,9 @@ const GalleryPage = ({ data }) => {
                   <Typography variant="h6" id="transition-modal-title">
                     {modalImg.gallery_image_title}
                   </Typography>
-                  <Typography variant="subtitle1" id="transition-modal-title">
+                  {/* <Typography variant="subtitle1" id="transition-modal-title">
                     {modalImg.gallery_image_date ? modalImg.gallery_image_date : null}
-                  </Typography>
+                  </Typography> */}
                   <Typography variant="subtitle1" id="transition-modal-description">
                     {modalImg.gallery_image.caption}
                   </Typography>
