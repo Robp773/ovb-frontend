@@ -34,9 +34,8 @@ const DrillDetails = (props) => {
                     icon={<TimeIcon />}
                     label={`${props.node.time_estimate} mins`}
                     variant="outlined"
-                    style={{
-                        margin: "3px"
-                    }}
+                    style={{margin: "3px 3px 3px 0" }}
+
                 />
             </Box>
 

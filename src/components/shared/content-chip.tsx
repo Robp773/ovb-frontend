@@ -8,7 +8,7 @@ const ContentChip = (props, data) => {
       size="small"
       color="secondary"
       label={`${props.name}`}
-      style={{ marginBottom: "3px", marginRight: "3px" }}
+      style={{margin: "3px 3px 3px 0" }}
     />
   );
 };

@@ -247,7 +247,7 @@ const DrillsPage = (data) => {
           </Box>
 
           <Box>
-            <TextField autoComplete="off" value={textQuery} type="search" color="secondary" fullWidth style={{ margin: "10px auto" }} label="Drill Name or Tags" onChange={(e) => { setTextQuery(e.target.value); handleChange(e, "text") }} />
+            <TextField autoComplete="off" value={textQuery} type="search" color="secondary" fullWidth style={{ margin: "10px auto" }} label="Text search" onChange={(e) => { setTextQuery(e.target.value); handleChange(e, "text") }} />
             {!isInitialSearch && !results.length && <Alert severity="warning">No results found</Alert>}
             {results.length > 0 && <Alert severity="success">{results.length} matching drills found.</Alert>}
 
@@ -271,6 +271,10 @@ const DrillsPage = (data) => {
                         <ListItemText>
                           <Typography variant="h6">{result.name}</Typography>
                           <DrillDetails node={result} />
+
+                          {result.tags.map((tag, index)=>{
+                            return <ContentChip index={index} name={tag}/>
+                          })}
                           <Box style={{ display: "flex" }}>
                             <Typography style={{ margin: "7px 0 10px 0" }} variant="body2">{result.description}</Typography>
                           </Box>

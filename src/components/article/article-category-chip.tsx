@@ -30,7 +30,7 @@ const ArticleCategoryChip = (props) => {
             size="small"
             color="primary"
             label={props.category.replace(/[_-]/g, " ")}
-            // icon={getArticleIcon(props.category)}
+            icon={getArticleIcon(props.category)}
           />
         </GatsbyLink>
       ) : getArticleIcon(props.category)}

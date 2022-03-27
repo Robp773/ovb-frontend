@@ -28,7 +28,7 @@ const DrillTypeChip = (props) => {
       icon={competencyIcon}
       label={props.name}
       // variant="outlined"
-      style={{ margin: "3px" }}
+      style={{margin: "3px 3px 3px 0" }}
     />
   );
 };

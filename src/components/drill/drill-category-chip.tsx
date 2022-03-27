@@ -6,7 +6,7 @@ import slugify from "@sindresorhus/slugify";
 
 const StyledChip = styled(Chip)({
   textDecoration: "none",
-  margin: "3px"
+  margin: "3px 3px 3px 0"
 });
 
 const DrillCategoryChip = (props) => {

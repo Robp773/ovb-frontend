@@ -35,9 +35,8 @@ const DrillCompetencyChip = (props) => {
       label={props.name}
       color={color}
       // variant="outlined"
-      style={{
-        margin: "3px"
-      }}
+      style={{margin: "3px 3px 3px 0" }}
+
     />
   );
 };

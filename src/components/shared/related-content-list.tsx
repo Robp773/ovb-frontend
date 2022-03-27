@@ -115,27 +115,29 @@ export const RelatedContentWrapper = (props) => {
                   alt={node.title || node.name}
                   image={image}
                 />
-                <CardContent>
-                  <Box style={{ padding: "0 0 5px 0" }}>
+                <CardContent >
+                  <Box style={{ padding: "0 0 5px 0", display: "flex", flexDirection: "column", alignItems: "flex-start" }}>
 
-                    <Typography variant="h6" style={{ display: "flex", alignItems: "center" }}>{node.title || node.name}{props.contentType === "articleTopics" ?
-                      <Box style={{ display: "flex", alignItems: "center", marginLeft: "6px" }}>
-                        <ArticleCategoryChip category={node.name} />
-                      </Box> : null}
+                    <Typography variant="h6" style={{ display: "flex", alignItems: "center" }}>
+                      {node.title || node.name}
+                      {props.contentType === "articleTopics" ?
+                        <Box style={{ display: "flex", alignItems: "center", marginLeft: "6px" }}>
+                          <ArticleCategoryChip category={node.name} />
+                        </Box> : null}
                     </Typography>
                     <Typography variant="body1">{node.date}</Typography>
-
+                    {props.contentType === "articles" ? <ArticleCategoryChip iconWithText category={node.category.name} /> : null}
                     {showDrillDetails ?
                       <DrillDetails node={node} />
                       : null}
 
                     {/* {hasTags ?
-                    <Box>{
-                      node.tags.map((tag, index) => {
-                        return <ContentChip key={`category-${index}`} name={tag.name} />
-                      })}
-                    </Box>
-                    : null} */}
+                      <Box>{
+                        node.tags.map((tag, index) => {
+                          return <ContentChip key={`category-${index}`} name={tag.name} />
+                        })}
+                      </Box>
+                      : null} */}
 
                   </Box>
 
