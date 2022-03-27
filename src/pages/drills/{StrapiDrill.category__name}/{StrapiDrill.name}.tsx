@@ -63,7 +63,7 @@ const CustomArticle = ({ data, location }) => {
           />
         </Box>
 
-        {drill.steps ? <Box  style={{ marginTop: "20px" }}>
+        {drill.steps.length ? <Box  style={{ marginTop: "20px" }}>
           <Typography variant="h5">Steps</Typography>
 
           <Stepper orientation="vertical">
