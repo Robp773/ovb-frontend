@@ -34,7 +34,7 @@ const StyledFooter = styled(Container)(({ theme }) => ({
   width: "100%",
   paddingTop: "50px",
   paddingBottom: "30px",
-  color: `${theme.palette.text.secondary}`,
+  color: `${theme.palette.common.white}`,
   display: "flex !important",
   flexDirection: "column",
 })
@@ -51,7 +51,7 @@ const LinkTitle = styled(Typography)({
 
 const StyledLink = styled(Link)(({ theme }) => ({
   textDecoration: "none",
-  color: `${theme.palette.text.secondary}`,
+  color: `${theme.palette.common.white}`,
   margin: "auto"
 })
 );

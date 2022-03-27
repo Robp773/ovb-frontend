@@ -67,7 +67,7 @@ const IndexPage = ({ data }) => {
 
       <WhoWeAreCard>
         <Typography
-          color="textSecondary"
+          color="common.white"
           align="center"
           variant="h3"
           style={{
@@ -78,7 +78,7 @@ const IndexPage = ({ data }) => {
         </Typography>
 
         <TextWrapper>
-          <WhoWeAreText color="textSecondary" variant="subtitle1">
+          <WhoWeAreText color="common.white" variant="subtitle1">
             {page.intro_text}
           </WhoWeAreText>
         </TextWrapper>

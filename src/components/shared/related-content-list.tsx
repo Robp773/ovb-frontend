@@ -4,6 +4,7 @@ import {
   CardContent,
   Chip,
   Divider,
+  Grow,
 } from "@mui/material";
 import Button from "@mui/material/Button";
 import Card from "@mui/material/Card";
@@ -100,33 +101,35 @@ export const RelatedContentWrapper = (props) => {
           }
         }
         return (
-          <Card variant="outlined" key={index}
-            style={{
-              display: "flex",
-              flexDirection: "column",
-              justifyContent: "space-between",
-            }}
-          >
-            <div>
-              <GatsbyImage
-                alt={node.title || node.name}
-                image={image}
-              />
-              <CardContent>
-                <Box style={{ padding: "0 0 5px 0" }}>
+          <Grow key={index} in={item ? true : false} timeout={index * 500}>
 
-                  <Typography variant="h6" style={{ display: "flex", alignItems: "center" }}>{node.title || node.name}{props.contentType === "articleTopics" ?
-                    <Box style={{ display: "flex", alignItems: "center", marginLeft: "6px" }}>
-                      <ArticleCategoryChip category={node.name} />
-                    </Box> : null}
-                  </Typography>
-                  <Typography variant="body1">{node.date}</Typography>
+            <Card variant="outlined" key={index}
+              style={{
+                display: "flex",
+                flexDirection: "column",
+                justifyContent: "space-between",
+              }}
+            >
+              <div>
+                <GatsbyImage
+                  alt={node.title || node.name}
+                  image={image}
+                />
+                <CardContent>
+                  <Box style={{ padding: "0 0 5px 0" }}>
 
-                  {showDrillDetails ?
-                    <DrillDetails node={node} />
-                    : null}
+                    <Typography variant="h6" style={{ display: "flex", alignItems: "center" }}>{node.title || node.name}{props.contentType === "articleTopics" ?
+                      <Box style={{ display: "flex", alignItems: "center", marginLeft: "6px" }}>
+                        <ArticleCategoryChip category={node.name} />
+                      </Box> : null}
+                    </Typography>
+                    <Typography variant="body1">{node.date}</Typography>
 
-                  {/* {hasTags ?
+                    {showDrillDetails ?
+                      <DrillDetails node={node} />
+                      : null}
+
+                    {/* {hasTags ?
                     <Box>{
                       node.tags.map((tag, index) => {
                         return <ContentChip key={`category-${index}`} name={tag.name} />
@@ -134,26 +137,27 @@ export const RelatedContentWrapper = (props) => {
                     </Box>
                     : null} */}
 
-                </Box>
+                  </Box>
 
-                <Divider style={{ margin: "5px auto" }} />
+                  <Divider style={{ margin: "5px auto" }} />
 
-                <Typography variant="body2" dangerouslySetInnerHTML={{
-                  __html: node.one_sentence_description || node.description,
-                }} />
+                  <Typography variant="body2" dangerouslySetInnerHTML={{
+                    __html: node.one_sentence_description || node.description,
+                  }} />
 
-              </CardContent>
-            </div>
+                </CardContent>
+              </div>
 
-            <CardActions>
-              <CardActionButton
-                to={path}
-              >
-                <Button size="small" color="secondary"
-                  variant="contained">Read more</Button>
-              </CardActionButton>
-            </CardActions>
-          </Card>
+              <CardActions>
+                <CardActionButton
+                  to={path}
+                >
+                  <Button size="small" color="secondary"
+                    variant="contained">Read more</Button>
+                </CardActionButton>
+              </CardActions>
+            </Card>
+          </Grow>
         );
       })}
     </GridParent >

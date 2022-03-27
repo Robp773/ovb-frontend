@@ -37,9 +37,10 @@ const CustomArticle = ({ data, location }) => {
           </video>
         </Box> : null} */}
 
+
         <Box style={{ marginTop: "20px" }}>
           <Typography variant="h5">Details</Typography>
-          <DrillDetails node={drill} />
+          <DrillDetails withCategory node={drill} />
         </Box>
         <Box style={{ marginTop: "20px" }}>
 

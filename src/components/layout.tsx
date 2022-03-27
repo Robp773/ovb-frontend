@@ -5,17 +5,25 @@ import Footer from "./footer";
 import NavBar from "./navbar";
 
 const theme = createTheme({
+
   palette: {
     primary: {
       main: "#9c1314",
+      contrastText: "#fff"
     },
     secondary: {
       main: "#353333",
     },
-    text: {
-      secondary: "#fff",
-      // hint: "yellow",
-    },
+
+    // text: {
+    //   primary: "#353333",
+    //   secondary: "#fff",
+    //   disabled: "#353333"
+    // },
+    
+    info: {
+      main: "#353333"
+    }
 
   },
 });
@@ -28,7 +36,6 @@ const Layout = ({ children }) => {
       <NavBar />
       {children}
       <Footer />
-
     </ThemeProvider>
   );
 };
