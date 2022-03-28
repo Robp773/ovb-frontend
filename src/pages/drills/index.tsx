@@ -255,38 +255,34 @@ const DrillsPage = (data) => {
 
 
           <List>
-            {results.map((result, index) => {
-              const { isIndividual, isGroup, isTeam, timeEstimate, competency } = result
-              const details = { isIndividual, isGroup, isTeam, time_estimate: timeEstimate, competency }
-              console.log(result)
-              return (
-                <Grow in={result ? true : false} timeout={index * 300}>
+            {results.map((result, index) =>
+            (
+              <Grow in={result} timeout={(index + 1) * 300}>
+                <ListItem dense style={{ margin: "5px 0", width: "max-width" }} disablePadding>
+                  <Paper variant="outlined" style={{ width: "100%" }}>
+                    <ListItemButton>
+                      <ListItemIcon>
+                        <AssignmentIcon fontSize="large" color="info" />
+                      </ListItemIcon>
+                      <ListItemText>
+                        <Typography variant="h6">{result.name}</Typography>
+                        <DrillDetails node={result} />
 
-                  <ListItem dense style={{ margin: "5px 0", width: "max-width" }} disablePadding>
-                    <Paper variant="outlined" style={{ width: "100%" }}>
-                      <ListItemButton>
-                        <ListItemIcon>
-                          <AssignmentIcon fontSize="large" color="info" />
-                        </ListItemIcon>
-                        <ListItemText>
-                          <Typography variant="h6">{result.name}</Typography>
-                          <DrillDetails node={result} />
+                        {result.tags.map((tag, index) => {
+                          return <ContentChip index={index} name={tag} />
+                        })}
+                        <Box style={{ display: "flex" }}>
+                          <Typography style={{ margin: "7px 0 10px 0" }} variant="body2">{result.description}</Typography>
+                        </Box>
+                        <Button href={`/drills/${slugify(result.category)}/${slugify(result.name)}`} color="secondary" variant="outlined">Open</Button>
+                      </ListItemText>
+                    </ListItemButton>
 
-                          {result.tags.map((tag, index)=>{
-                            return <ContentChip index={index} name={tag}/>
-                          })}
-                          <Box style={{ display: "flex" }}>
-                            <Typography style={{ margin: "7px 0 10px 0" }} variant="body2">{result.description}</Typography>
-                          </Box>
-                          <Button href={`/drills/${slugify(result.category)}/${slugify(result.name)}`} color="secondary" variant="outlined">Open</Button>
-                        </ListItemText>
-                      </ListItemButton>
-
-                    </Paper>
-                  </ListItem>
-                </Grow>
-              )
-            })}
+                  </Paper>
+                </ListItem>
+              </Grow>
+            )
+            )}
           </List>
         </Container>
 
