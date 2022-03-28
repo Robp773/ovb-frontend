@@ -254,11 +254,11 @@ const DrillsPage = (data) => {
           </Box>
 
 
-          <List>
+          <List style={{ maxHeight: "750px", overflowY: "auto" }}>
             {results.map((result, index) =>
             (
               <Grow in={result} timeout={(index + 1) * 300}>
-                <ListItem dense style={{ margin: "5px 0", width: "max-width" }} disablePadding>
+                <ListItem dense style={{ margin: "5px 0", width: "max-width"}} disablePadding>
                   <Paper variant="outlined" style={{ width: "100%" }}>
                     <ListItemButton>
                       <ListItemIcon>

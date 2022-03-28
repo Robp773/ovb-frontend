@@ -101,7 +101,7 @@ export const RelatedContentWrapper = (props) => {
           }
         }
         return (
-          <Grow key={index} in={item ? true : false} timeout={index * 500}>
+          <Grow key={index} in={item ? true : false} timeout={(index + 1) * 250}>
 
             <Card variant="outlined" key={index}
               style={{
