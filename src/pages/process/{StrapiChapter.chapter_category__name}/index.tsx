@@ -7,7 +7,7 @@ import VerticalLinearStepper from "../../../components/chapter/toc";
 import ContentHeading from "../../../components/shared/content-heading";
 import ContentWrapper from "../../../components/shared/content-wrapper";
 
-const ChapterCategory = ({ data: { strapiChapterCategory: chapterCategory, allStrapiChapter: { edges: chapters } } }) => {
+const ChapterCategory = ({ data: { strapiChapterCategory: chapterCategory, allStrapiChapter: { edges: chapters } }, location }) => {
 
   const seo = { title: "Leadership Skills" };
 

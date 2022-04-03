@@ -10,7 +10,7 @@ import SEO from "../../../components/seo";
 import ContentHeading from "../../../components/shared/content-heading";
 import PageWrapper from "../../../components/shared/content-wrapper";
 
-const ChapterPage = ({ data: { strapiChapter: chapter, allStrapiChapter: { edges: allRelatedChapters } }, location }, props) => {
+const ChapterPage = ({ data: { strapiChapter: chapter, allStrapiChapter: { edges: allRelatedChapters } }, location }) => {
 
   const [drawerOpen, setDrawerOpen] = useState(false)
   const seo = { title: chapter.name };
