@@ -10,6 +10,7 @@ import ArticleCategoryChip from "../article/article-category-chip";
 import DrillCategoryChip from "../drill/drill-category-chip";
 import ContentChip from "./content-chip";
 import ContentImage from "./content-main-image";
+import ChapterCategoryChip from "../drill/chapter-category-chip";
 
 const Heading = styled(Box)(({ theme }) => ({
   display: "flex",
@@ -35,6 +36,10 @@ const TagListBox = styled(Box)({
   padding: "10px 0",
 });
 
+const TitleText = styled("span")(({ theme }) => ({
+  borderBottom: `3px solid ${theme.palette.primary.main}`,
+}))
+
 const BreadCrumbsWrapper = styled("div")({
   position: "absolute",
   top: 0,
@@ -44,7 +49,7 @@ const BreadCrumbsWrapper = styled("div")({
   alignItems: "center",
 });
 
-const StyledLink = styled(GatsbyLink)(({ theme }) => ({ 
+const StyledLink = styled(GatsbyLink)(({ theme }) => ({
   textDecoration: "none",
   color: theme.palette.secondary.main,
 
@@ -53,7 +58,7 @@ const StyledLink = styled(GatsbyLink)(({ theme }) => ({
   },
 }));
 
-const StyledNavIcon =  styled(NavigateNextIcon)(({ theme }) => ({
+const StyledNavIcon = styled(NavigateNextIcon)(({ theme }) => ({
   color: theme.palette.secondary.main,
 }));
 
@@ -91,11 +96,15 @@ const ContentHeading = (props, data) => {
       CategoryChip = <DrillCategoryChip category={metaData.category} />;
       break;
     }
+    case "chapter": {
+      CategoryChip = <ChapterCategoryChip category={metaData.category} />;
+      break;
+    }
   }
   return (
     <Heading >
 
-      {props.contentType === "activity" ? null : (
+      {props.contentType === "activity" || props.contentType === "chapter" ? null : (
         <BreadCrumbsWrapper>
           {pathList.map((link, index) => {
             return (
@@ -125,8 +134,11 @@ const ContentHeading = (props, data) => {
 
       <HeadingContentBox>
         <Typography align="center" variant="h4">
-          {props.title}
+          <TitleText>
+            {props.title}
+          </TitleText>
         </Typography>
+
         <Typography align="center" gutterBottom={true} variant="subtitle1">
           {metaData.date}
         </Typography>

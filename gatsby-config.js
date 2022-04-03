@@ -24,7 +24,7 @@ module.exports = {
       options: {
         apiURL: process.env.API_URL || `http://localhost:1337`,
         queryLimit: 1000, // Default to 100
-        collectionTypes: [`article`, `article-category`, `drill`, `drill-category`, `ropes-course-activity`],
+        collectionTypes: [`article`, `article-category`, `drill`, `drill-category`, `ropes-course-activity`, `chapter`, `chapter-category`],
         singleTypes: [`global`, `home-page`, `about-page`, `coaches-page`, `articles-page`, `drills-page`, `team-skills-page`, `technical-skills-page`, `leadership-skills-page`, `gallery-page`, `forms-page`, `scholarships-page`],
       },
     },
@@ -118,7 +118,7 @@ module.exports = {
             if (isIndividual) groupTypes.push("Individual")
             if (isTeam) groupTypes.push("Team")
 
-            return ({
+            return ({ 
               id,
               name,
               competency,
