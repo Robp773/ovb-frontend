@@ -12,7 +12,6 @@ import * as React from 'react';
 
 export default function VerticalLinearStepper({ chapters, isInDrawer, fullWidth, activeChapter }) {
 
-
     return (
         <Box sx={{ maxWidth: `${fullWidth ? "auto" : "400px"}`, padding: `${isInDrawer ? "20px" : "0"}` }}>
             <Typography variant='h5'>Chapters</Typography>

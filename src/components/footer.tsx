@@ -14,9 +14,12 @@ const CopyrightEl = styled(Container)(
   })
 );
 
-const LinksContainer = styled(Container)({
+const LinksContainer = styled(Container)(({ theme }) => ({
   display: "flex !important",
-});
+  [theme.breakpoints.down('md')]: {
+    padding: 0,
+  }
+}));
 
 const ContactUsContainer = styled(Container)({
   display: "flex !important",
@@ -24,10 +27,13 @@ const ContactUsContainer = styled(Container)({
   alignItems: "center",
 });
 
-const ContentContainer = styled(Container)({
+const ContentContainer = styled(Container)(({ theme }) => ({
   display: "flex !important",
   justifyContent: "space-between",
-});
+  [theme.breakpoints.down('md')]: {
+    flexDirection: "column"
+  }
+}));
 
 const StyledFooter = styled(Container)(({ theme }) => ({
   background: `${theme.palette.secondary.main}`,
@@ -40,10 +46,13 @@ const StyledFooter = styled(Container)(({ theme }) => ({
 })
 );
 
-const LinkTypeWrapper = styled(Container)({
+const LinkTypeWrapper = styled(Container)(({ theme }) => ({
   display: "flex",
   justifyContent: "center",
-});
+  [theme.breakpoints.down('sm')]: {
+    padding: "0 !important"
+  }
+}))
 
 const LinkTitle = styled(Typography)({
   textAlign: "center",
@@ -56,6 +65,7 @@ const StyledLink = styled(Link)(({ theme }) => ({
 })
 );
 
+
 const ContactText = styled(Typography)({
   fontWeight: "bold",
   color: "#f6dc3a"
@@ -63,9 +73,11 @@ const ContactText = styled(Typography)({
 
 const Footer = () => {
   return (
-    <StyledFooter maxWidth={false}>
-      <ContentContainer maxWidth={false}>
-        <LinksContainer>
+    <StyledFooter
+      maxWidth={false}>
+      <ContentContainer
+        maxWidth={false}>
+        <LinksContainer maxWidth={false}>
           <LinkTypeWrapper>
             <List
               component="nav"

@@ -1,247 +1,62 @@
-import HomeRoundedIcon from "@material-ui/icons/HomeRounded";
-import { Container } from "@mui/material";
+import { Box, Drawer } from "@material-ui/core";
+
 import AppBar from "@mui/material/AppBar";
 import Button from "@mui/material/Button";
-import Menu from "@mui/material/Menu";
-import MenuItem from "@mui/material/MenuItem";
-import { styled } from '@mui/material/styles';
+
+import { styled } from "@mui/material/styles";
 import Toolbar from "@mui/material/Toolbar";
-import { useLocation } from "@reach/router";
-import { Link } from "gatsby";
-import React from "react";
+import MenuIcon from "@mui/icons-material/Menu";
+import React, { useState } from "react";
+import IconButton from "@mui/material/IconButton";
 
-const AppBarEl = styled(AppBar)(
-  ({ theme }) => ({
-  })
-)
-const ToolbarEl = styled(Toolbar)(
-  ({ theme }) => ({
-    backgroundColor: `${theme.palette.secondary.main}`,
-    width: "100%"
-  })
-)
+import NavBtns from "./navBtns";
 
-const ButtonContainer = styled(Container)
-  ({
-    display: "flex !important",
-    justifyContent: "space-evenly",
-  })
+const AppBarEl = styled(AppBar)(({ theme }) => ({}));
+const ToolbarEl = styled(Toolbar)(({ theme }) => ({
+  backgroundColor: `${theme.palette.secondary.main}`,
+  width: "100%",
+}));
 
-const NavLink = styled(Link)(({ theme }) => ({ textDecoration: "none", color: theme.palette.secondary.main }))
+const MobileDrawerBtn = styled(IconButton)(({ theme }) => ({
+  [theme.breakpoints.up("md")]: {
+    display: "none !important",
+  },
+  color: theme.palette.common.white,
+}));
 
-const NavDropDownParent = styled("div")({ position: "relative" })
+const DesktopNavBtns = styled(Box)(({ theme }) => ({
+  width: "100%",
+  [theme.breakpoints.down("md")]: {
+    display: "none !important",
+  },
+}));
 
-const NavBtn = styled(Button)(({ isActive, theme }) =>
-({
-  borderRadius: "0",
-  boxShadow: "none",
-  border: `${isActive ? `1px solid ${theme.palette.common.white}` : '1px solid transparent'} `,
-  color: theme.palette.common.white
-})
-)
-
-
-const DropDownMenu = styled(Menu)({ position: "absolute" })
-
-const infoPages = ["/info/about", "/info/coaches", "/info/calendar", ,];
-const processPages = [
-  "/process/leadership",
-  "/process/teamwork",
-  "/process/technical",
-];
 const NavBar = () => {
-  const location = useLocation().pathname;
-
-  const [infoAnchorEl, setInfoAnchorEl] = React.useState(null);
-  const [processAnchorEl, setprocessAnchorEl] = React.useState(null);
-
-  const handleInfoClick = (event) => {
-    setInfoAnchorEl(event.currentTarget);
-  };
-
-  const handleInfoClose = () => {
-    setInfoAnchorEl(null);
-  };
-
-  const handleProcessesClick = (event) => {
-    setprocessAnchorEl(event.currentTarget);
-  };
-
-  const handleProcessesClose = () => {
-    setprocessAnchorEl(null);
-  };
-
+  const [drawerOpen, setDrawerOpen] = useState(false);
 
   return (
-    <AppBarEl
-      position="static"
-    >
-      <ToolbarEl disableGutters >
-        <ButtonContainer>
-          <NavLink
-            to="/"
-          >
-            <NavBtn>
-              <HomeRoundedIcon />
-            </NavBtn>
-          </NavLink>
+    <AppBarEl position="static">
+      <ToolbarEl disableGutters>
+        <MobileDrawerBtn
+          onClick={() => {
+            setDrawerOpen(true);
+          }}
+        >
+          <MenuIcon />
+        </MobileDrawerBtn>
 
-          <NavDropDownParent>
-            <NavBtn
-              onClick={handleInfoClick}
-              isActive={infoPages.includes(location)}
-            >
-              Info
-            </NavBtn>
-            <DropDownMenu
-              id="simple-menu"
-              anchorEl={infoAnchorEl}
-              keepMounted
-              open={Boolean(infoAnchorEl)}
-              onClose={handleInfoClose}
-              getContentAnchorEl={null}
-              anchorOrigin={{
-                vertical: "bottom",
-                horizontal: "center",
-              }}
-              transformOrigin={{
-                vertical: "top",
-                horizontal: "center",
-              }}
-            >
-
-              <NavLink
-                onClick={handleInfoClose}
-                to="/info/about"
-              >
-                <MenuItem>About</MenuItem>
-              </NavLink>
-              <NavLink
-                onClick={handleInfoClose}
-                to="/info/coaches"
-              >
-                <MenuItem onClick={handleInfoClose}>Coaches</MenuItem>
-              </NavLink>
-              <NavLink
-                onClick={handleInfoClose}
-                to="/info/calendar"
-              >
-                <MenuItem onClick={handleInfoClose}>Calendar</MenuItem>
-              </NavLink>
-
-            </DropDownMenu>
-          </NavDropDownParent>
-
-          <NavLink
-            to="/articles">
-            <NavBtn
-              isActive={location === "/articles"}
-            >
-              Articles
-            </NavBtn>
-          </NavLink>
-
-          <NavLink to="/drills">
-            <NavBtn
-              isActive={location === "/drills"}
-            >
-              Drills
-            </NavBtn>
-          </NavLink>
-
-
-          <NavDropDownParent>
-            <NavBtn
-              onClick={handleProcessesClick}
-              isActive={processPages.includes(location)}
-            >
-              Process
-            </NavBtn>
-            <DropDownMenu
-              id="simple-menu"
-              anchorEl={processAnchorEl}
-              keepMounted
-              open={Boolean(processAnchorEl)}
-              onClose={handleProcessesClose}
-              getContentAnchorEl={null}
-              anchorOrigin={{
-                vertical: "bottom",
-                horizontal: "center",
-              }}
-              transformOrigin={{
-                vertical: "top",
-                horizontal: "center",
-              }}
-            >
-
-              <NavLink
-                onClick={handleProcessesClose}
-                to="/process/teamwork"
-              >
-                <MenuItem onClick={handleProcessesClose}>Teamwork</MenuItem>
-              </NavLink>
-              <NavLink
-                onClick={handleProcessesClose}
-                to="/process/technical"
-              >
-                <MenuItem onClick={handleProcessesClose}>Technical</MenuItem>
-              </NavLink>
-              <NavLink
-                color="textPrimary"
-                onClick={handleProcessesClose}
-                to="/process/leadership"
-              >
-                <MenuItem onClick={handleProcessesClose}>Leadership</MenuItem>
-              </NavLink>
-
-            </DropDownMenu>
-          </NavDropDownParent>
-
-          <NavLink to="/gallery">
-            <NavBtn
-              isActive={location === "/gallery"}
-            >
-              Gallery
-            </NavBtn>
-          </NavLink>
-
-          <NavLink to="/forms">
-            <NavBtn isActive={location === "/forms"}
-            >
-              Forms
-            </NavBtn>
-          </NavLink>
-
-          <NavLink to="/scholarships">
-            <NavBtn isActive={location === "/scholarships"}
-            >
-              Scholarships
-            </NavBtn>
-          </NavLink>
-
-          <NavLink to="/store">
-            <NavBtn isActive={location === "/store"}
-            >
-              Store
-            </NavBtn>
-          </NavLink>
-
-        </ButtonContainer>
+        <Drawer
+          PaperProps={{ variant: "outlined", style: { background: "#353333" } }}
+          onClick={() => setDrawerOpen(false)}
+          open={drawerOpen}
+        >
+          <NavBtns isMobile />
+        </Drawer>
+        <DesktopNavBtns>
+          <NavBtns />
+        </DesktopNavBtns>
       </ToolbarEl>
     </AppBarEl>
-    /* <div className={classes.search}>
-          <div className={classes.searchIcon}>
-            <SearchIcon />
-          </div>
-          <InputBase
-            placeholder="Search…"
-            classes={{
-              root: classes.inputRoot,
-              input: classes.inputInput,
-            }}
-            inputProps={{ "aria-label": "search" }}
-          /> 
-  </div>*/
   );
 };
 
