@@ -37,7 +37,7 @@ const TagListBox = styled(Box)({
 });
 
 const TitleText = styled("span")(({ theme }) => ({
-  borderBottom: `3px solid ${theme.palette.primary.main}`,
+  // borderBottom: `3px solid ${theme.palette.primary.main}`,
 }))
 
 const BreadCrumbsWrapper = styled("div")({
