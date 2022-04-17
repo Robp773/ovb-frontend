@@ -24,6 +24,7 @@ const style = {
   textAlign: "center",
   maxHeight: "100vh",
   overflowY: "auto",
+  width: "fit-content",
 };
 
 const GalleryPage = ({ data }) => {
@@ -55,8 +56,14 @@ const GalleryPage = ({ data }) => {
         >
           <Fade in={open}>
             {modalImg ? (
-              <Box sx={style}>
+              <Box
+                onClick={() => {
+                  handleClose();
+                }}
+                sx={style}
+              >
                 <GatsbyImage
+                  style={{ width: "fit-content" }}
                   objectFit="contain"
                   image={
                     modalImg.gallery_image.localFile.childImageSharp
@@ -97,11 +104,11 @@ const GalleryPage = ({ data }) => {
             <ImageListItem
               key={item.gallery_image_title}
               style={{ cursor: "pointer" }}
+              onClick={() => {
+                handleOpen(item);
+              }}
             >
               <GatsbyImage
-                onClick={() => {
-                  handleOpen(item);
-                }}
                 image={
                   item.gallery_image.localFile.childImageSharp.gatsbyImageData
                 }
