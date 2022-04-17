@@ -54,9 +54,12 @@ const AboutLink = styled(Link)({
   textDecoration: "none",
 });
 
-const ActivityContainer = styled("div")({
-  padding: "40px",
-});
+const ActivityContainer = styled("div")(({ theme }) => ({
+  padding: "20px",
+  [theme.breakpoints.down("sm")]: {
+    padding: "5px"
+  },
+}))
 
 const IndexPage = ({ data }) => {
   const { strapiHomePage: page, allStrapiArticle: articles } = data;
@@ -160,8 +163,8 @@ export const articlePageQuery = graphql`
             localFile {
               childImageSharp {
                 gatsbyImageData(
-                  height: 200,
-                  width: 350,
+                  height: 750,
+                  width: 1000,
                   transformOptions: { fit: FILL, cropFocus: CENTER }
                 )
               }
