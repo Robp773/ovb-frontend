@@ -48,7 +48,7 @@ const BreadCrumbsWrapper = styled("div")(({ theme }) => ({
   position: "absolute",
   top: 0,
   left: 0,
-  padding: "5px 20px",
+  padding: "5px 10px",
   display: "flex",
   alignItems: "center",
   zIndex: 999,
