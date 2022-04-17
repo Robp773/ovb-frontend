@@ -10,6 +10,11 @@ import PageImage from "./static-page-main-image";
 const Heading = styled(Box)(({ theme }) => ({
   textAlign: "center",
   display: "flex",
+
+  [theme.breakpoints.down("md")]: {
+    flexDirection: "column"
+  },
+  
 }));
 
 const HeadingTitle = styled(Typography)(({ theme }) => ({

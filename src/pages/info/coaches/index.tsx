@@ -1,5 +1,5 @@
 import { Container, Divider, Typography } from "@mui/material";
-import { styled } from '@mui/material/styles';
+import { styled } from "@mui/material/styles";
 import { graphql } from "gatsby";
 import { GatsbyImage } from "gatsby-plugin-image";
 import React from "react";
@@ -12,13 +12,16 @@ const HeadingContainer = styled("div")(({ theme }) => ({
   display: "flex",
   alignItems: "center",
   margin: "20px 0",
-  justifyContent: "center"
+  justifyContent: "center",
+  [theme.breakpoints.down("md")]: {
+    flexDirection: "column",
+  },
 }));
 
 const CoachName = styled(Typography)(({ theme }) => ({
   margin: "auto",
   width: "50%",
-   textAlign: "center"
+  textAlign: "center",
 }));
 
 const CalendarPage = ({ data }) => {
@@ -36,7 +39,9 @@ const CalendarPage = ({ data }) => {
                 <CoachName variant="h6">{coach.coach_name}</CoachName>
                 <GatsbyImage
                   alt={coach.coach_name}
-                  image={coach.coach_image.localFile.childImageSharp.gatsbyImageData}
+                  image={
+                    coach.coach_image.localFile.childImageSharp.gatsbyImageData
+                  }
                 />
               </HeadingContainer>
 
@@ -63,10 +68,10 @@ export const calendarPageQuery = graphql`
           localFile {
             childImageSharp {
               gatsbyImageData(
-                height: 200,
-                width: 300,
-                transformOptions: {fit: FILL},
-              )         
+                height: 200
+                width: 300
+                transformOptions: { fit: FILL }
+              )
             }
           }
         }

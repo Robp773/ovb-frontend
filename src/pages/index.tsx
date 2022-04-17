@@ -1,7 +1,5 @@
-import {
-  Box, Button, Container, Typography
-} from "@mui/material";
-import { styled } from '@mui/material/styles';
+import { Box, Button, Container, Typography } from "@mui/material";
+import { styled } from "@mui/material/styles";
 import { graphql, Link } from "gatsby";
 import { GatsbyImage } from "gatsby-plugin-image";
 import React from "react";
@@ -10,13 +8,17 @@ import SEO from "../components/seo";
 import { RelatedContentWrapper } from "../components/shared/related-content-list";
 import bgImage from "../images/ovb-main-bg.jpg";
 
-const ImageContainer = styled(Box)({
+const ImageContainer = styled(Box)(({ theme }) => ({
   display: "flex",
   justifyContent: "center",
   padding: "25px",
-});
+  // width: "fit-content",
+  [theme.breakpoints.down("md")]: {
+    padding: "10px",
+  },
+}));
 
-const WhoWeAreCard = styled(Box)({
+const WhoWeAreCard = styled(Box)(({ theme }) => ({
   display: "flex",
   flexDirection: "column",
   justifyContent: "center",
@@ -28,7 +30,10 @@ const WhoWeAreCard = styled(Box)({
   alignItems: "space-between",
   padding: "55px",
   clipPath: "polygon(0 10%, 100% 0%, 100% 90%, 0 100%)",
-});
+  [theme.breakpoints.down("md")]: {
+    padding: "55px 20px",
+  },
+}));
 
 const WhoWeAreText = styled(Typography)({
   fontStyle: "italic",
@@ -61,7 +66,10 @@ const IndexPage = ({ data }) => {
   return (
     <Layout>
       <ImageContainer>
-        <GatsbyImage alt="One Voice Basketball logo" style={{ width: "30%" }} image={page.banner_image.localFile.childImageSharp.gatsbyImageData} />
+        <GatsbyImage
+          alt="One Voice Basketball logo"
+          image={page.banner_image.localFile.childImageSharp.gatsbyImageData}
+        />
       </ImageContainer>
       <SEO seo={seo} />
 
@@ -71,7 +79,7 @@ const IndexPage = ({ data }) => {
           align="center"
           variant="h3"
           style={{
-            margin: "20px auto"
+            margin: "20px auto",
           }}
         >
           Who We Are
@@ -89,12 +97,22 @@ const IndexPage = ({ data }) => {
         </AboutLink>
       </WhoWeAreCard>
       <ActivityContainer>
-        <Typography style={{
-          marginBottom: "20px"
-        }} color="textPrimary" align="center" variant="h4">
+        <Typography
+          style={{
+            marginBottom: "20px",
+          }}
+          color="textPrimary"
+          align="center"
+          variant="h4"
+        >
           Recent Articles
         </Typography>
-        <RelatedContentWrapper isHomePage={true} contentType="articles" withCategory items={articles} />
+        <RelatedContentWrapper
+          isHomePage={true}
+          contentType="articles"
+          withCategory
+          items={articles}
+        />
       </ActivityContainer>
     </Layout>
   );
@@ -106,16 +124,14 @@ export const articlePageQuery = graphql`
       id
       intro_text
       banner_image {
-          localFile {
-            childImageSharp {
-              gatsbyImageData(           
-                height: 400,
-                width: 700,              
-                transformOptions: {                 
-                  fit: FILL
-                }
-              )
-            }
+        localFile {
+          childImageSharp {
+            gatsbyImageData(
+              height: 200
+              width: 500
+              transformOptions: { fit: FILL }
+            )
+          }
         }
       }
     }
@@ -129,7 +145,7 @@ export const articlePageQuery = graphql`
             title
           }
           content
-          category { 
+          category {
             name
           }
           created_at
@@ -145,8 +161,8 @@ export const articlePageQuery = graphql`
               childImageSharp {
                 gatsbyImageData(
                   height: 200,
-                  width: 300,
-                  transformOptions: {fit: FILL, cropFocus: CENTER}
+                  width: 350,
+                  transformOptions: { fit: FILL, cropFocus: CENTER }
                 )
               }
             }

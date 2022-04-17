@@ -1,43 +1,12 @@
-import {
-  AccordionDetails,
-  Divider,
-  Typography,
-  Accordion,
-  AccordionSummary
-} from "@mui/material";
-import BookmarkBorderIcon from "@material-ui/icons/BookmarkBorder";
-import ExpandMoreIcon from "@material-ui/icons/ExpandMore";
-import { graphql, Link } from "gatsby";
+import { Divider, Typography } from "@mui/material";
+import { graphql } from "gatsby";
 import React from "react";
 import Layout from "../../../components/layout";
 import SEO from "../../../components/seo";
 import ContentHeading from "../../../components/shared/content-heading";
 import PageWrapper from "../../../components/shared/content-wrapper";
-import { attachContentTypes } from "../../../helpers/modifiers";
-import { RelatedContentWrapper } from "../../../components/shared/related-content-list";
-import { styled } from '@mui/material/styles';
-
-const ReferencesAccordion = styled(Accordion)({
-  marginTop: "30px",
-  border: 0,
-});
-
-const StyledSummary = styled(AccordionSummary)(({ theme }) => ({
-  background: theme.palette.grey[200],
-}));
-
 
 const CustomArticle = ({ data, location }) => {
-  const references = [
-    ...data.strapiArticle.ropes_course_activities,
-    ...data.strapiArticle.drills,
-  ];
-
-  attachContentTypes(
-    data.strapiArticle.drills,
-    data.strapiArticle.ropes_course_activities
-  );
-
   const seo = { title: data.strapiArticle.title };
 
   return (
@@ -45,7 +14,10 @@ const CustomArticle = ({ data, location }) => {
       <SEO seo={seo} />
       <PageWrapper>
         <ContentHeading
-          image={data.strapiArticle.main_media.localFile.childImageSharp.gatsbyImageData}
+          image={
+            data.strapiArticle.main_media.localFile.childImageSharp
+              .gatsbyImageData
+          }
           title={data.strapiArticle.title}
           contentType="article"
           iconWithText={true}
@@ -63,30 +35,13 @@ const CustomArticle = ({ data, location }) => {
             __html: data.strapiArticle.content,
           }}
         />
-        {references.length > 0 ? (
-          <ReferencesAccordion elevation={0}>
-            <StyledSummary
-              expandIcon={<ExpandMoreIcon />}
-              aria-controls="panel1a-content"
-              id="panel1a-header"
-            >
-              <BookmarkBorderIcon />
-              <Typography style={{ marginLeft: "16px" }}>
-                Referenced Content ({references.length})
-              </Typography>
-            </StyledSummary>
-            <AccordionDetails style={{ padding: 0 }}>
-              <RelatedContentWrapper xs={6} contentType="references" items={references} />
-            </AccordionDetails>
-          </ReferencesAccordion>
-        ) : null}
       </PageWrapper>
     </Layout>
   );
 };
 
 export const query = graphql`
-  query($id: String!) {
+  query ($id: String!) {
     strapiArticle(id: { eq: $id }) {
       title
       category {
@@ -99,58 +54,15 @@ export const query = graphql`
         localFile {
           childImageSharp {
             gatsbyImageData(
-              height: 300,
-              width: 450,
-              transformOptions: {fit: FILL},
+              height: 300
+              width: 450
+              transformOptions: { fit: FILL }
             )
-          }
-        }
-      }
-      ropes_course_activities {
-        tags {
-          name
-        }
-        description
-        title
-        main_media {
-          localFile {
-            childImageSharp {
-              gatsbyImageData(
-                height: 200,
-                width: 300,
-                transformOptions: {fit: FILL,  cropFocus: CENTER}
-              )
-            }
           }
         }
       }
       tags {
         name
-      }
-
-      drills {
-        name
-        description
-        category
-        time_estimate
-        isTeam
-        isGroup
-        isIndividual
-        competency
-        tags {
-          name
-        }
-        main_media {
-          localFile {
-            childImageSharp {
-              gatsbyImageData(
-                height: 200,
-                width: 300,
-                transformOptions: {fit: FILL,  cropFocus: CENTER}
-              )
-            }
-          }
-        }
       }
     }
   }

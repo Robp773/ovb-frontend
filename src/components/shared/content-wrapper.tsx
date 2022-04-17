@@ -1,13 +1,16 @@
 import { Container, Paper } from "@mui/material";
-import { styled } from '@mui/material/styles';
+import { styled } from "@mui/material/styles";
 import React from "react";
-const ContentBackground = styled(Container)({
-  maxWidth: "100%"
-});
+const ContentBackground = styled(Container)(({ theme, width }) => ({
+  maxWidth: "100%",
+  [theme.breakpoints.down("sm")]: {
+    padding: "0",
+  },
+}));
 
-const ContentContainer = styled(Paper)((props) => ({
+const ContentContainer = styled(Paper)(({ theme, width }) => ({
   minHeight: "50vh",
-  maxWidth: `${props.width}`,
+  maxWidth: `${width}`,
   display: "flex",
   flexDirection: "column",
   background: "white",
@@ -25,12 +28,18 @@ const ContentContainer = styled(Paper)((props) => ({
     margin: "0",
     width: "100%",
   },
-}))
+
+  [theme.breakpoints.down("sm")]: {
+    padding: "10px",
+  },
+}));
 
 const ContentWrapper = ({ width = "100ch", children }) => {
   return (
     <ContentBackground>
-      <ContentContainer width={width} square={true}> {children}</ContentContainer>
+      <ContentContainer width={width} square={true}>
+        {children}
+      </ContentContainer>
     </ContentBackground>
   );
 };

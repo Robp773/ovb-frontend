@@ -11,9 +11,11 @@ import IconButton from "@mui/material/IconButton";
 
 import NavBtns from "./navBtns";
 
-const AppBarEl = styled(AppBar)(({ theme }) => ({}));
-const ToolbarEl = styled(Toolbar)(({ theme }) => ({
+const AppBarEl = styled(AppBar)(({ theme }) => ({
   backgroundColor: `${theme.palette.secondary.main}`,
+
+}));
+const ToolbarEl = styled(Toolbar)(({ theme }) => ({
   width: "100%",
 }));
 
@@ -35,7 +37,7 @@ const NavBar = () => {
   const [drawerOpen, setDrawerOpen] = useState(false);
 
   return (
-    <AppBarEl position="static">
+    <AppBarEl variant="outlined" position="static">
       <ToolbarEl disableGutters>
         <MobileDrawerBtn
           onClick={() => {

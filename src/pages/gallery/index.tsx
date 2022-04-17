@@ -1,11 +1,11 @@
 import { Typography } from "@mui/material";
-import Backdrop from '@mui/material/Backdrop';
-import Box from '@mui/material/Box';
-import Fade from '@mui/material/Fade';
-import ImageList from '@mui/material/ImageList';
-import ImageListItem from '@mui/material/ImageListItem';
-import ImageListItemBar from '@mui/material/ImageListItemBar';
-import Modal from '@mui/material/Modal';
+import Backdrop from "@mui/material/Backdrop";
+import Box from "@mui/material/Box";
+import Fade from "@mui/material/Fade";
+import ImageList from "@mui/material/ImageList";
+import ImageListItem from "@mui/material/ImageListItem";
+import ImageListItemBar from "@mui/material/ImageListItemBar";
+import Modal from "@mui/material/Modal";
 import { graphql } from "gatsby";
 import { GatsbyImage } from "gatsby-plugin-image";
 import React from "react";
@@ -13,29 +13,28 @@ import Layout from "~/components/layout";
 import SEO from "~/components/seo";
 
 const style = {
-  position: 'absolute',
-  top: '50%',
-  left: '50%',
-  transform: 'translate(-50%, -50%)',
-  bgcolor: 'background.paper',
-  border: '2px solid #000',
+  position: "absolute",
+  top: "50%",
+  left: "50%",
+  transform: "translate(-50%, -50%)",
+  bgcolor: "background.paper",
+  border: "2px solid #000",
   boxShadow: 24,
   p: 2,
   textAlign: "center",
   maxHeight: "100vh",
-  overflowY: "auto"
+  overflowY: "auto",
 };
 
 const GalleryPage = ({ data }) => {
-
   const seo = { title: "Gallery" };
   const [open, setOpen] = React.useState(false);
-  const [modalImg, setModalImage] = React.useState(null)
+  const [modalImg, setModalImage] = React.useState(null);
 
   const handleOpen = (item) => {
-    setModalImage(item)
+    setModalImage(item);
     setOpen(true);
-  }
+  };
 
   const handleClose = () => setOpen(false);
 
@@ -55,11 +54,14 @@ const GalleryPage = ({ data }) => {
           }}
         >
           <Fade in={open}>
-            {modalImg ?
+            {modalImg ? (
               <Box sx={style}>
                 <GatsbyImage
                   objectFit="contain"
-                  image={modalImg.gallery_image.localFile.childImageSharp.gatsbyImageData}
+                  image={
+                    modalImg.gallery_image.localFile.childImageSharp
+                      .gatsbyImageData
+                  }
                   alt={modalImg.gallery_image_title}
                 />
                 <Box style={{ marginTop: "10px", textAlign: "left" }}>
@@ -69,51 +71,69 @@ const GalleryPage = ({ data }) => {
                   {/* <Typography variant="subtitle1" id="transition-modal-title">
                     {modalImg.gallery_image_date ? modalImg.gallery_image_date : null}
                   </Typography> */}
-                  <Typography variant="subtitle1" id="transition-modal-description">
+                  <Typography
+                    variant="subtitle1"
+                    id="transition-modal-description"
+                  >
                     {modalImg.gallery_image.caption}
                   </Typography>
                 </Box>
-              </Box> : null}
+              </Box>
+            ) : null}
           </Fade>
         </Modal>
-        <ImageList variant="masonry" cols={4} gap={3}>
+        <ImageList
+          sx={{
+            columnCount: {
+              xs: "2 !important",
+              sm: "3 !important",
+              md: "4 !important",
+            },
+          }}
+          variant="masonry"
+          gap={3}
+        >
           {data.strapiGalleryPage.main_gallery.map((item) => (
-            <ImageListItem key={item.gallery_image_title} style={{ cursor: "pointer" }}>
+            <ImageListItem
+              key={item.gallery_image_title}
+              style={{ cursor: "pointer" }}
+            >
               <GatsbyImage
-                onClick={() => { handleOpen(item) }}
-                image={item.gallery_image.localFile.childImageSharp.gatsbyImageData}
+                onClick={() => {
+                  handleOpen(item);
+                }}
+                image={
+                  item.gallery_image.localFile.childImageSharp.gatsbyImageData
+                }
                 alt={item.gallery_image_title}
               />
-              <ImageListItemBar
-                title={item.gallery_image_title}
-              />
+              <ImageListItemBar title={item.gallery_image_title} />
             </ImageListItem>
-
           ))}
         </ImageList>
       </Box>
-    </Layout >
+    </Layout>
   );
 };
 
 export const notePageQuery = graphql`
-query {
-strapiGalleryPage {    
-  page_title
-  main_gallery {
-    gallery_image_date(formatString: "M/D/Y")
-    gallery_image_title
-    gallery_image {
-      caption
-      localFile {
-        childImageSharp {
-          gatsbyImageData
+  query {
+    strapiGalleryPage {
+      page_title
+      main_gallery {
+        gallery_image_date(formatString: "M/D/Y")
+        gallery_image_title
+        gallery_image {
+          caption
+          localFile {
+            childImageSharp {
+              gatsbyImageData
+            }
+          }
         }
       }
     }
   }
-}
-}
 `;
 
 export default GalleryPage;

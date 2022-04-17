@@ -3,19 +3,28 @@ import { graphql } from "gatsby";
 
 import Layout from "~/components/layout";
 import SEO from "~/components/seo";
-import Card from '@mui/material/Card';
-import CardActions from '@mui/material/CardActions';
-import CardContent from '@mui/material/CardContent';
-import Button from '@mui/material/Button';
-import { Container, Grid, Modal, Step, StepContent, StepLabel, TextField, Typography } from "@mui/material";
+import Card from "@mui/material/Card";
+import CardActions from "@mui/material/CardActions";
+import CardContent from "@mui/material/CardContent";
+import Button from "@mui/material/Button";
+import {
+  Container,
+  Grid,
+  Modal,
+  Step,
+  StepContent,
+  StepLabel,
+  TextField,
+  Typography,
+} from "@mui/material";
 import ContentWrapper from "../../components/shared/content-wrapper";
 import { styled } from "@mui/styles";
 import { Stepper } from "@mui/material";
 import Assignment from "@material-ui/icons/Assignment";
 import AddAPhoto from "@material-ui/icons/AddAPhoto";
-import SportsBasketballIcon from '@mui/icons-material/SportsBasketball';
-import Paper from '@mui/material/Paper';
-import Input from '@mui/material/Input';
+import SportsBasketballIcon from "@mui/icons-material/SportsBasketball";
+import Paper from "@mui/material/Paper";
+import Input from "@mui/material/Input";
 
 import { StaticImage } from "gatsby-plugin-image";
 import { Box } from "@mui/system";
@@ -33,7 +42,7 @@ const dateTest = function BasicDatePicker() {
       renderInput={(params) => <TextField {...params} />}
     />
   );
-}
+};
 
 const HeadingTitle = styled(Typography)(({ theme }) => ({
   margin: "auto !important",
@@ -41,62 +50,59 @@ const HeadingTitle = styled(Typography)(({ theme }) => ({
 
 const TitleText = styled("span")(({ theme }) => ({
   borderBottom: `3px solid ${theme.palette.primary.main}`,
-}))
-
+}));
 
 const LineBox = styled(Box)(({ theme }) => ({
-  marginBottom: "15px"
-}))
-
+  marginBottom: "15px",
+}));
 
 const Item = styled(Paper)(({ theme }) => ({
   display: "flex",
   flexDirection: "column",
   justifyContent: "center",
   alignItems: "center",
-  padding: "20px"
+  padding: "20px",
 }));
 
 const FormsPage = ({ data }) => {
-
   const seo = { title: "Forms" };
   const [currentForm, setCurrentForm] = useState(null);
   const [open, setOpen] = useState(false);
 
-  // console.log(data)
-
   return (
     <Layout>
-
+      <SEO seo={seo} />
       <ContentWrapper width="85ch">
-
-        <Typography style={{marginBottom: "10px"}} variant="body1">Forms can be printed out and brought to next practice.</Typography>
+        <HeadingTitle variant="h4">{data.strapiFormsPage.page_title}</HeadingTitle>
+        <Typography style={{ marginBottom: "10px" }} variant="body1">
+          Forms can be printed out and brought to next practice.
+        </Typography>
 
         <Grid container spacing={2}>
           {data.strapiFormsPage.forms.map((form) => {
-            console.log(form)
+            return (
+              <Grid item xs={12} sm={6}>
+                <Item>
+                  <Typography variant="h5">{form.form_name}</Typography>
+                  {form.form_name === "Photo Consent" ? (
+                    <AddAPhoto style={{ fontSize: "65px" }} />
+                  ) : (
+                    <Assignment style={{ fontSize: "65px" }} />
+                  )}
 
-            return (<Grid item xs={6}>
-              <Item>
-                <Typography variant="h5">{form.form_name}</Typography>
-                {form.form_name === "Photo Consent" ? <AddAPhoto style={{ fontSize: "65px" }} /> : <Assignment style={{ fontSize: "65px" }} />}
-
-                <Button href={form.file.localFile.publicURL} type="link" variant="contained">
-                  Download
-                </Button>
-              </Item>
-            </Grid>
-
-            )
+                  <Button
+                    href={form.file.localFile.publicURL}
+                    type="link"
+                    variant="contained"
+                  >
+                    Download
+                  </Button>
+                </Item>
+              </Grid>
+            );
           })}
-
-
-
         </Grid>
-
-
       </ContentWrapper>
-
 
       {/* <Modal
         open={open}

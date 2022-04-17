@@ -13,7 +13,7 @@ const AboutPage = ({ data }) => {
   return (
     <Layout>
       <SEO seo={seo} />
-      <ContentWrapper width="85ch">
+      <ContentWrapper>
         <StaticPageHeading
           image={
             data.strapiAboutPage.main_media.localFile.childImageSharp.gatsbyImageData
