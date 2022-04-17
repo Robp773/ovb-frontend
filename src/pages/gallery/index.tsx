@@ -22,7 +22,7 @@ const style = {
   boxShadow: 24,
   p: 2,
   textAlign: "center",
-  maxHeight: "100vh",
+  maxHeight: "90vh",
   overflowY: "auto",
   width: "fit-content",
 };
