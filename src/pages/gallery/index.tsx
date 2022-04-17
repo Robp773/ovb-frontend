@@ -63,7 +63,7 @@ const GalleryPage = ({ data }) => {
                 sx={style}
               >
                 <GatsbyImage
-                  style={{ width: "fit-content" }}
+                  style={{ width: "fit-content", maxHeight: "85vh" }}
                   objectFit="contain"
                   image={
                     modalImg.gallery_image.localFile.childImageSharp
