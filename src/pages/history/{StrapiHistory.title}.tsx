@@ -6,7 +6,7 @@ import SEO from "~/components/seo";
 import ContentHeading from "../../components/shared/content-heading";
 import ContentWrapper from "../../components/shared/content-wrapper";
 
-const HistoryPage = ({ data }) => {
+const HistoryPage = ({ data, location }) => {
   const history = data.strapiHistory;
   const seo = { title: history.title };
 
