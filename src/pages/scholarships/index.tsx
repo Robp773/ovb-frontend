@@ -8,38 +8,36 @@ import { styled } from "@mui/material/styles";
 import ContentWrapper from "../../components/shared/content-wrapper";
 import StaticPageHeading from "../../components/static-page/static-page-heading";
 
-
 const HeadingTitle = styled(Typography)(({ theme }) => ({
   borderBottom: `3px solid ${theme.palette.primary.main}`,
   textAlign: "center",
   width: "fit-content",
-  margin: "0 auto"
+  margin: "0 auto",
 }));
 
 const ScholarshipsPage = ({ data }) => {
-
   const seo = { title: "Scholarships" };
 
-  console.log(data)
+  console.log(data);
 
   return (
     <Layout>
       <SEO seo={seo} />
       <ContentWrapper>
-
-        {/* <HeadingTitle variant="h3">{data.strapiScholarshipsPage.page_title}</HeadingTitle> */}
         <StaticPageHeading
           image={
-            data.strapiScholarshipsPage.main_media.localFile.childImageSharp.gatsbyImageData
+            data.strapiScholarshipsPage.main_media.localFile.childImageSharp
+              .gatsbyImageData
           }
           title={data.strapiScholarshipsPage.page_title}
         />
-        <Typography marginTop="20px" dangerouslySetInnerHTML={{
-          __html: data.strapiScholarshipsPage.page_content
-        }}
-          variant="body1" />
-
-
+        <Typography
+          marginTop="20px"
+          dangerouslySetInnerHTML={{
+            __html: data.strapiScholarshipsPage.page_content,
+          }}
+          variant="body1"
+        />
       </ContentWrapper>
     </Layout>
   );

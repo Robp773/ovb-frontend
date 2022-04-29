@@ -41,6 +41,12 @@ export const RelatedContentWrapper = (props) => {
         let showDrillDetails = false;
 
         switch (props.contentType) {
+          case "histories": {
+            path = `/history/${slugify(node.title)}`;
+            image = node.main_image.localFile.childImageSharp.gatsbyImageData;
+            break;
+          }
+
           case "drillCategories": {
             path = `/drills/${slugify(node.name)}`;
             image = node.image.localFile.childImageSharp.gatsbyImageData;

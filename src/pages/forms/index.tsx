@@ -25,36 +25,23 @@ import AddAPhoto from "@material-ui/icons/AddAPhoto";
 import SportsBasketballIcon from "@mui/icons-material/SportsBasketball";
 import Paper from "@mui/material/Paper";
 import Input from "@mui/material/Input";
-
-import { StaticImage } from "gatsby-plugin-image";
 import { Box } from "@mui/system";
+import StaticPageNoImageHeading from "../../components/static-page/static-page-no-image-heading";
 
-const dateTest = function BasicDatePicker() {
-  const [value, setValue] = React.useState(null);
+// const dateTest = function BasicDatePicker() {
+//   const [value, setValue] = React.useState(null);
 
-  return (
-    <DatePicker
-      label="Basic example"
-      value={value}
-      onChange={(newValue) => {
-        setValue(newValue);
-      }}
-      renderInput={(params) => <TextField {...params} />}
-    />
-  );
-};
-
-const HeadingTitle = styled(Typography)(({ theme }) => ({
-  margin: "auto !important",
-}));
-
-const TitleText = styled("span")(({ theme }) => ({
-  borderBottom: `3px solid ${theme.palette.primary.main}`,
-}));
-
-const LineBox = styled(Box)(({ theme }) => ({
-  marginBottom: "15px",
-}));
+//   return (
+//     <DatePicker
+//       label="Basic example"
+//       value={value}
+//       onChange={(newValue) => {
+//         setValue(newValue);
+//       }}
+//       renderInput={(params) => <TextField {...params} />}
+//     />
+//   );
+// };
 
 const Item = styled(Paper)(({ theme }) => ({
   display: "flex",
@@ -73,7 +60,7 @@ const FormsPage = ({ data }) => {
     <Layout>
       <SEO seo={seo} />
       <ContentWrapper width="85ch">
-        <HeadingTitle variant="h4">{data.strapiFormsPage.page_title}</HeadingTitle>
+      <StaticPageNoImageHeading title={data.strapiFormsPage.page_title} />
         <Typography style={{ marginBottom: "10px" }} variant="body1">
           Forms can be printed out and brought to next practice.
         </Typography>

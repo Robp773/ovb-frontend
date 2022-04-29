@@ -156,6 +156,9 @@ const NavBtns = (props) => {
           </NavLink>
         </DropDownMenu>
       </NavDropDownParent>
+      <NavLink to="/history">
+        <NavBtn isActive={location === "/history"}>History</NavBtn>
+      </NavLink>
       <NavLink to="/gallery">
         <NavBtn isActive={location === "/gallery"}>Gallery</NavBtn>
       </NavLink>

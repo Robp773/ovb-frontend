@@ -24,8 +24,8 @@ module.exports = {
       options: {
         apiURL: process.env.API_URL || `http://localhost:1337`,
         queryLimit: 1000, // Default to 100
-        collectionTypes: [`article`, `article-category`, `drill`, `drill-category`, `ropes-course-activity`, `chapter`, `chapter-category`],
-        singleTypes: [`global`, `home-page`, `about-page`, `coaches-page`, `articles-page`, `drills-page`, `technical-skills-page`, `gallery-page`, `forms-page`, `scholarships-page`],
+        collectionTypes: [`article`, `article-category`, `drill`, `drill-category`, `ropes-course-activity`, `chapter`, `chapter-category`, `history`],
+        singleTypes: [`global`, `home-page`, `about-page`, `coaches-page`, `articles-page`, `drills-page`, `technical-skills-page`, `gallery-page`, `forms-page`, `scholarships-page`, `history-page`],
       },
     },
     `gatsby-plugin-material-ui`,

@@ -1,26 +1,12 @@
-import {
-  Box,
-  Container,
-  Divider,
-  Typography,
-} from "@mui/material";
+import { Box, Container, Divider, Typography } from "@mui/material";
 import { graphql } from "gatsby";
 import React from "react";
 import Layout from "../../components/layout";
 import PageWrapper from "../../components/shared/content-wrapper";
-import { GatsbyImage } from "gatsby-plugin-image";
-import { styled } from '@mui/material/styles';
 import { RelatedContentWrapper } from "../../components/shared/related-content-list";
-
-const HeadingTitle = styled(Typography)(({ theme }) => ({
-  borderBottom: `3px solid ${theme.palette.primary.main}`,
-  textAlign: "center",
-  width: "fit-content",
-  margin: "auto",
-}));
+import StaticPageNoImageHeading from "../../components/static-page/static-page-no-image-heading";
 
 const ArticlesPage = (data) => {
-
   return (
     <Layout>
       <PageWrapper width="100ch">
@@ -31,7 +17,7 @@ const ArticlesPage = (data) => {
           }}
         >
           <Box>
-            <HeadingTitle variant="h3">Articles</HeadingTitle>
+            <StaticPageNoImageHeading title="Articles" />
             <Typography
               style={{
                 maxWidth: "85ch",
@@ -46,15 +32,15 @@ const ArticlesPage = (data) => {
         </Container>
         <Divider style={{ margin: "20px 0" }} />
 
-        <Typography
-          style={{ textAlign: "center" }}
-          variant="h4"
-        >
+        <Typography style={{ textAlign: "center" }} variant="h4">
           Topics
         </Typography>
 
-        <RelatedContentWrapper isHomePage={false} contentType="articleTopics" items={data.data.allStrapiArticleCategory} />
-
+        <RelatedContentWrapper
+          isHomePage={false}
+          contentType="articleTopics"
+          items={data.data.allStrapiArticleCategory}
+        />
       </PageWrapper>
     </Layout>
   );
@@ -71,9 +57,9 @@ export const query = graphql`
             localFile {
               childImageSharp {
                 gatsbyImageData(
-                  height: 750,
-                  width: 1000,
-                  transformOptions: {fit: FILL,  cropFocus: CENTER}
+                  height: 750
+                  width: 1000
+                  transformOptions: { fit: FILL, cropFocus: CENTER }
                 )
               }
             }

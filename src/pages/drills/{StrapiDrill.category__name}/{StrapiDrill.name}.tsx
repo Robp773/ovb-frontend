@@ -1,4 +1,12 @@
-import { Box, Step, StepContent, StepLabel, Stepper, Typography, Divider } from "@mui/material";
+import {
+  Box,
+  Step,
+  StepContent,
+  StepLabel,
+  Stepper,
+  Typography,
+  Divider,
+} from "@mui/material";
 import { graphql } from "gatsby";
 import { GatsbyImage } from "gatsby-plugin-image";
 import { default as React } from "react";
@@ -25,7 +33,6 @@ const CustomArticle = ({ data, location }) => {
             date: null,
             tags: drill.tags,
             category: drill.category.name,
-
           }}
         />
         <Divider style={{ marginTop: "20px" }} />
@@ -37,13 +44,11 @@ const CustomArticle = ({ data, location }) => {
           </video>
         </Box> : null} */}
 
-
         <Box style={{ marginTop: "20px" }}>
           <Typography variant="h5">Details</Typography>
           <DrillDetails withCategory node={drill} />
         </Box>
         <Box style={{ marginTop: "20px" }}>
-
           <Typography variant="h5">Description</Typography>
 
           <Typography
@@ -63,44 +68,47 @@ const CustomArticle = ({ data, location }) => {
           />
         </Box>
 
-        {drill.steps.length ? <Box  style={{ marginTop: "20px" }}>
-          <Typography variant="h5">Steps</Typography>
+        {drill.steps.length ? (
+          <Box style={{ marginTop: "20px" }}>
+            <Typography variant="h5">Steps</Typography>
 
-          <Stepper orientation="vertical">
-            {drill.steps.map((step, index) => {
-              return (
-                <Step key={index} active={true}>
-                  <StepLabel>{step.title}</StepLabel>
-                  <StepContent>
-                    {step.media ? (
-                      <GatsbyImage
-                        alt={step.title}
-                        image={step.media.localFile.childImageSharp.gatsbyImageData}
+            <Stepper orientation="vertical">
+              {drill.steps.map((step, index) => {
+                return (
+                  <Step key={index} active={true}>
+                    <StepLabel>{step.title}</StepLabel>
+                    <StepContent>
+                      {step.media ? (
+                        <GatsbyImage
+                          alt={step.title}
+                          image={
+                            step.media.localFile.childImageSharp.gatsbyImageData
+                          }
+                        />
+                      ) : null}
+
+                      <Typography
+                        style={{ marginTop: "10px" }}
+                        variant="body1"
+                        dangerouslySetInnerHTML={{
+                          __html: step.description,
+                        }}
                       />
-                    ) : null}
-
-                    <Typography
-                      style={{ marginTop: "10px" }}
-                      variant="body1"
-                      dangerouslySetInnerHTML={{
-                        __html: step.description,
-                      }}
-                    />
-                  </StepContent>
-                </Step>
-              );
-            })}
-          </Stepper>    
-          </Box> : null}
-
+                    </StepContent>
+                  </Step>
+                );
+              })}
+            </Stepper>
+          </Box>
+        ) : null}
       </PageWrapper>
     </Layout>
   );
 };
 
 export const query = graphql`
-    query($id: String!) {
-      strapiDrill(id: { eq: $id }) {
+  query ($id: String!) {
+    strapiDrill(id: { eq: $id }) {
       category {
         name
         description
@@ -127,9 +135,9 @@ export const query = graphql`
           localFile {
             childImageSharp {
               gatsbyImageData(
-                height: 300,
-                width: 500,
-                transformOptions: {fit: COVER }
+                height: 300
+                width: 500
+                transformOptions: { fit: COVER }
               )
             }
           }
@@ -140,9 +148,9 @@ export const query = graphql`
         localFile {
           childImageSharp {
             gatsbyImageData(
-              height: 300,
-              width: 450,
-              transformOptions: {fit: FILL},
+              height: 300
+              width: 450
+              transformOptions: { fit: FILL }
             )
           }
         }
