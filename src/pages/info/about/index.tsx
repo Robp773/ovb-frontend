@@ -7,7 +7,6 @@ import ContentWrapper from "../../../components/shared/content-wrapper";
 import StaticPageHeading from "../../../components/static-page/static-page-heading";
 
 const AboutPage = ({ data }) => {
-
   const seo = { title: "About" };
 
   return (
@@ -16,11 +15,12 @@ const AboutPage = ({ data }) => {
       <ContentWrapper>
         <StaticPageHeading
           image={
-            data.strapiAboutPage.main_media.localFile.childImageSharp.gatsbyImageData
+            data.strapiAboutPage.main_media.localFile.childImageSharp
+              .gatsbyImageData
           }
           title={data.strapiAboutPage.title}
         />
-        <Divider  style={{ marginBottom: "20px" }} />
+        <Divider style={{ marginBottom: "20px" }} />
 
         <Typography
           variant="body1"
@@ -41,10 +41,10 @@ export const aboutPageQuery = graphql`
         localFile {
           childImageSharp {
             gatsbyImageData(
-              height: 300,
-              width: 450,
-              transformOptions: {fit: FILL},
-            )          
+              height: 300
+              width: 450
+              transformOptions: { fit: FILL }
+            )
           }
         }
       }

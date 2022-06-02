@@ -4,7 +4,7 @@ import React from "react";
 import Layout from "../../../components/layout";
 import SEO from "../../../components/seo";
 import ContentHeading from "../../../components/shared/content-heading";
-import PageWrapper from "../../../components/shared/content-wrapper";
+import ContentWrapper from "../../../components/shared/content-wrapper";
 
 const CustomArticle = ({ data, location }) => {
   const seo = { title: data.strapiArticle.title };
@@ -12,7 +12,7 @@ const CustomArticle = ({ data, location }) => {
   return (
     <Layout>
       <SEO seo={seo} />
-      <PageWrapper>
+      <ContentWrapper>
         <ContentHeading
           image={
             data.strapiArticle.main_media.localFile.childImageSharp
@@ -35,7 +35,7 @@ const CustomArticle = ({ data, location }) => {
             __html: data.strapiArticle.content,
           }}
         />
-      </PageWrapper>
+      </ContentWrapper>
     </Layout>
   );
 };

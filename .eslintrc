@@ -14,7 +14,7 @@
       "error",
       {
          "arrowParens": "avoid",
-         "semi": false
+         "endOfLine": "auto"
       }
     ],
     "react/react-in-jsx-scope": 0,

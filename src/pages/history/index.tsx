@@ -19,25 +19,16 @@ const HistoryListPage = ({ data }) => {
     <Layout>
       <SEO seo={seo} />
       <ContentWrapper width="85ch">
-        <Container
+        <StaticPageNoImageHeading title={strapiHistoryPage.page_title} />
+        <Typography
           style={{
-            display: "flex",
-            flexDirection: "column",
+            marginTop: "10px",
           }}
-        >
-          <Box>
-            <StaticPageNoImageHeading title={strapiHistoryPage.page_title} />
-            <Typography
-              style={{
-                marginTop: "10px",
-              }}
-              variant="body1"
-              dangerouslySetInnerHTML={{
-                __html: strapiHistoryPage.page_content,
-              }}
-            />
-          </Box>
-        </Container>
+          variant="body1"
+          dangerouslySetInnerHTML={{
+            __html: strapiHistoryPage.page_content,
+          }}
+        />
         <Divider style={{ margin: "20px 0" }} />
 
         <RelatedContentWrapper

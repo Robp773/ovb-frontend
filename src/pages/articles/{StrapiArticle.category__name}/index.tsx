@@ -2,7 +2,7 @@ import { Divider, Typography } from "@mui/material";
 import { graphql } from "gatsby";
 import React from "react";
 import Layout from "../../../components/layout";
-import PageWrapper from "../../../components/shared/content-wrapper";
+import ContentWrapper from "../../../components/shared/content-wrapper";
 import ContentHeading from "../../../components/shared/content-heading";
 import { RelatedContentWrapper } from "../../../components/shared/related-content-list";
 
@@ -12,9 +12,11 @@ const CustomArticle = ({ data, location }) => {
 
   return (
     <Layout>
-      <PageWrapper>
+      <ContentWrapper>
         <ContentHeading
-          image={categoryData.main_media.localFile.childImageSharp.gatsbyImageData}
+          image={
+            categoryData.main_media.localFile.childImageSharp.gatsbyImageData
+          }
           title={categoryData.name}
           iconWithText={false}
           contentType="article"
@@ -27,7 +29,7 @@ const CustomArticle = ({ data, location }) => {
         />
 
         <Typography
-          style={{ marginTop: "20px" }} 
+          style={{ marginTop: "20px" }}
           variant="body1"
           dangerouslySetInnerHTML={{
             __html: categoryData.description,
@@ -36,15 +38,17 @@ const CustomArticle = ({ data, location }) => {
 
         <Divider style={{ margin: "20px 0" }} />
 
-        <Typography style={{ textAlign: "center" }} variant="h4">Articles</Typography>
+        <Typography style={{ textAlign: "center" }} variant="h4">
+          Articles
+        </Typography>
         <RelatedContentWrapper contentType="articles" items={articles} />
-      </PageWrapper>
+      </ContentWrapper>
     </Layout>
   );
 };
 
 export const query = graphql`
-  query($category__name: String!) {
+  query ($category__name: String!) {
     strapiArticleCategory(name: { eq: $category__name }) {
       name
       description
@@ -52,9 +56,9 @@ export const query = graphql`
         localFile {
           childImageSharp {
             gatsbyImageData(
-              height: 300,
-              width: 450,
-              transformOptions: {fit: COVER,  cropFocus: CENTER},
+              height: 300
+              width: 450
+              transformOptions: { fit: COVER, cropFocus: CENTER }
             )
           }
         }
@@ -85,9 +89,9 @@ export const query = graphql`
             localFile {
               childImageSharp {
                 gatsbyImageData(
-                  height: 750,
-                  width: 1000,
-                  transformOptions: {fit: FILL,  cropFocus: CENTER}
+                  height: 750
+                  width: 1000
+                  transformOptions: { fit: FILL, cropFocus: CENTER }
                 )
               }
             }

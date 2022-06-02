@@ -85,26 +85,16 @@ const DrillsPage = (data) => {
   return (
     <Layout>
       <ContentWrapper width="85ch">
-        <Container
+        <StaticPageNoImageHeading title={strapiDrillsPage.page_title} />
+        <Typography
           style={{
-            display: "flex",
-            flexDirection: "column",
+            marginTop: "10px",
           }}
-        >
-          <Box>
-            <StaticPageNoImageHeading title={strapiDrillsPage.page_title} />
-
-            <Typography
-              style={{
-                marginTop: "10px",
-              }}
-              variant="body1"
-              dangerouslySetInnerHTML={{
-                __html: strapiDrillsPage.drills_page_description,
-              }}
-            />
-          </Box>
-        </Container>
+          variant="body1"
+          dangerouslySetInnerHTML={{
+            __html: strapiDrillsPage.drills_page_description,
+          }}
+        />
         <Divider style={{ margin: "20px 0" }} />
 
         <Container style={{ padding: 0 }}>

@@ -59,8 +59,9 @@ const FormsPage = ({ data }) => {
   return (
     <Layout>
       <SEO seo={seo} />
-      <ContentWrapper width="85ch">
-      <StaticPageNoImageHeading title={data.strapiFormsPage.page_title} />
+      <ContentWrapper>
+        <StaticPageNoImageHeading title={data.strapiFormsPage.page_title} />
+
         <Typography style={{ marginBottom: "10px" }} variant="body1">
           Forms can be printed out and brought to next practice.
         </Typography>

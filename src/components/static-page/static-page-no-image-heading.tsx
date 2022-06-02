@@ -6,7 +6,7 @@ const HeadingTitle = styled(Typography)(({ theme }) => ({
   borderBottom: `3px solid ${theme.palette.primary.main}`,
   textAlign: "center",
   width: "fit-content",
-  margin: "auto auto 20px auto",
+  margin: "0 auto 20px auto",
 }));
 
 const StaticPageNoImageHeading = (props, data) => {
