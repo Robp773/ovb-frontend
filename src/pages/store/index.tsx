@@ -1,25 +1,42 @@
 import React from "react";
 import { graphql } from "gatsby";
-
 import Layout from "~/components/layout";
 import SEO from "~/components/seo";
-import { Typography } from "@mui/material";
 import ContentWrapper from "../../components/shared/content-wrapper";
-import ConstructionIcon from "@mui/icons-material/Construction";
-const CalendarPage = ({ data }) => {
+import Products from "../../components/products/products";
+import Cart from "../../components/products/cart-overview";
+import { CartProvider } from "use-shopping-cart";
+import queryString from "query-string";
+import { Typography } from "@mui/material";
+
+const StorePage = (data) => {
   const seo = { title: "Store" };
+
+  const queriedTheme = queryString.parse(data.location.search);
+  const { status } = queriedTheme;
 
   return (
     <Layout>
       <SEO seo={seo} />
       <ContentWrapper>
-        <Typography style={{ margin: "0 auto" }} variant="h4">
-          Under construction
+        <Typography align="center" variant="h5">
+          Store is currently being tested and payments will not work
         </Typography>
-        <ConstructionIcon style={{ fontSize: "150px", margin: "auto" }} />
+        <CartProvider
+          mode="payment"
+          cartMode="client-only"
+          stripe={process.env.GATSBY_STRIPE_PUBLISHABLE_KEY}
+          successUrl={`${process.env.BASE_URL}/store?status=success`}
+          cancelUrl={`${process.env.BASE_URL}/store`}
+          currency="USD"
+          allowedCountries={["US", "GB", "CA"]}
+        >
+          <Products />
+          <Cart status={status} />
+        </CartProvider>
       </ContentWrapper>
     </Layout>
   );
 };
 
-export default CalendarPage;
+export default StorePage;
