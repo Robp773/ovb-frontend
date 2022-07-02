@@ -51,7 +51,6 @@ module.exports = {
           `forms-page`,
           `scholarships-page`,
           `history-page`,
-          `store-page`,
         ],
       },
     },
