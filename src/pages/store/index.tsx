@@ -13,7 +13,7 @@ const StorePage = (data) => {
 
   const queriedTheme = queryString.parse(data.location.search);
   const { status } = queriedTheme;
-
+  console.log(`TEST ${process.env.BASE_URL}/store?status=success`);
   return (
     <Layout>
       <SEO seo={seo} />
