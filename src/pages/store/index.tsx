@@ -13,7 +13,6 @@ const StorePage = (data) => {
 
   const queriedTheme = queryString.parse(data.location.search);
   const { status } = queriedTheme;
-  console.log(`TEST ${process.env.BASE_URL}/store?status=success`);
   return (
     <Layout>
       <SEO seo={seo} />
@@ -25,8 +24,8 @@ const StorePage = (data) => {
           mode="payment"
           cartMode="client-only"
           stripe={process.env.GATSBY_STRIPE_PUBLISHABLE_KEY}
-          successUrl={`${process.env.BASE_URL}/store?status=success`}
-          cancelUrl={`${process.env.BASE_URL}/store`}
+          successUrl={`${process.env.GATSBY_BASE_URL}/store?status=success`}
+          cancelUrl={`${process.env.GATSBY_BASE_URL}/store`}
           currency="USD"
           allowedCountries={["US", "GB", "CA"]}
         >
