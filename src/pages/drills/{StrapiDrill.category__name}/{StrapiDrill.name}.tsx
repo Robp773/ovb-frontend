@@ -55,7 +55,9 @@ const CustomArticle = ({ data, location }) => {
         <Button
           style={{ marginTop: "5px", width: "fit-content" }}
           // fullWidth={false}
-          disabled={savedDrills.selectedDrills[drill.name]}
+          disabled={
+            savedDrills.selectedDrills && savedDrills.selectedDrills[drill.name]
+          }
           onClick={() => {
             const copy = { ...savedDrills.selectedDrills };
             copy[drill.name] = drill;

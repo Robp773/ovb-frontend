@@ -22,7 +22,7 @@ export default function SavedDrillsDrawer({
 }) {
   const [isOpen, setIsOpen] = React.useState(false);
 
-  const drillList = Object.entries(drills);
+  const drillList = drills ? Object.entries(drills) : [];
 
   return (
     <>

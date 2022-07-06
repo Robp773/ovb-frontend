@@ -4,7 +4,6 @@ const DrillsContext = React.createContext({});
 
 const DrillsProvider = ({ children }) => {
   const [selectedDrills, setSelectedDrills] = useState({});
-  console.log(selectedDrills);
   return (
     <DrillsContext.Provider
       value={{

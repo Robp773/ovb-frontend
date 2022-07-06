@@ -166,7 +166,10 @@ export const RelatedContentWrapper = (props) => {
                 </CardActionButton>
                 {props.savedDrills && (
                   <Button
-                    disabled={props.savedDrills.selectedDrills[node.name]}
+                    disabled={
+                      props.savedDrills.selectedDrills &&
+                      props.savedDrills.selectedDrills[node.name]
+                    }
                     onClick={() => {
                       const copy = { ...props.savedDrills.selectedDrills };
                       copy[node.name] = node;
