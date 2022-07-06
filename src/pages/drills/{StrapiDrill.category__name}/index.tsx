@@ -1,18 +1,36 @@
-import { Divider, Typography } from "@mui/material";
+import {
+  Box,
+  Button,
+  Divider,
+  Step,
+  StepContent,
+  StepLabel,
+  Stepper,
+  Typography,
+} from "@mui/material";
 import { graphql } from "gatsby";
-import React from "react";
+import React, { useContext } from "react";
 import Layout from "../../../components/layout";
 import PageWrapper from "../../../components/shared/content-wrapper";
 import ContentHeading from "../../../components/shared/content-heading";
 import { RelatedContentWrapper } from "../../../components/shared/related-content-list";
+import slugify from "@sindresorhus/slugify";
+import SavedDrillsDrawer from "../../../components/drill/saved-drills";
+import DrillsContext from "../../../components/DrillsContext";
 
 const DrillCategoryPage = ({ data, location }) => {
   const categoryData = data.strapiDrillCategory;
   const { allStrapiDrill: drills } = data;
+  const savedDrills = useContext(DrillsContext);
 
   return (
     <Layout>
       <PageWrapper>
+        <SavedDrillsDrawer
+          changeSelectedDrills={savedDrills.changeSelectedDrills}
+          drills={savedDrills.selectedDrills}
+        />
+
         <ContentHeading
           image={categoryData.image.localFile.childImageSharp.gatsbyImageData}
           title={categoryData.name}
@@ -38,14 +56,19 @@ const DrillCategoryPage = ({ data, location }) => {
         <Typography style={{ textAlign: "center" }} variant="h4">
           Drills
         </Typography>
-        <RelatedContentWrapper xs={6} contentType="drills" items={drills} />
+        <RelatedContentWrapper
+          savedDrills={savedDrills}
+          xs={6}
+          contentType="drills"
+          items={drills}
+        />
       </PageWrapper>
-    </Layout >
+    </Layout>
   );
 };
 
 export const query = graphql`
-  query($category__name: String!) {
+  query ($category__name: String!) {
     strapiDrillCategory(name: { eq: $category__name }) {
       description
       name
@@ -54,16 +77,16 @@ export const query = graphql`
         localFile {
           childImageSharp {
             gatsbyImageData(
-              height: 300,
-              width: 450,
-              transformOptions: {fit: FILL},
+              height: 300
+              width: 450
+              transformOptions: { fit: FILL }
             )
           }
         }
       }
     }
 
-    allStrapiDrill(filter: {category: {name: {eq: $category__name}}}) {
+    allStrapiDrill(filter: { category: { name: { eq: $category__name } } }) {
       edges {
         node {
           category {
@@ -86,9 +109,9 @@ export const query = graphql`
             localFile {
               childImageSharp {
                 gatsbyImageData(
-                  height: 750,
-                  width: 1000,
-                  transformOptions: {fit: FILL,  cropFocus: CENTER}
+                  height: 750
+                  width: 1000
+                  transformOptions: { fit: FILL, cropFocus: CENTER }
                 )
               }
             }

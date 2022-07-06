@@ -142,14 +142,6 @@ export const RelatedContentWrapper = (props) => {
                       />
                     ) : null}
                     {showDrillDetails ? <DrillDetails node={node} /> : null}
-
-                    {/* {hasTags ?
-                      <Box>{
-                        node.tags.map((tag, index) => {
-                          return <ContentChip key={`category-${index}`} name={tag.name} />
-                        })}
-                      </Box>
-                      : null} */}
                   </Box>
 
                   <Divider style={{ margin: "5px auto" }} />
@@ -162,13 +154,30 @@ export const RelatedContentWrapper = (props) => {
                   />
                 </CardContent>
               </div>
-
               <CardActions>
                 <CardActionButton to={path}>
-                  <Button size="small" color="secondary" variant="contained">
-                    Read more
+                  <Button
+                    style={{ marginRight: "3px" }}
+                    color="secondary"
+                    variant="outlined"
+                  >
+                    Open
                   </Button>
                 </CardActionButton>
+                {props.savedDrills && (
+                  <Button
+                    disabled={props.savedDrills.selectedDrills[node.name]}
+                    onClick={() => {
+                      const copy = { ...props.savedDrills.selectedDrills };
+                      copy[node.name] = node;
+                      props.savedDrills.changeSelectedDrills(copy);
+                    }}
+                    color="secondary"
+                    variant="contained"
+                  >
+                    Save
+                  </Button>
+                )}
               </CardActions>
             </Card>
           </Grow>

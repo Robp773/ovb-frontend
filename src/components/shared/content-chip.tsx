@@ -6,9 +6,9 @@ const ContentChip = (props, data) => {
     <Chip
       clickable
       size="small"
-      color="secondary"
+      color={props.color}
       label={`${props.name}`}
-      style={{margin: "3px 3px 3px 0" }}
+      style={{ margin: "3px 3px 3px 0" }}
     />
   );
 };

@@ -6,20 +6,17 @@ import slugify from "@sindresorhus/slugify";
 
 const StyledChip = styled(Chip)({
   textDecoration: "none",
-  margin: "3px 3px 3px 0"
+  margin: "3px 3px 3px 0",
 });
 
 const DrillCategoryChip = (props) => {
-  console.log(props)
-  const text = props.category.name || props.category
+  const text = props.category.name || props.category;
   return (
     <GatsbyLink
       style={{
-        textDecoration: "none"
+        textDecoration: "none",
       }}
-      to={`/drills/${slugify(
-        text.toLowerCase()
-      )}`}
+      to={`/drills/${slugify(text.toLowerCase())}`}
     >
       <StyledChip
         clickable

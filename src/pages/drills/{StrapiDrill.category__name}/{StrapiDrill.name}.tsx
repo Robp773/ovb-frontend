@@ -6,23 +6,32 @@ import {
   Stepper,
   Typography,
   Divider,
+  Button,
 } from "@mui/material";
 import { graphql } from "gatsby";
 import { GatsbyImage } from "gatsby-plugin-image";
-import { default as React } from "react";
+import { default as React, useContext } from "react";
 import Layout from "~/components/layout";
 import SEO from "~/components/seo";
 import DrillDetails from "../../../components/drill/drill-details";
+import SavedDrillsDrawer from "../../../components/drill/saved-drills";
+import DrillsContext from "../../../components/DrillsContext";
 import ContentHeading from "../../../components/shared/content-heading";
 import PageWrapper from "../../../components/shared/content-wrapper";
 
 const CustomArticle = ({ data, location }) => {
   const drill = data.strapiDrill;
   const seo = { title: drill.name };
+  const savedDrills = useContext(DrillsContext);
 
   return (
     <Layout>
       <SEO seo={seo} />
+      <SavedDrillsDrawer
+        changeSelectedDrills={savedDrills.changeSelectedDrills}
+        drills={savedDrills.selectedDrills}
+      />
+
       <PageWrapper>
         <ContentHeading
           title={drill.name}
@@ -43,7 +52,20 @@ const CustomArticle = ({ data, location }) => {
             Your browser does not support the video tag.
           </video>
         </Box> : null} */}
-
+        <Button
+          style={{ marginTop: "5px", width: "fit-content" }}
+          // fullWidth={false}
+          disabled={savedDrills.selectedDrills[drill.name]}
+          onClick={() => {
+            const copy = { ...savedDrills.selectedDrills };
+            copy[drill.name] = drill;
+            savedDrills.changeSelectedDrills(copy);
+          }}
+          color="secondary"
+          variant="contained"
+        >
+          Save to List
+        </Button>
         <Box style={{ marginTop: "20px" }}>
           <Typography variant="h5">Details</Typography>
           <DrillDetails withCategory node={drill} />

@@ -5,6 +5,7 @@ import {
   Button,
   Container,
   Divider,
+  Drawer,
   Grow,
   Paper,
   TextField,
@@ -22,7 +23,7 @@ import OutlinedInput from "@mui/material/OutlinedInput";
 import Select from "@mui/material/Select";
 import slugify from "@sindresorhus/slugify";
 import { graphql } from "gatsby";
-import React, { useState } from "react";
+import React, { useContext, useState } from "react";
 import { useFlexSearch } from "react-use-flexsearch";
 import DrillCategoryChip from "../../components/drill/drill-category-chip";
 import DrillCompetencyChip from "../../components/drill/drill-competency-chip";
@@ -33,8 +34,8 @@ import ContentChip from "../../components/shared/content-chip";
 import ContentWrapper from "../../components/shared/content-wrapper";
 import { RelatedContentWrapper } from "../../components/shared/related-content-list";
 import StaticPageNoImageHeading from "../../components/static-page/static-page-no-image-heading";
-import CircularProgress from "@mui/material/CircularProgress";
-import { Iso } from "@material-ui/icons";
+import DrillsContext from "../../components/DrillsContext";
+import SavedDrillsDrawer from "../../components/drill/saved-drills";
 
 const competencies = ["Foundational", "Intermediate", "Advanced"];
 
@@ -43,8 +44,6 @@ const drillTypes = ["Team", "Partner", "Individual"];
 const DrillsPage = (data) => {
   const { strapiDrillsPage, allStrapiDrillCategory, localSearchDrills } =
     data.data;
-
-  const [isLoading, setIsLoading] = useState(false);
 
   const [query, setQuery] = useState("");
   const [competency, setCompetency] = React.useState([]);
@@ -60,11 +59,7 @@ const DrillsPage = (data) => {
     localSearchDrills.store
   );
 
-  if (isLoading) setIsLoading(false);
-
   const handleChange = (event, key) => {
-    setIsLoading(true);
-
     if (isInitialSearch) setIsInitialSearch(false);
 
     const {
@@ -90,8 +85,15 @@ const DrillsPage = (data) => {
     setTextQuery("");
   };
 
+  const savedDrills = useContext(DrillsContext);
+
+  console.log(savedDrills);
   return (
     <Layout>
+      <SavedDrillsDrawer
+        changeSelectedDrills={savedDrills.changeSelectedDrills}
+        drills={savedDrills.selectedDrills}
+      />
       <ContentWrapper width="85ch">
         <StaticPageNoImageHeading title={strapiDrillsPage.page_title} />
         <Typography
@@ -263,57 +265,70 @@ const DrillsPage = (data) => {
               </Alert>
             )}
           </Box>
-          {isLoading && (
-            <CircularProgress
-              style={{ display: "block", margin: "10px auto auto auto" }}
-            />
-          )}
-          {!isLoading && (
-            <List style={{ maxHeight: "750px", overflowY: "auto" }}>
-              {results.map((result, index) => (
-                <Grow in={result} timeout={(index + 1) * 300}>
-                  <ListItem
-                    dense
-                    style={{ margin: "5px 0", width: "max-width" }}
-                    disablePadding
-                  >
-                    <Paper variant="outlined" style={{ width: "100%" }}>
-                      <ListItemButton>
-                        <ListItemIcon>
-                          <AssignmentIcon fontSize="large" color="info" />
-                        </ListItemIcon>
-                        <ListItemText>
-                          <Typography variant="h6">{result.name}</Typography>
-                          <DrillDetails node={result} />
 
-                          {result.tags.map((tag, index) => {
-                            return <ContentChip index={index} name={tag} />;
-                          })}
-                          <Box style={{ display: "flex" }}>
-                            <Typography
-                              style={{ margin: "7px 0 10px 0" }}
-                              variant="body2"
-                            >
-                              {result.description}
-                            </Typography>
-                          </Box>
-                          <Button
-                            href={`/drills/${slugify(
-                              result.category
-                            )}/${slugify(result.name)}`}
-                            color="secondary"
-                            variant="outlined"
+          <List style={{ maxHeight: "750px", overflowY: "auto" }}>
+            {results.map((result, index) => (
+              <Grow in={result} timeout={(index + 1) * 300}>
+                <ListItem
+                  dense
+                  style={{ margin: "5px 0", width: "max-width" }}
+                  disablePadding
+                >
+                  <Paper variant="outlined" style={{ width: "100%" }}>
+                    <ListItemButton>
+                      <ListItemIcon>
+                        <AssignmentIcon fontSize="large" color="info" />
+                      </ListItemIcon>
+                      <ListItemText>
+                        <Typography variant="h6">{result.name}</Typography>
+                        <DrillDetails node={result} />
+
+                        {result.tags.map((tag, index) => {
+                          return (
+                            <ContentChip
+                              index={index}
+                              // color="primary"
+                              name={tag}
+                            />
+                          );
+                        })}
+                        <Box style={{ display: "flex" }}>
+                          <Typography
+                            style={{ margin: "7px 0 10px 0" }}
+                            variant="body2"
                           >
-                            Open
-                          </Button>
-                        </ListItemText>
-                      </ListItemButton>
-                    </Paper>
-                  </ListItem>
-                </Grow>
-              ))}
-            </List>
-          )}
+                            {result.description}
+                          </Typography>
+                        </Box>
+                        <Button
+                          style={{ marginRight: "3px" }}
+                          href={`/drills/${slugify(result.category)}/${slugify(
+                            result.name
+                          )}`}
+                          color="secondary"
+                          variant="outlined"
+                        >
+                          Open
+                        </Button>
+                        <Button
+                          disabled={savedDrills.selectedDrills[result.name]}
+                          onClick={() => {
+                            const copy = { ...savedDrills.selectedDrills };
+                            copy[result.name] = result;
+                            savedDrills.changeSelectedDrills(copy);
+                          }}
+                          color="secondary"
+                          variant="contained"
+                        >
+                          Save
+                        </Button>
+                      </ListItemText>
+                    </ListItemButton>
+                  </Paper>
+                </ListItem>
+              </Grow>
+            ))}
+          </List>
         </Container>
 
         <Divider style={{ margin: "20px 0" }} />

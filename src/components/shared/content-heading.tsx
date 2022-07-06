@@ -51,10 +51,10 @@ const BreadCrumbsWrapper = styled("div")(({ theme }) => ({
   padding: "5px 10px",
   display: "flex",
   alignItems: "center",
-  zIndex: 999,
-  width: "100%",
+  zIndex: 998,
+  // width: "100%",
   background: theme.palette.common.white,
-}))
+}));
 
 const StyledLink = styled(GatsbyLink)(({ theme }) => ({
   textDecoration: "none",
@@ -155,7 +155,13 @@ const ContentHeading = (props, data) => {
         <TagListBox>
           <CategoryChipWrapper>{CategoryChip}</CategoryChipWrapper>
           {metaData.tags.map((tag, index) => {
-            return <ContentChip key={`category-${index}`} name={tag.name} />;
+            return (
+              <ContentChip
+                color="secondary"
+                key={`category-${index}`}
+                name={tag.name}
+              />
+            );
           })}
         </TagListBox>
       </HeadingContentBox>
