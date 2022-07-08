@@ -4,16 +4,12 @@ import React from "react";
 import { useShoppingCart, formatCurrencyString } from "use-shopping-cart";
 
 const mapMetaDataToId = (metaData) => {
-
-// iterate through meta data creating a unique str
-// when 
-
-
+  // iterate through meta data creating a unique str
+  // when
 };
 
 const ProductCard = ({ sku }) => {
   const { addItem } = useShoppingCart();
-  console.log(sku);
 
   return (
     <Card

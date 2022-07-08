@@ -1,28 +1,33 @@
 import { Drawer } from "@material-ui/core";
-import LabelIcon from "@mui/icons-material/Label";
 import Box from "@mui/material/Box";
 import Button from "@mui/material/Button";
 import Step from "@mui/material/Step";
 import StepContent from "@mui/material/StepContent";
 import StepLabel from "@mui/material/StepLabel";
 import Stepper from "@mui/material/Stepper";
-import { styled } from "@mui/material/styles";
 import Typography from "@mui/material/Typography";
 import slugify from "@sindresorhus/slugify";
 import * as React from "react";
 import InventoryIcon from "@mui/icons-material/Inventory";
-import { Inventory } from "@mui/icons-material";
 import { Alert } from "@mui/material";
 import DrillDetails from "./drill-details";
-
+import { useReactToPrint } from "react-to-print";
+import SavedDrillsList from "./saved-drills-list";
+import PrintIcon from "@mui/icons-material/Print";
 export default function SavedDrillsDrawer({
   changeSelectedDrills,
   drills,
   fullWidth,
 }) {
+  const componentRef = React.useRef(null);
+
   const [isOpen, setIsOpen] = React.useState(false);
 
   const drillList = drills ? Object.entries(drills) : [];
+
+  const handlePrint = useReactToPrint({
+    content: () => componentRef.current,
+  });
 
   return (
     <>
@@ -32,24 +37,33 @@ export default function SavedDrillsDrawer({
           setIsOpen(true);
         }}
         variant="contained"
-        style={{ position: "fixed", right: 0 }}
+        style={{ position: "fixed", right: 0, zIndex: 1 }}
       >
         Saved Drills {drillList.length > 0 && `(${drillList.length})`}
       </Button>
       <Drawer
-        onClick={() => {
-          setIsOpen(false);
-        }}
+        variant="persistent"
         anchor="right"
         open={isOpen}
         style={{ zIndex: 999 }}
       >
+        <Button
+          onClick={() => {
+            setIsOpen(false);
+          }}
+          style={{ position: "absolute", right: 0 }}
+        >
+          Close
+        </Button>
         <Box
           sx={{
             padding: "10px",
-            maxWidth: `${fullWidth ? "auto" : "400px"}`,
+            maxWidth: "400px",
           }}
         >
+          <div style={{ display: "none" }}>
+            <SavedDrillsList drills={drillList} ref={componentRef} />
+          </div>
           <Typography variant="h5">
             Saved Drills ({drillList.length})
           </Typography>{" "}
@@ -57,6 +71,8 @@ export default function SavedDrillsDrawer({
             Drills can be saved and printed out for later use.
           </Alert>
           <Button
+            startIcon={<PrintIcon />}
+            onClick={handlePrint}
             disabled={!drillList.length}
             style={{ margin: "5px 0" }}
             variant="contained"

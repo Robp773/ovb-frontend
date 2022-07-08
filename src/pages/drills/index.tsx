@@ -35,7 +35,7 @@ import ContentWrapper from "../../components/shared/content-wrapper";
 import { RelatedContentWrapper } from "../../components/shared/related-content-list";
 import StaticPageNoImageHeading from "../../components/static-page/static-page-no-image-heading";
 import DrillsContext from "../../components/DrillsContext";
-import SavedDrillsDrawer from "../../components/drill/saved-drills";
+import SavedDrillsDrawer from "../../components/drill/saved-drills-drawer";
 
 const competencies = ["Foundational", "Intermediate", "Advanced"];
 
@@ -87,7 +87,6 @@ const DrillsPage = (data) => {
 
   const savedDrills = useContext(DrillsContext);
 
-  console.log(savedDrills);
   return (
     <Layout>
       <SavedDrillsDrawer
@@ -314,6 +313,7 @@ const DrillsPage = (data) => {
                           disabled={savedDrills.selectedDrills[result.name]}
                           onClick={() => {
                             const copy = { ...savedDrills.selectedDrills };
+                            console.log({ result });
                             copy[result.name] = result;
                             savedDrills.changeSelectedDrills(copy);
                           }}

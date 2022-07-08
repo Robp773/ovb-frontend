@@ -107,7 +107,24 @@ module.exports = {
                 category {
                   name
                 }
+                
                 time_estimate
+
+                      steps {
+        description
+        media {
+          localFile {
+            childImageSharp {
+              gatsbyImageData(
+                height: 300
+                width: 500
+                transformOptions: { fit: COVER }
+              )
+            }
+          }
+        }
+        title
+      }
               }
             }
           }
@@ -137,6 +154,8 @@ module.exports = {
           "isIndividual",
           "isTeam",
           "description",
+          "summary",
+          "steps",
         ],
 
         // Function used to map the result from the GraphQL query. This should
@@ -155,6 +174,8 @@ module.exports = {
               isTeam,
               time_estimate,
               description,
+              summary,
+              steps,
             } = item;
             const groupTypes = [];
 
@@ -173,6 +194,8 @@ module.exports = {
               isTeam,
               description,
               category: item.category.name,
+              summary,
+              steps,
               tags: item.tags.map((tag) => {
                 return tag.name;
               }),

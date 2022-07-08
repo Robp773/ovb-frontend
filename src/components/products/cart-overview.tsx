@@ -45,7 +45,6 @@ const Cart = (props: { status: String }) => {
             <TableBody>
               {Object.entries(cartDetails).map((detail, index) => {
                 const item = detail[1];
-                console.log(item);
                 return (
                   <TableRow
                     key={index}

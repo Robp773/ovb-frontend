@@ -15,8 +15,8 @@ import PageWrapper from "../../../components/shared/content-wrapper";
 import ContentHeading from "../../../components/shared/content-heading";
 import { RelatedContentWrapper } from "../../../components/shared/related-content-list";
 import slugify from "@sindresorhus/slugify";
-import SavedDrillsDrawer from "../../../components/drill/saved-drills";
 import DrillsContext from "../../../components/DrillsContext";
+import SavedDrillsDrawer from "../../../components/drill/saved-drills-drawer";
 
 const DrillCategoryPage = ({ data, location }) => {
   const categoryData = data.strapiDrillCategory;
@@ -99,8 +99,13 @@ export const query = graphql`
           competency
           name
           description
+          summary
           category {
             name
+          }
+          steps {
+            description
+            title
           }
           tags {
             name

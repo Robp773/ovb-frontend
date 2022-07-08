@@ -14,7 +14,7 @@ import { default as React, useContext } from "react";
 import Layout from "~/components/layout";
 import SEO from "~/components/seo";
 import DrillDetails from "../../../components/drill/drill-details";
-import SavedDrillsDrawer from "../../../components/drill/saved-drills";
+import SavedDrillsDrawer from "../../../components/drill/saved-drills-drawer";
 import DrillsContext from "../../../components/DrillsContext";
 import ContentHeading from "../../../components/shared/content-heading";
 import PageWrapper from "../../../components/shared/content-wrapper";

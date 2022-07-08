@@ -18,8 +18,6 @@ const HeadingTitle = styled(Typography)(({ theme }) => ({
 const ScholarshipsPage = ({ data }) => {
   const seo = { title: "Scholarships" };
 
-  console.log(data);
-
   return (
     <Layout>
       <SEO seo={seo} />

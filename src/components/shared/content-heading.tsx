@@ -51,9 +51,9 @@ const BreadCrumbsWrapper = styled("div")(({ theme }) => ({
   padding: "5px 10px",
   display: "flex",
   alignItems: "center",
-  zIndex: 998,
-  // width: "100%",
-  background: theme.palette.common.white,
+  // zIndex: 999,
+  width: "100%",
+  // background: theme.palette.common.white,
 }));
 
 const StyledLink = styled(GatsbyLink)(({ theme }) => ({
@@ -91,8 +91,10 @@ const ContentHeading = (props, data) => {
   const { metaData } = props;
 
   const pathList = metaData.pathname
-    .split("/")
-    .splice(1, metaData.pathname.split("/").length);
+    ? metaData.pathname
+        .split("/")
+        .splice(1, metaData.pathname.split("/").length)
+    : [];
 
   switch (props.contentType) {
     case "article": {
