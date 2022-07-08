@@ -18,6 +18,9 @@ const StorePage = (data) => {
       <SEO seo={seo} />
       <ContentWrapper>
         <Typography align="center" variant="h5">
+          Store is under construction
+        </Typography>
+        {/* <Typography align="center" variant="h5">
           Store is currently being tested and payments will not work
         </Typography>
         <CartProvider
@@ -31,7 +34,7 @@ const StorePage = (data) => {
         >
           <Products />
           <Cart status={status} />
-        </CartProvider>
+        </CartProvider> */}
       </ContentWrapper>
     </Layout>
   );
