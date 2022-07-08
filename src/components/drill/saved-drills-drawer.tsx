@@ -41,12 +41,7 @@ export default function SavedDrillsDrawer({
       >
         Saved Drills {drillList.length > 0 && `(${drillList.length})`}
       </Button>
-      <Drawer
-        variant="persistent"
-        anchor="right"
-        open={isOpen}
-        style={{ zIndex: 999 }}
-      >
+      <Drawer anchor="right" open={isOpen} style={{ zIndex: 999 }}>
         <Button
           onClick={() => {
             setIsOpen(false);

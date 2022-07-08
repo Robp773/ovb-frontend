@@ -159,7 +159,7 @@ const ContentHeading = (props, data) => {
           {metaData.tags.map((tag, index) => {
             return (
               <ContentChip
-                color="secondary"
+                // color="secondary"
                 key={`category-${index}`}
                 name={tag.name}
               />
