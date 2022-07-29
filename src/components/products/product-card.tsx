@@ -36,7 +36,11 @@ const ProductCard = ({ productData, type }) => {
       raised={true}
     >
       <img
-        style={{ width: "100%", height: "200px", objectFit: "cover" }}
+        style={{
+          width: "100%",
+          height: "200px",
+          objectFit: "cover",
+        }}
         src={productData.skuList[0].stripeInfo.images[0]}
         alt={type}
       />

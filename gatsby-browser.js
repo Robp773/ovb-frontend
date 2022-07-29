@@ -1,6 +1,6 @@
 import React from "react";
 import { DrillsProvider } from "./src/components/DrillsContext";
-import { CartProvider } from "use-shopping-cart";
+
 import CssBaseline from "@mui/material/CssBaseline";
 import { createTheme, ThemeProvider } from "@mui/material/styles";
 
@@ -20,20 +20,10 @@ const theme = createTheme({
   },
 });
 export const wrapRootElement = ({ element }) => (
-  <CartProvider
-    mode="payment"
-    cartMode="client-only"
-    stripe={process.env.GATSBY_STRIPE_PUBLISHABLE_KEY}
-    successUrl={`${process.env.GATSBY_BASE_URL}/store?status=success`}
-    cancelUrl={`${process.env.GATSBY_BASE_URL}/store`}
-    currency="USD"
-    allowedCountries={["US", "GB", "CA"]}
-  >
-    <DrillsProvider>
-      <ThemeProvider theme={theme}>
-        <CssBaseline />
-        {element}
-      </ThemeProvider>
-    </DrillsProvider>
-  </CartProvider>
+  <DrillsProvider>
+    <ThemeProvider theme={theme}>
+      <CssBaseline />
+      {element}
+    </ThemeProvider>
+  </DrillsProvider>
 );

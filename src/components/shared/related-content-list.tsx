@@ -2,7 +2,7 @@ import { Box, CardActions, CardContent, Divider, Grow } from "@mui/material";
 import Button from "@mui/material/Button";
 import Card from "@mui/material/Card";
 import Typography from "@mui/material/Typography";
-import styled from "@mui/styled-engine";
+import { styled } from "@mui/material/styles";
 import { Link } from "gatsby";
 import { GatsbyImage } from "gatsby-plugin-image";
 import React from "react";
