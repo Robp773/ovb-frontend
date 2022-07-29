@@ -38,8 +38,8 @@ const ProductCard = ({ productData, type }) => {
       <img
         style={{
           width: "100%",
-          height: "200px",
-          objectFit: "cover",
+          height: "250px",
+          objectFit: "contain",
         }}
         src={currentSku.stripeInfo.images[0]}
         alt={type}
