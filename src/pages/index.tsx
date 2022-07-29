@@ -12,7 +12,6 @@ const ImageContainer = styled(Box)(({ theme }) => ({
   display: "flex",
   justifyContent: "center",
   padding: "25px",
-  // width: "fit-content",
   [theme.breakpoints.down("md")]: {
     padding: "10px",
   },
@@ -57,9 +56,9 @@ const AboutLink = styled(Link)({
 const ActivityContainer = styled("div")(({ theme }) => ({
   padding: "20px",
   [theme.breakpoints.down("sm")]: {
-    padding: "5px"
+    padding: "5px",
   },
-}))
+}));
 
 const IndexPage = ({ data }) => {
   const { strapiHomePage: page, allStrapiArticle: articles } = data;
@@ -163,8 +162,8 @@ export const articlePageQuery = graphql`
             localFile {
               childImageSharp {
                 gatsbyImageData(
-                  height: 750,
-                  width: 1000,
+                  height: 750
+                  width: 1000
                   transformOptions: { fit: FILL, cropFocus: CENTER }
                 )
               }
