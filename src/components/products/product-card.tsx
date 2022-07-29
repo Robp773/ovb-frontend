@@ -14,15 +14,15 @@ import { formatCurrencyString, useShoppingCart } from "use-shopping-cart";
 const ProductCard = ({ productData, type }) => {
   const { addItem } = useShoppingCart();
 
-  const [color, setColor] = useState(null);
-  const [size, setSize] = useState(null);
-
-  const firstData = productData.skuList[0].stripeInfo;
+  const [color, setColor] = useState(productData.colors[0]);
+  const [size, setSize] = useState(
+    productData.sizes.length ? productData.sizes[0] : null
+  );
 
   const currentSku = productData.skuList.find((product) => {
     return product.identifier === `${type}-${size}-${color}`;
   });
-
+  console.log(currentSku);
   return (
     <Card
       sx={{
@@ -41,20 +41,20 @@ const ProductCard = ({ productData, type }) => {
           height: "200px",
           objectFit: "cover",
         }}
-        src={productData.skuList[0].stripeInfo.images[0]}
+        src={currentSku.stripeInfo.images[0]}
         alt={type}
       />
       <Typography mt={1} variant="h5">
         {type}
       </Typography>
-
       <Typography mb={1} variant="h6">
         Price:{" "}
         {formatCurrencyString({
-          value: parseInt(firstData.price, 10),
-          currency: firstData.currency,
+          value: parseInt(currentSku.stripeInfo.price, 10),
+          currency: currentSku.stripeInfo.currency,
         })}
       </Typography>
+
       <FormControl sx={{ mb: 1 }} fullWidth>
         <InputLabel>Color</InputLabel>
         <Select
@@ -71,7 +71,6 @@ const ProductCard = ({ productData, type }) => {
           })}
         </Select>
       </FormControl>
-
       <FormControl fullWidth>
         <InputLabel>Size</InputLabel>
         <Select
@@ -89,8 +88,6 @@ const ProductCard = ({ productData, type }) => {
           })}
         </Select>
       </FormControl>
-
-      {/* <Typography variant="body1">{firstData.description}</Typography> */}
       <Button
         disabled={!currentSku}
         style={{ marginTop: "10px" }}
