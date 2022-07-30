@@ -23,14 +23,12 @@ const theme = createTheme({
 });
 
 const Layout = ({ children }) => (
-  <DrillsProvider>
-    <ThemeProvider theme={theme}>
-      <CssBaseline />
-      <NavBar />
-      {children}
-      <Footer />
-    </ThemeProvider>
-  </DrillsProvider>
+  <ThemeProvider theme={theme}>
+    <CssBaseline />
+    <NavBar />
+    {children}
+    <Footer />
+  </ThemeProvider>
 );
 
 export default Layout;
