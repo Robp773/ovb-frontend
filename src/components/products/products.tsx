@@ -20,7 +20,10 @@ const Products = () => {
     query ProductPrices {
       prices: allStripePrice(
         filter: {
-          product: { active: { eq: true }, name: { ne: "Registration Fee" } }
+          product: {
+            active: { eq: true }
+            name: { nin: ["Registration Fee", "Scholarship Fund Donation"] }
+          }
         }
       ) {
         edges {
