@@ -26,9 +26,9 @@ const StorePage = (data) => {
       >
         <SEO seo={seo} />
         <ContentWrapper>
-          <Alert sx={{ mb: 1 }} severity="warning">
+          {/* <Alert sx={{ mb: 1 }} severity="warning">
             Store is currently being tested and real payments are disabled.
-          </Alert>
+          </Alert> */}
           {status === "success" && (
             <Alert sx={{ mb: 1 }} severity="success">
               Your order has been successfully submitted. Items will be brought
