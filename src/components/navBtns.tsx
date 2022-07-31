@@ -104,6 +104,9 @@ const NavBtns = (props) => {
           <NavLink onClick={handleInfoClose} to="/info/about">
             <MenuItem>About</MenuItem>
           </NavLink>
+          <NavLink onClick={handleInfoClose} to="/info/history">
+            <MenuItem onClick={handleInfoClose}>History</MenuItem>
+          </NavLink>
           <NavLink onClick={handleInfoClose} to="/info/coaches">
             <MenuItem onClick={handleInfoClose}>Coaches</MenuItem>
           </NavLink>
@@ -156,9 +159,7 @@ const NavBtns = (props) => {
           </NavLink>
         </DropDownMenu>
       </NavDropDownParent>
-      <NavLink to="/history">
-        <NavBtn isActive={location === "/history"}>History</NavBtn>
-      </NavLink>
+
       <NavLink to="/gallery">
         <NavBtn isActive={location === "/gallery"}>Gallery</NavBtn>
       </NavLink>

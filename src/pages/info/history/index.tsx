@@ -2,13 +2,13 @@ import React from "react";
 import { graphql } from "gatsby";
 
 import Layout from "~/components/layout";
-import SEO from "../../components/seo";
-import ContentWrapper from "../../components/shared/content-wrapper";
 import { Container, Divider, Typography } from "@mui/material";
 import { Box } from "@mui/system";
 import styled from "@emotion/styled";
-import StaticPageNoImageHeading from "../../components/static-page/static-page-no-image-heading";
-import { RelatedContentWrapper } from "../../components/shared/related-content-list";
+import SEO from "../../../components/seo";
+import ContentWrapper from "../../../components/shared/content-wrapper";
+import { RelatedContentWrapper } from "../../../components/shared/related-content-list";
+import StaticPageHeading from "../../../components/static-page/static-page-heading";
 
 const HistoryListPage = ({ data }) => {
   const seo = { title: "History" };
@@ -19,7 +19,7 @@ const HistoryListPage = ({ data }) => {
     <Layout>
       <SEO seo={seo} />
       <ContentWrapper width="85ch">
-        <StaticPageNoImageHeading title={strapiHistoryPage.page_title} />
+        <StaticPageHeading title={strapiHistoryPage.page_title} />
         <Typography
           style={{
             marginTop: "10px",

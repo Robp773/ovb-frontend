@@ -3,8 +3,8 @@ import { graphql } from "gatsby";
 import React from "react";
 import Layout from "~/components/layout";
 import SEO from "~/components/seo";
-import ContentHeading from "../../components/shared/content-heading";
-import ContentWrapper from "../../components/shared/content-wrapper";
+import ContentHeading from "../../../components/shared/content-heading";
+import ContentWrapper from "../../../components/shared/content-wrapper";
 
 const HistoryPage = ({ data, location }) => {
   const history = data.strapiHistory;

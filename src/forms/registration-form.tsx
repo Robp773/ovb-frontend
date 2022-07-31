@@ -14,7 +14,6 @@ import React from "react";
 import { styled } from "@mui/styles";
 import PrintIcon from "@mui/icons-material/Print";
 import { useReactToPrint } from "react-to-print";
-
 export const RegistrationForm = ({ setCurrentForm }) => {
   const componentRef = React.useRef(null);
 
@@ -28,14 +27,13 @@ export const RegistrationForm = ({ setCurrentForm }) => {
         style={{
           width: "75%",
           margin: "auto",
-
           overflowY: "auto",
           maxHeight: "90vh",
         }}
       >
         <div style={{ padding: "10px" }} ref={componentRef}>
           <div style={{ textAlign: "center" }}>
-            <StaticImage src="../../images/ovb-logo.png" alt="A dinosaur" />
+            <StaticImage src="../images/ovb-logo.png" alt="A dinosaur" />
             <Typography style={{ margin: "10px" }} color="primary" variant="h4">
               One Voice Basketball Association Inc.
             </Typography>
@@ -270,6 +268,29 @@ export const RegistrationForm = ({ setCurrentForm }) => {
               of any such injury or condition.
             </Typography>
           </div>
+          <Box>
+            <TextField
+              disabled
+              fullWidth
+              sx={{ width: "50%", mb: 2 }}
+              label="Signature - Parent / Guardian of Applicant"
+              InputLabelProps={{
+                shrink: true,
+              }}
+            />
+          </Box>
+
+          <Box>
+            <TextField
+              disabled
+              fullWidth
+              style={{ width: "50%" }}
+              label="Signature - Witness"
+              InputLabelProps={{
+                shrink: true,
+              }}
+            />
+          </Box>
         </div>
       </Paper>
       <Button

@@ -118,7 +118,8 @@ const ContentHeading = (props, data) => {
   return (
     <Heading>
       {props.contentType === "activity" ||
-      props.contentType === "chapter" ? null : (
+      props.contentType === "chapter" ||
+      props.contentType === "histories" ? null : (
         <BreadCrumbsWrapper>
           {pathList.map((link, index) => {
             return (
@@ -157,13 +158,7 @@ const ContentHeading = (props, data) => {
         <TagListBox>
           <CategoryChipWrapper>{CategoryChip}</CategoryChipWrapper>
           {metaData.tags.map((tag, index) => {
-            return (
-              <ContentChip
-                // color="secondary"
-                key={`category-${index}`}
-                name={tag.name}
-              />
-            );
+            return <ContentChip key={`category-${index}`} name={tag.name} />;
           })}
         </TagListBox>
       </HeadingContentBox>

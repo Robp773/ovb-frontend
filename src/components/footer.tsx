@@ -2,23 +2,21 @@ import { Typography } from "@mui/material";
 import Container from "@mui/material/Container";
 import List from "@mui/material/List";
 import ListItem from "@mui/material/ListItem";
-import { styled } from '@mui/material/styles';
+import { styled } from "@mui/material/styles";
 import { Link } from "gatsby";
 import React from "react";
 
-const CopyrightEl = styled(Container)(
-  ({ theme }) => ({
-    paddingTop: "30px",
-    textAlign: "center",
-    color: `${theme.palette.grey.A700}`
-  })
-);
+const CopyrightEl = styled(Container)(({ theme }) => ({
+  paddingTop: "30px",
+  textAlign: "center",
+  color: `${theme.palette.grey.A700}`,
+}));
 
 const LinksContainer = styled(Container)(({ theme }) => ({
   display: "flex !important",
-  [theme.breakpoints.down('md')]: {
+  [theme.breakpoints.down("md")]: {
     padding: 0,
-  }
+  },
 }));
 
 const ContactUsContainer = styled(Container)({
@@ -30,9 +28,9 @@ const ContactUsContainer = styled(Container)({
 const ContentContainer = styled(Container)(({ theme }) => ({
   display: "flex !important",
   justifyContent: "space-between",
-  [theme.breakpoints.down('md')]: {
-    flexDirection: "column"
-  }
+  [theme.breakpoints.down("md")]: {
+    flexDirection: "column",
+  },
 }));
 
 const StyledFooter = styled(Container)(({ theme }) => ({
@@ -43,16 +41,15 @@ const StyledFooter = styled(Container)(({ theme }) => ({
   color: `${theme.palette.common.white}`,
   display: "flex !important",
   flexDirection: "column",
-})
-);
+}));
 
 const LinkTypeWrapper = styled(Container)(({ theme }) => ({
   display: "flex",
   justifyContent: "center",
-  [theme.breakpoints.down('sm')]: {
-    padding: "0 !important"
-  }
-}))
+  [theme.breakpoints.down("sm")]: {
+    padding: "0 !important",
+  },
+}));
 
 const LinkTitle = styled(Typography)({
   textAlign: "center",
@@ -61,22 +58,18 @@ const LinkTitle = styled(Typography)({
 const StyledLink = styled(Link)(({ theme }) => ({
   textDecoration: "none",
   color: `${theme.palette.common.white}`,
-  margin: "auto"
-})
-);
-
+  margin: "auto",
+}));
 
 const ContactText = styled(Typography)({
   fontWeight: "bold",
-  color: "#f6dc3a"
-})
+  color: "#f6dc3a",
+});
 
 const Footer = () => {
   return (
-    <StyledFooter
-      maxWidth={false}>
-      <ContentContainer
-        maxWidth={false}>
+    <StyledFooter maxWidth={false}>
+      <ContentContainer maxWidth={false}>
         <LinksContainer maxWidth={false}>
           <LinkTypeWrapper>
             <List
@@ -95,6 +88,11 @@ const Footer = () => {
               <ListItem>
                 <StyledLink to="/info/about">
                   <LinkTitle variant="subtitle2">About</LinkTitle>
+                </StyledLink>
+              </ListItem>
+              <ListItem>
+                <StyledLink to="/info/history">
+                  <LinkTitle variant="subtitle2">History</LinkTitle>
                 </StyledLink>
               </ListItem>
               <ListItem>
@@ -196,17 +194,9 @@ const Footer = () => {
             Contact Us
           </Typography>
           <Typography variant="body1">You can reach us at</Typography>
-          <ContactText
-            variant="subtitle1"
-          >
-            bpeterman24@gmail.com
-          </ContactText>
+          <ContactText variant="subtitle1">bpeterman24@gmail.com</ContactText>
           <Typography variant="body1">Or call us at</Typography>
-          <ContactText
-            variant="subtitle1"
-          >
-            908-581-1536
-          </ContactText>
+          <ContactText variant="subtitle1">908-581-1536</ContactText>
         </ContactUsContainer>
       </ContentContainer>
       <CopyrightEl>

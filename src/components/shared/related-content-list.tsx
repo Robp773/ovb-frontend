@@ -42,7 +42,7 @@ export const RelatedContentWrapper = (props) => {
 
         switch (props.contentType) {
           case "histories": {
-            path = `/history/${slugify(node.title)}`;
+            path = `/info/history/${slugify(node.title)}`;
             image = node.main_image.localFile.childImageSharp.gatsbyImageData;
             break;
           }

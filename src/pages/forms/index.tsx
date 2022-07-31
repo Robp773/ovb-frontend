@@ -6,57 +6,51 @@ import Assignment from "@material-ui/icons/Assignment";
 import SportsBasketballIcon from "@mui/icons-material/SportsBasketball";
 import {
   Alert,
-  Container,
-  Grid,
   Modal,
   Step,
-  StepContent,
   StepLabel,
   Stepper,
-  TextField,
   Typography,
+  useMediaQuery,
+  useTheme,
 } from "@mui/material";
 import Button from "@mui/material/Button";
 import Card from "@mui/material/Card";
 import CardActions from "@mui/material/CardActions";
-import Paper from "@mui/material/Paper";
-import { styled } from "@mui/styles";
-import { Box } from "@mui/system";
 import Layout from "~/components/layout";
 import SEO from "~/components/seo";
-import { PaySignUpFeeBtn } from "../../components/products/pay-sign-up-fee-btn";
 import ContentWrapper from "../../components/shared/content-wrapper";
-import StaticPageNoImageHeading from "../../components/static-page/static-page-no-image-heading";
-import { StaticImage } from "gatsby-plugin-image";
 import { RegistrationForm } from "../../forms/registration-form";
+import { PhotoConsentForm } from "../../forms/photo-consent-form";
 
 const FormsPage = ({ data }) => {
   const seo = { title: "Forms" };
-  const [currentForm, setCurrentForm] = useState(null);
+  const [currentForm, setCurrentForm] = useState("");
+
+  const theme = useTheme();
+  const matches = useMediaQuery(theme.breakpoints.up("sm"));
+
   return (
     <Layout>
       <SEO seo={seo} />
 
-      <Modal
-        open={currentForm}
-        onClose={() => setCurrentForm(null)}
-        aria-labelledby="modal-modal-title"
-        aria-describedby="modal-modal-description"
-      >
+      <Modal open={currentForm} onClose={() => setCurrentForm("")}>
         {currentForm === "registration" ? (
           <RegistrationForm setCurrentForm={setCurrentForm} />
-        ) : null}
+        ) : (
+          <PhotoConsentForm setCurrentForm={setCurrentForm} />
+        )}
       </Modal>
       <SEO seo={seo} />
       <ContentWrapper>
-        <Alert severity="warning">
-          Form page is currently being worked on.
-        </Alert>
-        {/* <Typography variant="body1" style={{ margin: "20px 0" }}>
+        <Typography variant="body1" style={{ margin: "20px 0" }}>
           The forms below can be printed out and brought to the next practice.
         </Typography>
         <Typography variant="h5">To Sign Up:</Typography>
-        <Stepper orientation="horizontal" style={{ margin: "20px 0" }}>
+        <Stepper
+          orientation={matches ? "horizontal" : "vertical"}
+          style={{ margin: "20px 0" }}
+        >
           <Step key={1} active={true}>
             <StepLabel>OVB Registration</StepLabel>
             <Card style={{ padding: "10px" }}>
@@ -82,7 +76,13 @@ const FormsPage = ({ data }) => {
             <Card style={{ padding: "10px" }}>
               <CardActions style={{ display: "flex", flexDirection: "column" }}>
                 <AddAPhoto style={{ fontSize: "65px", marginBottom: "10px" }} />
-                <Button variant="contained" size="small">
+                <Button
+                  onClick={() => {
+                    setCurrentForm("photo-consent");
+                  }}
+                  variant="contained"
+                  size="small"
+                >
                   Open Form
                 </Button>
               </CardActions>
@@ -96,11 +96,18 @@ const FormsPage = ({ data }) => {
                 <SportsBasketballIcon
                   style={{ fontSize: "65px", marginBottom: "10px" }}
                 />
-                <PaySignUpFeeBtn id={data.stripePrice.id} />
+                <Button
+                  variant="contained"
+                  size="small"
+                  target="#"
+                  href="https://buy.stripe.com/4gweVNfhU59o316dQQ"
+                >
+                  Pay Sign Up Fee
+                </Button>
               </CardActions>
             </Card>
           </Step>
-        </Stepper> */}
+        </Stepper>
       </ContentWrapper>
     </Layout>
   );

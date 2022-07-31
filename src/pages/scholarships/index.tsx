@@ -3,17 +3,10 @@ import { graphql } from "gatsby";
 
 import Layout from "~/components/layout";
 import SEO from "~/components/seo";
-import { Typography } from "@mui/material";
+import { Button, Typography } from "@mui/material";
 import { styled } from "@mui/material/styles";
 import ContentWrapper from "../../components/shared/content-wrapper";
 import StaticPageHeading from "../../components/static-page/static-page-heading";
-
-const HeadingTitle = styled(Typography)(({ theme }) => ({
-  borderBottom: `3px solid ${theme.palette.primary.main}`,
-  textAlign: "center",
-  width: "fit-content",
-  margin: "0 auto",
-}));
 
 const ScholarshipsPage = ({ data }) => {
   const seo = { title: "Scholarships" };
@@ -36,6 +29,15 @@ const ScholarshipsPage = ({ data }) => {
           }}
           variant="body1"
         />
+        <Button
+          sx={{ width: "fit-content", mt: 3 }}
+          fullWidth={false}
+          variant="contained"
+          target="#"
+          href="https://buy.stripe.com/5kA8xp6LocBQ1X25kl"
+        >
+          Donate to the Fund
+        </Button>
       </ContentWrapper>
     </Layout>
   );
