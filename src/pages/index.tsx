@@ -4,8 +4,8 @@ import { graphql, Link } from "gatsby";
 import { GatsbyImage } from "gatsby-plugin-image";
 import React from "react";
 import { HomePageDataType } from "../../types/HomePage";
-import Layout from "~/components/Layout";
-import SEO from "~/components/Seo";
+import Layout from "~/components/layout";
+import SEO from "~/components/seo";
 import { RelatedContentWrapper } from "../components/shared/related-content-list";
 import bgImage from "../images/ovb-main-bg.jpg";
 

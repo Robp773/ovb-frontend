@@ -16,8 +16,8 @@ import SavedDrillsDrawer from "../../../components/drill/SavedDrillsDrawer";
 import DrillsContext from "../../../context/DrillsContext";
 import ContentHeading from "../../../components/shared/content-heading";
 import PageWrapper from "../../../components/shared/content-wrapper";
-import Layout from "~/components/Layout";
-import SEO from "~/components/Seo";
+import Layout from "~/components/layout";
+import SEO from "~/components/seo";
 
 const CustomArticle = ({ data, location }) => {
   const drill = data.strapiDrill;

@@ -1,8 +1,8 @@
 import { Divider, Typography } from "@mui/material";
 import { graphql } from "gatsby";
 import React from "react";
-import Layout from "~/components/Layout";
-import SEO from "~/components/Seo";
+import Layout from "~/components/layout";
+import SEO from "~/components/seo";
 import { AboutPageDataType } from "../../../../types/InfoPages";
 import ContentWrapper from "../../../components/shared/content-wrapper";
 import StaticPageHeading from "../../../components/static-page/static-page-heading";

@@ -3,8 +3,8 @@ import { Divider, Typography } from "@mui/material";
 import { graphql } from "gatsby";
 import { ProcessPageDataType } from "../../../../types/ProcessPage";
 import TableOfContents from "../../../components/chapter/TableOfContents";
-import Layout from "~/components/Layout";
-import SEO from "~/components/Seo";
+import Layout from "~/components/layout";
+import SEO from "~/components/seo";
 import ContentHeading from "../../../components/shared/content-heading";
 import ContentWrapper from "../../../components/shared/content-wrapper";
 

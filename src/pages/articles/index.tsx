@@ -1,7 +1,7 @@
 import { Divider, Typography } from "@mui/material";
 import { graphql } from "gatsby";
 import React from "react";
-import Layout from "~/components/Layout";
+import Layout from "~/components/layout";
 import ContentWrapper from "../../components/shared/content-wrapper";
 import { RelatedContentWrapper } from "../../components/shared/related-content-list";
 import StaticPageNoImageHeading from "../../components/static-page/static-page-no-image-heading";

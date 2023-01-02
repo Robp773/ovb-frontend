@@ -1,7 +1,7 @@
 import { Container } from "@mui/material";
 import React from "react";
-import Layout from "~/components/Layout";
-import SEO from "~/components/Seo";
+import Layout from "~/components/layout";
+import SEO from "~/components/seo";
 
 const CalendarPage = () => {
   const seo = { title: "One Voice Basketball Schedule" };

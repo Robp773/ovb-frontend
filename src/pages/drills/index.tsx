@@ -28,7 +28,7 @@ import DrillCategoryChip from "../../components/drill/drill-category-chip";
 import DrillCompetencyChip from "../../components/drill/drill-competency-chip";
 import DrillDetails from "../../components/drill/drill-details";
 import DrillTypeChip from "../../components/drill/drill-type-chip";
-import Layout from "~/components/Layout";
+import Layout from "~/components/layout";
 import ContentChip from "../../components/shared/content-chip";
 import ContentWrapper from "../../components/shared/content-wrapper";
 import { RelatedContentWrapper } from "../../components/shared/related-content-list";

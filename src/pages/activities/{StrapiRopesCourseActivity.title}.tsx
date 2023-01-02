@@ -9,8 +9,8 @@ import {
 import { graphql } from "gatsby";
 import { GatsbyImage } from "gatsby-plugin-image";
 import React from "react";
-import Layout from "~/components/Layout";
-import SEO from "~/components/Seo";
+import Layout from "~/components/layout";
+import SEO from "~/components/seo";
 import ContentHeading from "../../components/shared/content-heading";
 import PageWrapper from "../../components/shared/content-wrapper";
 
