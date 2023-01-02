@@ -14,8 +14,8 @@ import {
 import Button from "@mui/material/Button";
 import Card from "@mui/material/Card";
 import CardActions from "@mui/material/CardActions";
-import Layout from "../../components/Layout";
-import SEO from "../../components/Seo";
+import Layout from "~/components/Layout";
+import SEO from "~/components/Seo";
 import ContentWrapper from "../../components/shared/content-wrapper";
 import { RegistrationForm } from "../../forms/registration-form";
 import { PhotoConsentForm } from "../../forms/photo-consent-form";

@@ -4,8 +4,8 @@ import { graphql } from "gatsby";
 import { GatsbyImage } from "gatsby-plugin-image";
 import React from "react";
 import { CoachPageDataType } from "../../../../types/InfoPages";
-import Layout from "../../../components/Layout";
-import SEO from "../../../components/Seo";
+import Layout from "~/components/Layout";
+import SEO from "~/components/Seo";
 import ContentWrapper from "../../../components/shared/content-wrapper";
 import StaticPageHeading from "../../../components/static-page/static-page-heading";
 

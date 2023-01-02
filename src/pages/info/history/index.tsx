@@ -1,8 +1,8 @@
 import React from "react";
 import { graphql } from "gatsby";
-import Layout from "../../../components/Layout";
+import Layout from "~/components/Layout";
 import { Divider, Typography } from "@mui/material";
-import SEO from "../../../components/Seo";
+import SEO from "~/components/Seo";
 import ContentWrapper from "../../../components/shared/content-wrapper";
 import { RelatedContentWrapper } from "../../../components/shared/related-content-list";
 import StaticPageHeading from "../../../components/static-page/static-page-heading";

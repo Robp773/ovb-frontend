@@ -2,8 +2,8 @@ import { Divider, Typography } from "@mui/material";
 import { graphql } from "gatsby";
 import React from "react";
 import { SingleHistoryPageDataType } from "../../../../types/InfoPages";
-import Layout from "../../../components/Layout";
-import SEO from "../../../components/Seo";
+import Layout from "~/components/Layout";
+import SEO from "~/components/Seo";
 import ContentHeading from "../../../components/shared/content-heading";
 import ContentWrapper from "../../../components/shared/content-wrapper";
 

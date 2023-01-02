@@ -9,8 +9,8 @@ import Modal from "@mui/material/Modal";
 import { graphql } from "gatsby";
 import { GatsbyImage } from "gatsby-plugin-image";
 import React from "react";
-import Layout from "../../components/Layout";
-import SEO from "../../components/Seo";
+import Layout from "~/components/Layout";
+import SEO from "~/components/Seo";
 import { GalleryImage, GalleryPageDataType } from "../../../types/GalleryPage";
 
 const style = {

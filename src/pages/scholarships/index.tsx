@@ -1,8 +1,8 @@
 import React from "react";
 import { graphql } from "gatsby";
 
-import Layout from "../../components/Layout";
-import SEO from "../../components/Seo";
+import Layout from "~/components/Layout";
+import SEO from "~/components/Seo";
 import { Button, Typography } from "@mui/material";
 import ContentWrapper from "../../components/shared/content-wrapper";
 import StaticPageHeading from "../../components/static-page/static-page-heading";
