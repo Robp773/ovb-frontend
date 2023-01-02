@@ -8,7 +8,13 @@ import SEO from "~/components/seo";
 import ContentHeading from "../../../components/shared/content-heading";
 import ContentWrapper from "../../../components/shared/content-wrapper";
 
-const ChapterCategory = ({ data }: { data: ProcessPageDataType }) => {
+const ChapterCategory = ({
+  data,
+  location,
+}: {
+  data: ProcessPageDataType;
+  location: any;
+}) => {
   const { strapiChapterCategory, allStrapiChapter } = data;
 
   const seo = { title: "Leadership Skills" };

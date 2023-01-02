@@ -10,7 +10,13 @@ import ContentHeading from "../../../components/shared/content-heading";
 import PageWrapper from "../../../components/shared/content-wrapper";
 import { StrapiChapterDataType } from "../../../../types/ProcessPage";
 
-const ChapterPage = ({ data }: { data: StrapiChapterDataType }) => {
+const ChapterPage = ({
+  data,
+  location,
+}: {
+  data: StrapiChapterDataType;
+  location: any;
+}) => {
   const { allStrapiChapter, strapiChapter } = data;
   const [drawerOpen, setDrawerOpen] = useState(false);
   const seo = { title: strapiChapter.name };
