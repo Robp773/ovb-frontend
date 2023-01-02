@@ -1,8 +1,8 @@
 import { Divider, Typography } from "@mui/material";
 import { graphql } from "gatsby";
 import React from "react";
-import Layout from "../../../components/layout";
-import SEO from "../../../components/seo";
+import Layout from "../../../components/Layout";
+import SEO from "../../../components/Seo";
 import ContentHeading from "../../../components/shared/content-heading";
 import ContentWrapper from "../../../components/shared/content-wrapper";
 
@@ -29,6 +29,19 @@ const CustomArticle = ({ data, location }) => {
           }}
         />
         <Divider style={{ margin: "20px 0" }} />
+        {data.strapiArticle.main_video && (
+          <video
+            style={{ maxWidth: "100%", maxHeight: "400px" }}
+            autoPlay
+            controls
+          >
+            <source src={data.strapiArticle.main_video.localFile.url} />
+          </video>
+        )}
+        {data.strapiArticle.main_video && (
+          <Divider style={{ margin: "20px 0" }} />
+        )}
+
         <Typography
           variant="body1"
           dangerouslySetInnerHTML={{
@@ -59,6 +72,11 @@ export const query = graphql`
               transformOptions: { fit: FILL }
             )
           }
+        }
+      }
+      main_video {
+        localFile {
+          url
         }
       }
       tags {

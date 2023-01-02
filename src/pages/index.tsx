@@ -3,8 +3,9 @@ import { styled } from "@mui/material/styles";
 import { graphql, Link } from "gatsby";
 import { GatsbyImage } from "gatsby-plugin-image";
 import React from "react";
-import Layout from "../components/layout";
-import SEO from "../components/seo";
+import { HomePageDataType } from "../../types/HomePage";
+import Layout from "../components/Layout";
+import SEO from "../components/Seo";
 import { RelatedContentWrapper } from "../components/shared/related-content-list";
 import bgImage from "../images/ovb-main-bg.jpg";
 
@@ -60,9 +61,8 @@ const ActivityContainer = styled("div")(({ theme }) => ({
   },
 }));
 
-const IndexPage = ({ data }) => {
-  const { strapiHomePage: page, allStrapiArticle: articles } = data;
-
+const IndexPage = ({ data }: { data: HomePageDataType }) => {
+  const { strapiHomePage, allStrapiArticle } = data;
   const seo = { title: "Home Page" };
 
   return (
@@ -70,7 +70,10 @@ const IndexPage = ({ data }) => {
       <ImageContainer>
         <GatsbyImage
           alt="One Voice Basketball logo"
-          image={page.banner_image.localFile.childImageSharp.gatsbyImageData}
+          image={
+            strapiHomePage.banner_image.localFile.childImageSharp
+              .gatsbyImageData
+          }
         />
       </ImageContainer>
       <SEO seo={seo} />
@@ -89,7 +92,7 @@ const IndexPage = ({ data }) => {
 
         <TextWrapper>
           <WhoWeAreText color="common.white" variant="subtitle1">
-            {page.intro_text}
+            {strapiHomePage.intro_text}
           </WhoWeAreText>
         </TextWrapper>
         <AboutLink to="/info/about">
@@ -113,7 +116,7 @@ const IndexPage = ({ data }) => {
           isHomePage={true}
           contentType="articles"
           withCategory
-          items={articles}
+          items={allStrapiArticle}
         />
       </ActivityContainer>
     </Layout>

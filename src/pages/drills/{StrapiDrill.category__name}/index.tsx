@@ -10,13 +10,13 @@ import {
 } from "@mui/material";
 import { graphql } from "gatsby";
 import React, { useContext } from "react";
-import Layout from "../../../components/layout";
+import Layout from "../../../components/Layout";
 import PageWrapper from "../../../components/shared/content-wrapper";
 import ContentHeading from "../../../components/shared/content-heading";
 import { RelatedContentWrapper } from "../../../components/shared/related-content-list";
 import slugify from "@sindresorhus/slugify";
-import DrillsContext from "../../../components/DrillsContext";
-import SavedDrillsDrawer from "../../../components/drill/saved-drills-drawer";
+import DrillsContext from "../../../context/DrillsContext";
+import SavedDrillsDrawer from "../../../components/drill/SavedDrillsDrawer";
 
 const DrillCategoryPage = ({ data, location }) => {
   const categoryData = data.strapiDrillCategory;

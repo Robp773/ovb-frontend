@@ -5,7 +5,6 @@ import {
   Button,
   Container,
   Divider,
-  Drawer,
   Grow,
   Paper,
   TextField,
@@ -29,26 +28,25 @@ import DrillCategoryChip from "../../components/drill/drill-category-chip";
 import DrillCompetencyChip from "../../components/drill/drill-competency-chip";
 import DrillDetails from "../../components/drill/drill-details";
 import DrillTypeChip from "../../components/drill/drill-type-chip";
-import Layout from "../../components/layout";
+import Layout from "../../components/Layout";
 import ContentChip from "../../components/shared/content-chip";
 import ContentWrapper from "../../components/shared/content-wrapper";
 import { RelatedContentWrapper } from "../../components/shared/related-content-list";
 import StaticPageNoImageHeading from "../../components/static-page/static-page-no-image-heading";
-import DrillsContext from "../../components/DrillsContext";
-import SavedDrillsDrawer from "../../components/drill/saved-drills-drawer";
+import DrillsContext from "../../context/DrillsContext";
+import SavedDrillsDrawer from "../../components/drill/SavedDrillsDrawer";
+import { DrillsHomePageDataType } from "../../../types/DrillsPages";
 
 const competencies = ["Foundational", "Intermediate", "Advanced"];
-
 const drillTypes = ["Team", "Partner", "Individual"];
 
-const DrillsPage = (data) => {
-  const { strapiDrillsPage, allStrapiDrillCategory, localSearchDrills } =
-    data.data;
+const DrillsPage = ({ data }: { data: DrillsHomePageDataType }) => {
+  const { strapiDrillsPage, allStrapiDrillCategory, localSearchDrills } = data;
 
   const [query, setQuery] = useState("");
-  const [competency, setCompetency] = React.useState([]);
-  const [category, setCategory] = React.useState([]);
-  const [drillType, setDrillType] = React.useState([]);
+  const [competency, setCompetency] = React.useState<Array<string> | null>([]);
+  const [category, setCategory] = React.useState<Array<string> | null>([]);
+  const [drillType, setDrillType] = React.useState<Array<string> | null>([]);
   const [queryObj, setQueryObj] = React.useState({});
   const [isInitialSearch, setIsInitialSearch] = React.useState(true);
   const [textQuery, setTextQuery] = React.useState("");
@@ -86,6 +84,8 @@ const DrillsPage = (data) => {
   };
 
   const savedDrills = useContext(DrillsContext);
+
+  console.log(data);
 
   return (
     <Layout>

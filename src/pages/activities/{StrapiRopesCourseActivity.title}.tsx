@@ -3,13 +3,14 @@ import {
   Step,
   StepContent,
   StepLabel,
-  Stepper, Typography
+  Stepper,
+  Typography,
 } from "@mui/material";
 import { graphql } from "gatsby";
 import { GatsbyImage } from "gatsby-plugin-image";
 import React from "react";
-import Layout from "../../components/layout";
-import SEO from "../../components/seo";
+import Layout from "../../components/Layout";
+import SEO from "../../components/Seo";
 import ContentHeading from "../../components/shared/content-heading";
 import PageWrapper from "../../components/shared/content-wrapper";
 
@@ -58,7 +59,9 @@ const CustomArticle = ({ data, location }) => {
                   {step.media ? (
                     <GatsbyImage
                       alt={step.title}
-                      image={step.media.localFile.childImageSharp.gatsbyImageData}
+                      image={
+                        step.media.localFile.childImageSharp.gatsbyImageData
+                      }
                     />
                   ) : null}
 
@@ -95,9 +98,9 @@ export const query = graphql`
           localFile {
             childImageSharp {
               gatsbyImageData(
-                height: 300,
-                width: 500,
-                transformOptions: {fit: COVER }
+                height: 300
+                width: 500
+                transformOptions: { fit: COVER }
               )
             }
           }
@@ -107,9 +110,9 @@ export const query = graphql`
         localFile {
           childImageSharp {
             gatsbyImageData(
-              height: 300,
-              width: 500,
-              transformOptions: {fit: COVER }
+              height: 300
+              width: 500
+              transformOptions: { fit: COVER }
             )
           }
         }

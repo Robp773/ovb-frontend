@@ -1,10 +1,8 @@
 import React from "react";
-import Footer from "./footer";
-import NavBar from "./navbar";
-
+import Footer from "./Footer";
+import NavBar from "./Navbar";
 import CssBaseline from "@mui/material/CssBaseline";
 import { createTheme, ThemeProvider } from "@mui/material/styles";
-import { DrillsProvider } from "./DrillsContext";
 
 const theme = createTheme({
   palette: {

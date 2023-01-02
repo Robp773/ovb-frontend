@@ -1,16 +1,14 @@
 import React from "react";
 import { graphql } from "gatsby";
-
-import Layout from "~/components/layout";
-import { Container, Divider, Typography } from "@mui/material";
-import { Box } from "@mui/system";
-import styled from "@emotion/styled";
-import SEO from "../../../components/seo";
+import Layout from "../../../components/Layout";
+import { Divider, Typography } from "@mui/material";
+import SEO from "../../../components/Seo";
 import ContentWrapper from "../../../components/shared/content-wrapper";
 import { RelatedContentWrapper } from "../../../components/shared/related-content-list";
 import StaticPageHeading from "../../../components/static-page/static-page-heading";
+import { HistoryPageDataType } from "../../../../types/InfoPages";
 
-const HistoryListPage = ({ data }) => {
+const HistoryListPage = ({ data }: { data: HistoryPageDataType }) => {
   const seo = { title: "History" };
   const strapiHistoryPage = data.strapiHistoryPage;
   const histories = data.allStrapiHistory.edges;

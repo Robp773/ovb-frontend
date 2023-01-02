@@ -14,11 +14,7 @@ import DrillDetails from "./drill-details";
 import { useReactToPrint } from "react-to-print";
 import SavedDrillsList from "./saved-drills-list";
 import PrintIcon from "@mui/icons-material/Print";
-export default function SavedDrillsDrawer({
-  changeSelectedDrills,
-  drills,
-  fullWidth,
-}) {
+export default function SavedDrillsDrawer({ changeSelectedDrills, drills }) {
   const componentRef = React.useRef(null);
 
   const [isOpen, setIsOpen] = React.useState(false);

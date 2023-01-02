@@ -1,21 +1,14 @@
-import {
-  Paper,
-  Typography,
-  Container,
-  TextField,
-  Box,
-  Button,
-  Radio,
-  FormControlLabel,
-  RadioGroup,
-} from "@mui/material";
+import PrintIcon from "@mui/icons-material/Print";
+import { Box, Button, Paper, TextField, Typography } from "@mui/material";
 import { StaticImage } from "gatsby-plugin-image";
 import React from "react";
-import { styled } from "@mui/styles";
-import PrintIcon from "@mui/icons-material/Print";
 import { useReactToPrint } from "react-to-print";
 
-export const PhotoConsentForm = ({ setCurrentForm }) => {
+export const PhotoConsentForm = ({
+  setCurrentForm,
+}: {
+  setCurrentForm: Function;
+}) => {
   const componentRef = React.useRef(null);
 
   const handlePrint = useReactToPrint({

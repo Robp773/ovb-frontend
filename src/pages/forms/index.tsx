@@ -1,11 +1,8 @@
-import { graphql } from "gatsby";
 import React, { useState } from "react";
-
 import AddAPhoto from "@material-ui/icons/AddAPhoto";
 import Assignment from "@material-ui/icons/Assignment";
 import SportsBasketballIcon from "@mui/icons-material/SportsBasketball";
 import {
-  Alert,
   Modal,
   Step,
   StepLabel,
@@ -17,13 +14,13 @@ import {
 import Button from "@mui/material/Button";
 import Card from "@mui/material/Card";
 import CardActions from "@mui/material/CardActions";
-import Layout from "~/components/layout";
-import SEO from "~/components/seo";
+import Layout from "../../components/Layout";
+import SEO from "../../components/Seo";
 import ContentWrapper from "../../components/shared/content-wrapper";
 import { RegistrationForm } from "../../forms/registration-form";
 import { PhotoConsentForm } from "../../forms/photo-consent-form";
 
-const FormsPage = ({ data }) => {
+const FormsPage = () => {
   const seo = { title: "Forms" };
   const [currentForm, setCurrentForm] = useState("");
 
@@ -34,7 +31,7 @@ const FormsPage = ({ data }) => {
     <Layout>
       <SEO seo={seo} />
 
-      <Modal open={currentForm} onClose={() => setCurrentForm("")}>
+      <Modal open={Boolean(currentForm)} onClose={() => setCurrentForm("")}>
         {currentForm === "registration" ? (
           <RegistrationForm setCurrentForm={setCurrentForm} />
         ) : (
@@ -112,26 +109,5 @@ const FormsPage = ({ data }) => {
     </Layout>
   );
 };
-
-export const notePageQuery = graphql`
-  query FormsPageQuery {
-    strapiFormsPage {
-      id
-      page_title
-      forms {
-        form_description
-        form_name
-        file {
-          localFile {
-            publicURL
-          }
-        }
-      }
-    }
-    stripePrice(product: { name: { eq: "Registration Fee" } }) {
-      id
-    }
-  }
-`;
 
 export default FormsPage;

@@ -1,14 +1,14 @@
 import { Divider, Typography } from "@mui/material";
 import { graphql } from "gatsby";
 import React from "react";
-import Layout from "~/components/layout";
-import SEO from "~/components/seo";
+import Layout from "../../../components/Layout";
+import SEO from "../../../components/Seo";
+import { AboutPageDataType } from "../../../../types/InfoPages";
 import ContentWrapper from "../../../components/shared/content-wrapper";
 import StaticPageHeading from "../../../components/static-page/static-page-heading";
 
-const AboutPage = ({ data }) => {
+const AboutPage = ({ data }: { data: AboutPageDataType }) => {
   const seo = { title: "About" };
-
   return (
     <Layout>
       <SEO seo={seo} />

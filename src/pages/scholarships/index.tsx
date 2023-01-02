@@ -1,31 +1,34 @@
 import React from "react";
 import { graphql } from "gatsby";
 
-import Layout from "~/components/layout";
-import SEO from "~/components/seo";
+import Layout from "../../components/Layout";
+import SEO from "../../components/Seo";
 import { Button, Typography } from "@mui/material";
-import { styled } from "@mui/material/styles";
 import ContentWrapper from "../../components/shared/content-wrapper";
 import StaticPageHeading from "../../components/static-page/static-page-heading";
+import { ScholarshipsPageDataType } from "../../../types/ScholarshipsPage";
 
-const ScholarshipsPage = ({ data }) => {
+const ScholarshipsPage = ({
+  data: { strapiScholarshipsPage },
+}: {
+  data: { strapiScholarshipsPage: ScholarshipsPageDataType };
+}) => {
   const seo = { title: "Scholarships" };
-
   return (
     <Layout>
       <SEO seo={seo} />
       <ContentWrapper>
         <StaticPageHeading
           image={
-            data.strapiScholarshipsPage.main_media.localFile.childImageSharp
+            strapiScholarshipsPage.main_media.localFile.childImageSharp
               .gatsbyImageData
           }
-          title={data.strapiScholarshipsPage.page_title}
+          title={strapiScholarshipsPage.page_title}
         />
         <Typography
           marginTop="20px"
           dangerouslySetInnerHTML={{
-            __html: data.strapiScholarshipsPage.page_content,
+            __html: strapiScholarshipsPage.page_content,
           }}
           variant="body1"
         />

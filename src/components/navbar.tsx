@@ -1,19 +1,15 @@
 import { Box, Drawer } from "@material-ui/core";
-
 import AppBar from "@mui/material/AppBar";
-import Button from "@mui/material/Button";
-
 import { styled } from "@mui/material/styles";
 import Toolbar from "@mui/material/Toolbar";
 import MenuIcon from "@mui/icons-material/Menu";
 import React, { useState } from "react";
 import IconButton from "@mui/material/IconButton";
 
-import NavBtns from "./navBtns";
+import NavBtns from "./NavBtns";
 
 const AppBarEl = styled(AppBar)(({ theme }) => ({
   backgroundColor: `${theme.palette.secondary.main}`,
-
 }));
 const ToolbarEl = styled(Toolbar)(({ theme }) => ({
   width: "100%",

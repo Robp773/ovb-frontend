@@ -115,6 +115,7 @@ const ContentHeading = (props, data) => {
       break;
     }
   }
+
   return (
     <Heading>
       {props.contentType === "activity" ||

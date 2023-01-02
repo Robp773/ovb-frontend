@@ -2,7 +2,7 @@ import { Chip, styled } from "@mui/material";
 import slugify from "@sindresorhus/slugify";
 import { Link as GatsbyLink } from "gatsby";
 import React from "react";
-import { getArticleIcon } from "../../helpers/getArticleChip";
+import { getArticleIcon } from "../../helpers/getArticleIcon";
 
 const StyledChip = styled(Chip)({
   margin: "5px auto",
@@ -13,17 +13,14 @@ const StyledChip = styled(Chip)({
 });
 
 const ArticleCategoryChip = (props) => {
-
   return (
-    < >
+    <>
       {props.iconWithText ? (
         <GatsbyLink
           style={{
-            textDecoration: "none"
+            textDecoration: "none",
           }}
-          to={`/articles/${slugify(
-            props.category.toLowerCase()
-          )}`}
+          to={`/articles/${slugify(props.category.toLowerCase())}`}
         >
           <StyledChip
             clickable
@@ -33,7 +30,9 @@ const ArticleCategoryChip = (props) => {
             icon={getArticleIcon(props.category)}
           />
         </GatsbyLink>
-      ) : getArticleIcon(props.category)}
+      ) : (
+        getArticleIcon(props.category)
+      )}
     </>
   );
 };

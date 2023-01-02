@@ -13,7 +13,7 @@ import React from "react";
 import { useEffect, useState } from "react";
 import { useShoppingCart } from "use-shopping-cart";
 
-const Cart = (props: { status: String }) => {
+const Cart = ({ status }: { status: string | (string | null)[] | null }) => {
   const [loading, setLoading] = useState(false);
   const {
     formattedTotalPrice,
@@ -24,7 +24,7 @@ const Cart = (props: { status: String }) => {
   } = useShoppingCart();
 
   useEffect(() => {
-    if (props.status === "success") {
+    if (status === "success") {
       clearCart();
     }
   }, []);

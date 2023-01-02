@@ -1,7 +1,6 @@
 import {
   Paper,
   Typography,
-  Container,
   TextField,
   Box,
   Button,
@@ -11,10 +10,14 @@ import {
 } from "@mui/material";
 import { StaticImage } from "gatsby-plugin-image";
 import React from "react";
-import { styled } from "@mui/styles";
 import PrintIcon from "@mui/icons-material/Print";
 import { useReactToPrint } from "react-to-print";
-export const RegistrationForm = ({ setCurrentForm }) => {
+
+export const RegistrationForm = ({
+  setCurrentForm,
+}: {
+  setCurrentForm: Function;
+}) => {
   const componentRef = React.useRef(null);
 
   const handlePrint = useReactToPrint({

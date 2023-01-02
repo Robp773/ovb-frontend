@@ -3,8 +3,9 @@ import { styled } from "@mui/material/styles";
 import { graphql } from "gatsby";
 import { GatsbyImage } from "gatsby-plugin-image";
 import React from "react";
-import Layout from "~/components/layout";
-import SEO from "~/components/seo";
+import { CoachPageDataType } from "../../../../types/InfoPages";
+import Layout from "../../../components/Layout";
+import SEO from "../../../components/Seo";
 import ContentWrapper from "../../../components/shared/content-wrapper";
 import StaticPageHeading from "../../../components/static-page/static-page-heading";
 
@@ -18,15 +19,14 @@ const HeadingContainer = styled("div")(({ theme }) => ({
   },
 }));
 
-const CoachName = styled(Typography)(({ theme }) => ({
+const CoachName = styled(Typography)({
   margin: "auto",
   width: "50%",
   textAlign: "center",
-}));
+});
 
-const CalendarPage = ({ data }) => {
-  const seo = { title: "Calendar" };
-
+const CalendarPage = ({ data }: { data: CoachPageDataType }) => {
+  const seo = { title: "Coaches" };
   return (
     <Layout>
       <SEO seo={seo} />

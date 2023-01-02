@@ -1,3 +1,4 @@
+import React from "react";
 import LabelIcon from "@mui/icons-material/Label";
 import Box from "@mui/material/Box";
 import Button from "@mui/material/Button";
@@ -5,16 +6,20 @@ import Step from "@mui/material/Step";
 import StepContent from "@mui/material/StepContent";
 import StepLabel from "@mui/material/StepLabel";
 import Stepper from "@mui/material/Stepper";
-import { styled } from "@mui/material/styles";
 import Typography from "@mui/material/Typography";
 import slugify from "@sindresorhus/slugify";
-import * as React from "react";
+import { AllStrapiChapter } from "../../../types/ProcessPage";
 
 export default function VerticalLinearStepper({
-  chapters,
+  allStrapiChapter,
   isInDrawer,
   fullWidth,
   activeChapter,
+}: {
+  allStrapiChapter: AllStrapiChapter;
+  isInDrawer?: boolean;
+  fullWidth?: boolean;
+  activeChapter?: string;
 }) {
   return (
     <Box
@@ -30,7 +35,7 @@ export default function VerticalLinearStepper({
         nonLinear
         orientation="vertical"
       >
-        {chapters.map((step) => (
+        {allStrapiChapter.edges.map((step) => (
           <Step active key={step.node.name}>
             <StepLabel>
               <Box sx={{ display: "flex", alignItems: "center" }}>

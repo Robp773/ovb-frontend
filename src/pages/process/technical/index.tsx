@@ -1,26 +1,30 @@
 import { Divider, Typography } from "@mui/material";
 import { graphql } from "gatsby";
 import React from "react";
-import Layout from "~/components/layout";
-import SEO from "~/components/seo";
+import Layout from "../../../components/Layout";
+import SEO from "../../../components/Seo";
 import ContentHeading from "../../../components/shared/content-heading";
 import ContentWrapper from "../../../components/shared/content-wrapper";
 import StaticPageHeading from "../../../components/static-page/static-page-heading";
 import PageWrapper from "../../../components/shared/content-wrapper";
+import { TechnicalSkillsPageDataType } from "../../../../types/ProcessPage";
 
-const TechnicalSkillsPage = ({ data }) => {
+const TechnicalSkillsPage = ({
+  data: { strapiTechnicalSkillsPage },
+}: {
+  data: { strapiTechnicalSkillsPage: TechnicalSkillsPageDataType };
+}) => {
   const seo = { title: "Technical Skills" };
-
   return (
     <Layout>
       <SEO seo={seo} />
       <PageWrapper>
         <ContentHeading
           image={
-            data.strapiTechnicalSkillsPage.main_image.localFile.childImageSharp
+            strapiTechnicalSkillsPage.main_image.localFile.childImageSharp
               .gatsbyImageData
           }
-          title={data.strapiTechnicalSkillsPage.page_title}
+          title={strapiTechnicalSkillsPage.page_title}
           iconWithText={false}
           contentType="chapter"
           metaData={{
@@ -36,7 +40,7 @@ const TechnicalSkillsPage = ({ data }) => {
         <Typography
           variant="body1"
           dangerouslySetInnerHTML={{
-            __html: data.strapiTechnicalSkillsPage.page_content,
+            __html: strapiTechnicalSkillsPage.page_content,
           }}
         />
       </PageWrapper>

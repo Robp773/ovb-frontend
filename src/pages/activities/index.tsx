@@ -1,6 +1,6 @@
 import { graphql } from "gatsby";
 import React from "react";
-import Layout from "../../components/layout";
+import Layout from "../../components/Layout";
 import PageWrapper from "../../components/shared/content-wrapper";
 
 const CustomArticle = (data) => {

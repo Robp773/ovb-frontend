@@ -9,8 +9,9 @@ import Modal from "@mui/material/Modal";
 import { graphql } from "gatsby";
 import { GatsbyImage } from "gatsby-plugin-image";
 import React from "react";
-import Layout from "~/components/layout";
-import SEO from "~/components/seo";
+import Layout from "../../components/Layout";
+import SEO from "../../components/Seo";
+import { GalleryImage, GalleryPageDataType } from "../../../types/GalleryPage";
 
 const style = {
   position: "absolute",
@@ -27,12 +28,12 @@ const style = {
   width: "fit-content",
 };
 
-const GalleryPage = ({ data }) => {
+const GalleryPage = ({ data }: { data: GalleryPageDataType }) => {
   const seo = { title: "Gallery" };
   const [open, setOpen] = React.useState(false);
-  const [modalImg, setModalImage] = React.useState(null);
+  const [modalImg, setModalImage] = React.useState<GalleryImage | null>(null);
 
-  const handleOpen = (item) => {
+  const handleOpen = (item: GalleryImage) => {
     setModalImage(item);
     setOpen(true);
   };
@@ -54,40 +55,39 @@ const GalleryPage = ({ data }) => {
             timeout: 500,
           }}
         >
-          <Fade in={open}>
-            {modalImg ? (
-              <Box
-                onClick={() => {
-                  handleClose();
-                }}
-                sx={style}
-              >
-                <GatsbyImage
-                  style={{ width: "fit-content", maxHeight: "85vh" }}
-                  objectFit="contain"
-                  image={
-                    modalImg.gallery_image.localFile.childImageSharp
-                      .gatsbyImageData
-                  }
-                  alt={modalImg.gallery_image_title}
-                />
-                <Box style={{ marginTop: "10px", textAlign: "left" }}>
-                  <Typography variant="h6" id="transition-modal-title">
-                    {modalImg.gallery_image_title}
-                  </Typography>
-                  {/* <Typography variant="subtitle1" id="transition-modal-title">
-                    {modalImg.gallery_image_date ? modalImg.gallery_image_date : null}
-                  </Typography> */}
-                  <Typography
-                    variant="subtitle1"
-                    id="transition-modal-description"
-                  >
-                    {modalImg.gallery_image.caption}
-                  </Typography>
+          <>
+            {modalImg && (
+              <Fade in={open}>
+                <Box
+                  onClick={() => {
+                    handleClose();
+                  }}
+                  sx={style}
+                >
+                  <GatsbyImage
+                    style={{ width: "fit-content", maxHeight: "85vh" }}
+                    objectFit="contain"
+                    image={
+                      modalImg.gallery_image.localFile.childImageSharp
+                        .gatsbyImageData
+                    }
+                    alt={modalImg.gallery_image_title}
+                  />
+                  <Box style={{ marginTop: "10px", textAlign: "left" }}>
+                    <Typography variant="h6" id="transition-modal-title">
+                      {modalImg.gallery_image_title}
+                    </Typography>
+                    <Typography
+                      variant="subtitle1"
+                      id="transition-modal-description"
+                    >
+                      {modalImg.gallery_image.caption}
+                    </Typography>
+                  </Box>
                 </Box>
-              </Box>
-            ) : null}
-          </Fade>
+              </Fade>
+            )}
+          </>
         </Modal>
         <ImageList
           sx={{
