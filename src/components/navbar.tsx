@@ -6,7 +6,7 @@ import MenuIcon from "@mui/icons-material/Menu";
 import React, { useState } from "react";
 import IconButton from "@mui/material/IconButton";
 
-import NavBtns from "./NavBtns";
+import NavBtns from "./navbtns";
 
 const AppBarEl = styled(AppBar)(({ theme }) => ({
   backgroundColor: `${theme.palette.secondary.main}`,
