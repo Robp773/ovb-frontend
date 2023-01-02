@@ -1,6 +1,6 @@
 import React from "react";
-import Footer from "./Footer";
-import NavBar from "./NavBar";
+import Footer from "./footer";
+import NavBar from "./navbar";
 import CssBaseline from "@mui/material/CssBaseline";
 import { createTheme, ThemeProvider } from "@mui/material/styles";
 
