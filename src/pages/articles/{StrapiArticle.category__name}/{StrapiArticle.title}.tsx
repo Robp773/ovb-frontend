@@ -1,10 +1,19 @@
-import { Divider, Typography } from "@mui/material";
+import { Box, Divider, styled, Typography } from "@mui/material";
 import { graphql } from "gatsby";
 import React from "react";
 import Layout from "~/components/layout";
 import SEO from "~/components/seo";
 import ContentHeading from "../../../components/shared/content-heading";
 import ContentWrapper from "../../../components/shared/content-wrapper";
+import { getYouTubeId } from "../../../helpers/misc";
+
+const IframeWrapper = styled(Box)({
+  textAlign: "center",
+  "& > iframe": {
+    width: "100%",
+    minHeight: "400px",
+  },
+});
 
 const CustomArticle = ({ data, location }) => {
   const seo = { title: data.strapiArticle.title };
@@ -28,17 +37,24 @@ const CustomArticle = ({ data, location }) => {
             date: data.strapiArticle.date,
           }}
         />
+
         <Divider style={{ margin: "20px 0" }} />
-        {data.strapiArticle.main_video && (
-          <video
-            style={{ maxWidth: "100%", maxHeight: "400px" }}
-            autoPlay
-            controls
-          >
-            <source src={data.strapiArticle.main_video.localFile.url} />
-          </video>
+        {data.strapiArticle.main_youtube_video && (
+          <IframeWrapper>
+            <iframe
+              src={`https://www.youtube.com/embed/${getYouTubeId(
+                data.strapiArticle.main_youtube_video
+              )}`}
+              title="YouTube video player"
+              frameborder="0"
+              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+              allowfullscreen
+              align="center"
+            ></iframe>
+          </IframeWrapper>
         )}
-        {data.strapiArticle.main_video && (
+
+        {data.strapiArticle.main_youtube_video && (
           <Divider style={{ margin: "20px 0" }} />
         )}
 
@@ -74,11 +90,7 @@ export const query = graphql`
           }
         }
       }
-      main_video {
-        localFile {
-          url
-        }
-      }
+      main_youtube_video
       tags {
         name
       }
