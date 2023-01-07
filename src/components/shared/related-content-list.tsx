@@ -9,25 +9,28 @@ import React from "react";
 import ArticleCategoryChip from "../article/article-category-chip";
 import slugify from "@sindresorhus/slugify";
 import DrillDetails from "../drill/drill-details";
+import { Theme } from "@material-ui/core";
 
 const CardActionButton = styled(Link)({
   textDecoration: "none",
 });
 
-const GridParent = styled("div")(({ theme, isHomePage }) => ({
-  display: "grid",
-  gridAutoColumns: "1fr 1fr 1fr 1fr",
-  columnGap: "5px",
-  rowGap: "5px",
-  marginTop: "30px",
-  gridTemplateColumns: isHomePage ? "repeat(4, 1fr)" : "repeat(3, 1fr)",
-  [theme.breakpoints.down("sm")]: {
-    gridTemplateColumns: isHomePage ? "repeat(2, 1fr)" : "repeat(2, 1fr)",
-  },
-  [theme.breakpoints.down("400")]: {
-    gridTemplateColumns: isHomePage ? "repeat(1, 1fr)" : "repeat(1, 1fr)",
-  },
-}));
+const GridParent = styled(Box)(
+  ({ theme, isHomePage }: { theme: Theme; isHomePage: boolean }) => ({
+    display: "grid",
+    gridAutoColumns: "1fr 1fr 1fr 1fr",
+    columnGap: "5px",
+    rowGap: "5px",
+    marginTop: "30px",
+    gridTemplateColumns: isHomePage ? "repeat(5, 1fr)" : "repeat(3, 1fr)",
+    [theme.breakpoints.down("sm")]: {
+      gridTemplateColumns: isHomePage ? "repeat(2, 1fr)" : "repeat(2, 1fr)",
+    },
+    [theme.breakpoints.down(400)]: {
+      gridTemplateColumns: isHomePage ? "repeat(1, 1fr)" : "repeat(1, 1fr)",
+    },
+  })
+);
 
 export const RelatedContentWrapper = (props) => {
   let iterable = props.items.edges ? props.items.edges : props.items;
@@ -98,19 +101,24 @@ export const RelatedContentWrapper = (props) => {
             timeout={(index + 1) * 250}
           >
             <Card
-              variant="outlined"
+              elevation={3}
               key={index}
-              style={{
+              sx={{
                 display: "flex",
                 flexDirection: "column",
                 justifyContent: "space-between",
               }}
             >
               <div>
-                <GatsbyImage alt={node.title || node.name} image={image} />
+                <GatsbyImage
+                  objectFit="fill"
+                  style={{ width: "100%" }}
+                  alt={node.title || node.name}
+                  image={image}
+                />
                 <CardContent>
                   <Box
-                    style={{
+                    sx={{
                       padding: "0 0 5px 0",
                       display: "flex",
                       flexDirection: "column",
@@ -119,12 +127,12 @@ export const RelatedContentWrapper = (props) => {
                   >
                     <Typography
                       variant="h6"
-                      style={{ display: "flex", alignItems: "center" }}
+                      sx={{ display: "flex", alignItems: "center" }}
                     >
                       {node.title || node.name}
                       {props.contentType === "articleTopics" ? (
                         <Box
-                          style={{
+                          sx={{
                             display: "flex",
                             alignItems: "center",
                             marginLeft: "6px",
@@ -134,17 +142,18 @@ export const RelatedContentWrapper = (props) => {
                         </Box>
                       ) : null}
                     </Typography>
-                    <Typography variant="body1">{node.date}</Typography>
                     {props.contentType === "articles" ? (
                       <ArticleCategoryChip
                         iconWithText
                         category={node.category.name}
                       />
                     ) : null}
+                    <Typography variant="body2">{node.date}</Typography>
+
                     {showDrillDetails ? <DrillDetails node={node} /> : null}
                   </Box>
 
-                  <Divider style={{ margin: "5px auto" }} />
+                  <Divider sx={{ margin: "5px auto" }} />
 
                   <Typography
                     variant="body2"
@@ -156,11 +165,7 @@ export const RelatedContentWrapper = (props) => {
               </div>
               <CardActions>
                 <CardActionButton to={path}>
-                  <Button
-                    style={{ marginRight: "3px" }}
-                    color="secondary"
-                    variant="outlined"
-                  >
+                  <Button color="secondary" variant="contained">
                     Open
                   </Button>
                 </CardActionButton>

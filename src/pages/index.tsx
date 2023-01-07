@@ -110,7 +110,7 @@ const IndexPage = ({ data }: { data: HomePageDataType }) => {
           align="center"
           variant="h4"
         >
-          Recent Articles
+          Activity Feed
         </Typography>
         <RelatedContentWrapper
           isHomePage={true}
@@ -133,14 +133,15 @@ export const articlePageQuery = graphql`
           childImageSharp {
             gatsbyImageData(
               height: 200
-              width: 500
-              transformOptions: { fit: FILL }
+              width: 350
+              backgroundColor: "transparent"
+              transformOptions: { fit: CONTAIN }
             )
           }
         }
       }
     }
-    allStrapiArticle(sort: { fields: date, order: DESC }, limit: 4) {
+    allStrapiArticle(sort: { fields: date, order: DESC }, limit: 5) {
       edges {
         node {
           strapiId
@@ -165,8 +166,8 @@ export const articlePageQuery = graphql`
             localFile {
               childImageSharp {
                 gatsbyImageData(
-                  height: 750
-                  width: 1000
+                  height: 250
+                  width: 300
                   transformOptions: { fit: FILL, cropFocus: CENTER }
                 )
               }

@@ -4,13 +4,13 @@ import { Link as GatsbyLink } from "gatsby";
 import React from "react";
 import { getArticleIcon } from "../../helpers/getArticleIcon";
 
-const StyledChip = styled(Chip)({
-  margin: "5px auto",
+const StyledChip = styled(Chip)(({ theme }) => ({
+  margin: `${theme.spacing(0.5)} auto`,
   display: "flex",
   justifyContent: "center",
   width: "fit-content",
   padding: "10px 5px",
-});
+}));
 
 const ArticleCategoryChip = (props) => {
   return (
