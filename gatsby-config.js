@@ -3,7 +3,11 @@ require("dotenv").config({
 });
 
 module.exports = {
+  siteMetadata: {
+    siteUrl: "https://www.onevoicebasketball.com",
+  },
   plugins: [
+    "gatsby-plugin-robots-txt",
     {
       resolve: `gatsby-plugin-manifest`,
       options: {
