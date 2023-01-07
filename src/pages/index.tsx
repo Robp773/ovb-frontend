@@ -97,7 +97,7 @@ const IndexPage = ({ data }: { data: HomePageDataType }) => {
         </TextWrapper>
         <AboutLink to="/info/about">
           <LearnMoreButton color="secondary" variant="contained" size="large">
-            Learn More
+            More About One Voice
           </LearnMoreButton>
         </AboutLink>
       </WhoWeAreCard>
