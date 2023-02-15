@@ -97,7 +97,7 @@ const FormsPage = () => {
                   variant="contained"
                   size="small"
                   target="#"
-                  href="https://buy.stripe.com/4gweVNfhU59o316dQQ"
+                  href="https://buy.stripe.com/3cs8xp0n01Xc3165km"
                 >
                   Pay Sign Up Fee
                 </Button>
