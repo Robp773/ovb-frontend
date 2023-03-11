@@ -221,11 +221,15 @@ export const RegistrationForm = ({
               representatives, directors and officers from any and all claims,
               liabilities, causes of action and dangers arising out of, or in
               connection with the Applicant’s participation in the programs of
-              the OVBA, Inc. Is the Participant taking any medication that would
-              limit safe participation in the activities and/or does the
-              Participant have any physical or mental condition, physical
-              disability, or any other condition that would limit safe
-              participation in the activities?
+              the OVBA, Inc.
+            </Typography>
+
+            <Typography variant="body1">
+              Is the Participant taking any medication that would limit safe
+              participation in the activities and/or does the Participant have
+              any physical or mental condition, physical disability, or any
+              other condition that would limit safe participation in the
+              activities?
             </Typography>
 
             <RadioGroup>
