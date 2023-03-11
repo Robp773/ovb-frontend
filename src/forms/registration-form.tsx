@@ -224,7 +224,7 @@ export const RegistrationForm = ({
               the OVBA, Inc.
             </Typography>
 
-            <Typography variant="body1">
+            <Typography mt={2} variant="body1">
               Is the Participant taking any medication that would limit safe
               participation in the activities and/or does the Participant have
               any physical or mental condition, physical disability, or any
