@@ -23,7 +23,11 @@ const Products = () => {
           product: {
             active: { eq: true }
             name: {
-              nin: ["Spring Registration Fee", "Scholarship Fund Donation"]
+              nin: [
+                "Spring Registration Fee"
+                "Fall Registration Fee"
+                "Scholarship Fund Donation"
+              ]
             }
           }
         }
