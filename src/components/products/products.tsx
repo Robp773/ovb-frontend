@@ -22,7 +22,9 @@ const Products = () => {
         filter: {
           product: {
             active: { eq: true }
-            name: { nin: ["Registration Fee", "Scholarship Fund Donation"] }
+            name: {
+              nin: ["Spring Registration Fee", "Scholarship Fund Donation"]
+            }
           }
         }
       ) {
